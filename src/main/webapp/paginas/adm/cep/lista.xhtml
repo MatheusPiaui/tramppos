@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns   = "http://www.w3.org/1999/xhtml"
+      xmlns:h = "http://java.sun.com/jsf/html"
+      xmlns:ui= "http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core" >    
+    
+    
+    <h:body>
+        <ui:composition template="templates/template.xhtml">
+            
+            
+            
+            <ui:define name="subTitulo">Lista</ui:define>
+           
+            
+            
+            <ui:define name="subConteudo">
+                <h:form>
+                    <h:panelGrid title="Cep">
+                        <h:dataTable id="cepData" value="#{cepController.listaCep}"
+                                var="item" styleClass="mdl-data-table mdl-js-data-table">
+                           <h:column>
+                               <f:facet  name="header">
+                                   <h:outputText value="Código"/>
+                               </f:facet>
+                               <h:outputText value="#{item.id}"/>
+                           </h:column>
+                           <h:column >
+                               <f:facet name="header">
+                                   <h:outputText value="Numero do Cep"/>
+                               </f:facet>
+                               <h:outputText value="#{item.numeroCep}"/>
+                           </h:column>
+                            <h:column >
+                               <f:facet name="header">
+                                   <h:outputText value="Numero Inicial"/>
+                               </f:facet>
+                                <h:outputText value="#{item.numeroInicial}"/>
+                           </h:column>
+                            <h:column >
+                               <f:facet name="header">
+                                   <h:outputText value="Numero Final"/>
+                               </f:facet>
+                                <h:outputText value="#{item.numeroFinal}"/>
+                           </h:column>
+                           <h:column>
+                               <f:facet name="header">
+                                   <h:outputText value="Cidade"/>
+                               </f:facet>
+                               <h:outputText value="#{item.cidade.nome}"/>
+                           </h:column>
+                            <h:column>
+                               <f:facet name="header">
+                                   <h:outputText value="Estado"/>
+                               </f:facet>
+                                <h:outputText value="#{item.cidade.estado.sigla}"/>
+                           </h:column>
+                            <h:column>
+                               <f:facet name="header">
+                                   <h:outputText value="Bairro"/>
+                               </f:facet>
+                                <h:outputText value="#{item.bairro.nome}"/>
+                           </h:column>
+                            <h:column>
+                               <f:facet name="header">
+                                   <h:outputText value="Logradouro"/>
+                               </f:facet>
+                                <h:outputText value="#{item.logradouro.nome}"/>
+                           </h:column>
+                           <h:column>
+                               <h:commandLink title="Atualiza os dados tipo pessoa" action="#{cepController.doUpdate()}">
+                                   <h:graphicImage value="/resources/images/update.png"/>
+                                   <f:setPropertyActionListener value="#{item}" target="#{cepController.cepEdit}"/>
+                               </h:commandLink>                           
+                           </h:column>
+                        </h:dataTable> 
+                    </h:panelGrid> 
+                    <div class="btnAdd">
+                        <h:commandLink title="Cadastro" action="#{cepController.doAdd()}">
+                            <!-- Colored FAB button with ripple -->                    
+                            <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored">
+                                <i class="material-icons">add</i>
+                            </button>
+                        </h:commandLink>
+                    </div>
+                </h:form>                              
+          </ui:define> 
+            
+        </ui:composition>  
+    </h:body>
+</html>

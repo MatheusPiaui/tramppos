@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<ui:composition     xmlns   = "http://www.w3.org/1999/xhtml"
+                    xmlns:h = "http://java.sun.com/jsf/html"
+                    xmlns:p = "http://primefaces.org/ui"
+                    xmlns:ui= "http://java.sun.com/jsf/facelets"
+                    xmlns:f="http://java.sun.com/jsf/core" >
+    
+   <!-- Always shows a header, even in smaller screens. -->
+        <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header mdl-layout--fixed-tabs">
+            
+          <header class="mdl-layout__header">              
+              
+               <div class="mdl-layout__header-row">
+              <!-- Title -->
+              <span class="mdl-layout-title">
+                  <h:link hreflang=""><h:graphicImage value="/resources/images/tramppos-logo.png"/></h:link>
+              </span>
+              <!-- Add spacer, to align navigation to the right -->
+              <div class="mdl-layout-spacer"></div>
+              <!-- Navigation. We hide it in small screens. -->
+              <nav class="mdl-navigation mdl-layout--large-screen-only">
+                <a class="mdl-navigation__link" href="/Web/paginas/adm/profissao/lista.xhtml">Profissao</a>
+                <a class="mdl-navigation__link" href="/Web/paginas/adm/categoria/lista.xhtml">Categoria</a>
+                <a class="mdl-navigation__link" href="/Web/paginas/adm/tipologradouro/lista.xhtml">Tipo de Logradouro</a>
+                <a class="mdl-navigation__link" href="/Web/paginas/adm/logradouro/lista.xhtml">Logradouros</a>
+                <a class="mdl-navigation__link" href="/Web/paginas/adm/cep/lista.xhtml">CEPs</a> 
+                <a class="mdl-navigation__link" href="/Web/paginas/adm/endereco/lista.xhtml">Endereços</a> 
+                <a class="mdl-navigation__link" href="/Web/paginas/adm/orcamento/lista.xhtml">Orçamentos</a>
+               
+                 
+              </nav>
+              
+                <!-- Right aligned menu below button -->
+             <button id="demo-menu-lower-right"  class="mdl-button mdl-js-button mdl-button--icon">
+               <i class="material-icons">more_vert</i>
+             </button>
+                <h:form>
+                     <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="demo-menu-lower-right">
+                        <li class="mdl-menu__item">Perfil</li>
+                        <li class="mdl-menu__item">Historico de negocios</li>
+                        <li disabled="true" class="mdl-menu__item">Home Profissional</li>
+                        <h:commandLink value="" action="#{autenticadorBean.registraSaida()}"> 
+                        <li class="mdl-menu__item" >Sair</li>
+                        </h:commandLink>
+                        
+                        
+                        
+                      </ul>
+                </h:form>
+            
+              
+           
+            </div>
+              
+              
+            
+          </header>
+            
+            
+            
+          <div class="mdl-layout__drawer">
+            <span class="mdl-layout-title">
+                <h:graphicImage value="/resources/images/tramppos-logo.png"/>
+                <!--<img src="resources/images/tramppos-logo.png"/>-->
+            </span>
+            <nav class="mdl-navigation">
+                <a class="mdl-navigation__link" href="/Web/paginas/adm/profissao/lista.xhtml">Profissao</a>
+                <a class="mdl-navigation__link" href="/Web/paginas/adm/categoria/lista.xhtml">Categoria</a>
+                <a class="mdl-navigation__link" href="/Web/paginas/adm/estado/lista.xhtml">Estado</a>
+                <a class="mdl-navigation__link" href="/Web/paginas/adm/cidade/lista.xhtml">Cidade</a>
+                <a class="mdl-navigation__link" href="/Web/paginas/adm/bairro/lista.xhtml">Bairro</a>
+                <a class="mdl-navigation__link" href="/Web/paginas/adm/tipologradouro/lista.xhtml">Tipo de Logradouro</a>
+                <a class="mdl-navigation__link" href="/Web/paginas/adm/logradouro/lista.xhtml">Logradouros</a>
+                <a class="mdl-navigation__link" href="/Web/paginas/adm/cep/lista.xhtml">CEPs</a> 
+                <a class="mdl-navigation__link" href="/Web/paginas/adm/endereco/lista.xhtml">Endereços</a>
+                <a class="mdl-navigation__link" href="/Web/paginas/adm/profissional/lista.xhtml">Profissionais</a>
+                <a class="mdl-navigation__link" href="/Web/paginas/adm/cliente/lista.xhtml">Clientes</a>
+                <a class="mdl-navigation__link" href="/Web/paginas/adm/servico/lista.xhtml">Serviço</a>
+                <a class="mdl-navigation__link" href="/Web/paginas/adm/orcamento/lista.xhtml">Orçamentos</a>
+                
+            </nav>
+          </div>
+            
+          
+           
+            
+        </div>
+        
+</ui:composition>

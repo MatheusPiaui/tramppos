@@ -1,0 +1,42 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Nov 18, 2016, 12:34:07 AM
+    Author     : matheus
+*/
+
+#formLogin{
+    width: 50%;
+    height: 500px;
+    border: black solid 1px;
+    display: block;
+    margin:60px auto;
+}
+
+#formLogin img{
+    display: block;
+    margin: 10px auto;
+}
+
+#gridLoginSenha{
+    display: block;
+    margin: 10px auto;
+}
+
+#gridLoginSenha #login{
+    border: none;
+    margin: 50px;
+}
+
+.btn{
+    border: 0;
+    font-family: verdana;
+    color:white;
+    text-transform: uppercase; 
+    transition: all 0.5s;
+    padding: 10px 55px;
+    border-radius: 5px;
+}

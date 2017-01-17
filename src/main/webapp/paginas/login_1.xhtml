@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:jsf="http://xmlns.jcp.org/jsf">
+    <h:head>
+        <h:outputStylesheet library="css" name="style.css"/>
+        <h:outputStylesheet library="css" name="material.css"/>
+        <h:outputStylesheet library="css" name="button.css"/>
+
+        <h:outputScript library="js" name="material.js"/>
+        <title>Login Web</title>
+    </h:head>
+    
+    <h:body class="back">
+            
+        <div class="mdl-cell mdl-cell--12-col mdl-card mdl-shadow--4dp">
+            
+             <div class="mdl-card__supporting-text">  
+                 <h:graphicImage value="/resources/images/tramppos-logo.png"/>
+                    <h:panelGrid>
+                        <h:form id="formLogin" class="">
+
+                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                <h:inputText value="#{autenticadorBean.email}" class="mdl-textfield__input" label="Email" maxlength="100" required="true" />             
+
+                                <label class="mdl-textfield__label" for="Email">Email..</label>
+                                <span class="mdl-textfield__error">Letters and spaces only</span>
+                            </div>
+
+                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                <h:inputSecret  value="#{autenticadorBean.senha}" class="mdl-textfield__input" label="Senha" maxlength="100" required="true" />             
+
+                                <label class="mdl-textfield__label" for="Senha">Senha..</label>
+                                <span class="mdl-textfield__error">Letters and spaces only</span>
+                            </div>
+
+                            <h:messages id="msgErro" style="color: red"/>          
+
+                            <p>
+                                <h:commandButton action="#{autenticadorBean.autentica()}" value="Entrar" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"/>
+
+                            </p>
+
+                        </h:form>
+                    </h:panelGrid>
+             </div>
+        </div>
+    </h:body>
+    
+</html>

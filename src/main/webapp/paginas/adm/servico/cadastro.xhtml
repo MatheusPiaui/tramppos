@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns   = "http://www.w3.org/1999/xhtml"
+      xmlns:h = "http://java.sun.com/jsf/html"
+      xmlns:ui= "http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core" 
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:jsf="http://xmlns.jcp.org/jsf">    
+    
+    
+    <h:body>
+        <ui:composition template="templates/template.xhtml">
+           
+            
+            <ui:define name="subTitulo">Cadastro</ui:define>
+           
+            
+            
+            <ui:define name="subConteudo">
+                
+                <div class="mdl-cell mdl-cell--12-col mdl-card mdl-shadow--4dp">
+                    <div class="mdl-card__title">
+                        <h2 class="mdl-card__title-text">Cadastro</h2>
+                    </div>
+                    
+                    <div class="mdl-card__supporting-text">  
+                        
+                            <h:form id="formCadServico" class="">
+                            
+                                <div class="mdl-textfield mdl-js-textfield">
+                                    <textarea class="mdl-textfield__input" type="text" rows= "3" id="sample5" jsf:value="#{servicoController.servico.descricao}" ></textarea>
+                                    <label class="mdl-textfield__label" for="sample5">Descriçao do Serviço...</label>
+                                </div>
+                                
+                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                    <b:selectOneMenu value="#{servicoController.servico.status}" label="">                     
+                                        <f:selectItem itemLabel="Selecione o Status do serviço "/>
+                                        <f:selectItem itemLabel="Aberto" itemValue="1" /> 
+                                        <f:selectItem itemLabel="Avaliçao" itemValue="2" /> 
+                                        <f:selectItem itemLabel="Analise" itemValue="3" /> 
+                                        <f:selectItem itemLabel="Finalizado" itemValue="4" />                                      
+                                    </b:selectOneMenu>
+                                </div>
+                                
+                                
+                                
+                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                    <b:selectOneMenu value="#{servicoController.servico.cliente}" label="">
+                       
+                                        <f:selectItem itemLabel="Selecioneo e-mail do cliente "/>
+                                        <f:selectItems  value="#{servicoController.listaCliente}" itemLabel="#{item.email}" var="item"/>                                       
+                                        
+                                    </b:selectOneMenu>
+                                </div>
+                                
+                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                    <b:selectOneMenu value="#{servicoController.servico.endereco}" label="">
+                       
+                                        <f:selectItem itemLabel="Selecioneo e-mail do Endereço "/>
+                                        <f:selectItems  value="#{servicoController.listaEndereco}" itemLabel="#{item.nome}" var="item"/>                                       
+                                        
+                                    </b:selectOneMenu>
+                                </div>            
+                                
+                               
+
+                                <p>
+                                    <h:commandButton action="#{servicoController.insert()}" value="Salvar" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"/>
+                                    
+                                </p>
+                                <p>
+                                    <h:commandButton action="#{servicoController.doVoltar()}" value="Voltar" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"/>
+                                </p>
+                            </h:form>
+                        
+                        
+                    </div>
+                </div>                        
+            </ui:define>            
+        </ui:composition>        
+    </h:body>
+</html>

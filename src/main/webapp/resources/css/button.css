@@ -1,0 +1,33 @@
+button{
+    border: 0;
+    font-family: verdana;
+    color:white;
+    text-transform: uppercase; 
+    transition: all 0.5s;
+    padding: 10px 55px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button.btn_verde{
+    background-color: rgba(142, 210, 37, 1);
+}
+button.btn_verde:hover{
+    background-color: rgba(142, 210, 37, 0.29);
+    
+    /*background-color: greenyellow;*/
+}
+
+button.btn_azul{
+    background-color: rgba(41, 136, 255, 1);
+}
+button.btn_azul:hover{
+    background-color: rgba(41, 136, 255, 0.29);
+}
+
+button.btn_laranja{
+    background-color: rgb(232, 150, 0);
+}
+button.btn_laranja:hover{
+    background-color: rgba(232, 150, 0, 0.29);
+}

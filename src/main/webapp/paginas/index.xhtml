@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns   = "http://www.w3.org/1999/xhtml"
+      xmlns:h = "http://java.sun.com/jsf/html"
+      xmlns:ui= "http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:jsf="http://xmlns.jcp.org/jsf">
+    <h:head>
+        <h:outputStylesheet library="css" name="material.css"/>
+        <h:outputScript library="js" name="material.js"/>
+        <h:outputStylesheet library="css" name="style.css"/>
+        <h:outputStylesheet library="css" name="button.css"/>
+
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+        
+        <title>Tramppos</title>
+
+        <style type="text/css">
+             
+            .page-content{
+                margin: 100px;
+                float: left;
+                align-items: center;
+                position:relative;
+            }
+
+            .cadastro{
+                width: 200px;
+                height: 200px;
+                float:right;  
+                border: 1px #000 solid;
+            }
+
+            .consulta{
+                width: 200px;
+                height: 200px;
+                float:right; 
+                border: 1px #00bfa5 solid;
+                
+            }           
+
+            header#topo{    
+                width: 100%;
+                max-width: 1200px;
+                margin: 0 auto;
+            }
+            header#topo img{
+                float: left;
+                padding: 30px;
+            }
+
+            header#topo h2{
+                margin-left: 110px;
+                font-size: 20px;
+                text-align: center;
+                line-height: 30px;
+                padding: 5px 0 0 0;
+                float: left;
+                width: 400px;
+            }
+
+            header#topo button{
+                float: right;
+                margin: 30px;   
+            }
+
+            .conteudo{
+                clear: both;
+                width: 100%;
+                
+            }
+
+            .conteudo h1{
+                padding: 20px;
+                text-align: center;
+                font-size: 35px;
+            }
+
+            .conteudo section{
+                display: inline-block;
+                width: 25%;
+                margin-left: 18%;
+            }
+
+            .conteudo button{
+                margin-top:  20px;
+            }
+
+            
+
+            @media screen and (max-width: 1060px){
+                header#topo h2{
+                    width: 300px;
+                    font-size: 17px;
+                } 
+            }
+
+            @media screen and (max-width: 1000px){
+                .conteudo section{
+                    margin-left: 15%;
+                }
+                
+            }
+
+            @media screen and (max-width: 900px){
+                header#topo img{
+                    float: none;
+                    display: block;
+                    margin: 10px auto;
+                }
+                .conteudo section{
+                    display: block;
+                    width: 90%;
+                    margin-bottom: 60px;
+                    margin-left: 5%;
+                }
+                .conteudo section img{
+                    display: block;
+                    margin: 0 auto;
+                }
+                .conteudo section button{
+                    display: block;
+                    margin: 10px auto;
+                }
+                header#topo button{
+                    float: none;
+                    display: block;
+                    margin: 0 auto;
+                }
+                header#topo h2{
+                    
+                    display: none;
+                    
+                } 
+
+            }
+        </style>
+    </h:head>
+    <body>
+        
+        <!--        <a href="/Web/paginas/adm/login.xhtml">Administrador</a>-->
+        
+            <header id="topo">
+                <img src="../resources/images/logo.png"/>
+                <h2>Encontre Profissionais em <br/> Reformas e soluçoes domesticas</h2>
+                <a href="login.xhtml"><button class="btn_verde" type="submit">Entrar</button></a>
+
+            </header>
+
+            <article class="conteudo">
+                <h1>Voce quer um Trampo ou oferecer um?</h1>
+                <section>
+                    <img src="../resources/images/img_principal_01.png" />  
+                    <a href="cadastro.xhtml"><button class="btn_azul">Encontrar Serviço</button></a>
+                </section> 
+                <section>
+                    <img src="../resources/images/img_principal_02.png" />  
+                    <a href="cadastro.xhtml"><button class="btn_laranja">Criar Serviço Gratis</button></a>
+                </section>         
+            </article>
+    </body>
+</html>

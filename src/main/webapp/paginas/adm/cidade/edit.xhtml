@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns   = "http://www.w3.org/1999/xhtml"
+      xmlns:h = "http://java.sun.com/jsf/html"
+      xmlns:ui= "http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core" 
+      xmlns:b="http://bootsfaces.net/ui">    
+    
+    
+    <h:body>
+        <ui:composition template="templates/template.xhtml">
+            
+            
+            
+            <ui:define name="subTitulo">Editar</ui:define>
+           
+            <ui:define name="subConteudo">
+                 <div class="mdl-cell mdl-cell--12-col mdl-card mdl-shadow--4dp">
+                    <div class="mdl-card__title">
+                        <h2 class="mdl-card__title-text">Cadastro</h2>
+                    </div>
+                    
+                    <div class="mdl-card__supporting-text">  
+                        <h:panelGrid>
+                            <h:form id="formCadastroCidade" class="">
+                            
+                                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                    <h:inputText value="#{cidadeController.cidadeEdit.nome}" class="mdl-textfield__input" label="Nome" maxlength="100"  />
+
+                                    <label class="mdl-textfield__label" for="Nome">Nome..</label>
+                                    <span class="mdl-textfield__error">Letters and spaces only</span>
+                                </div>
+
+                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                    <b:selectOneMenu value="#{cidadeController.cidadeEdit.estado}" label="">
+                                        <f:selectItem itemLabel="Selecione o Tipo de Pessoa "/>
+                                        <f:selectItems value="#{estadoController.listaEstado}" var="estado"
+                                                       itemLabel="#{estado.sigla}"/>
+                                        <!--<f:converter converterId="tipoUsuarioConverter"/>-->
+                                    </b:selectOneMenu>
+                                </div>
+
+                                <p>
+                                    <h:commandButton action="#{cidadeController.update()}" value="Salvar" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"/>
+                                    
+                                </p>
+                                <p>
+                                    <h:commandButton action="#{cidadeController.delete()}" value="Excluir" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"/>
+                                </p>
+                                <p>
+                                    <h:commandButton action="#{cidadeController.doVoltar()}" value="Voltar" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"/>
+                                </p>
+                            </h:form>
+                        </h:panelGrid>
+                        
+                    </div>
+                </div>              
+                            
+            </ui:define>
+            
+        </ui:composition>        
+    </h:body>
+</html>

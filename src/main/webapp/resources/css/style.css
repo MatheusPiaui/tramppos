@@ -1,0 +1,148 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Oct 14, 2016, 5:38:28 PM
+    Author     : matheus
+*/
+.page-content{
+    margin: 100px;
+    float: left;
+    align-items: center;
+    position:relative;
+}
+
+.cadastro{
+    width: 200px;
+    height: 200px;
+    float:right;  
+    border: 1px #000 solid;
+}
+
+.consulta{
+    width: 200px;
+    height: 200px;
+    float:right; 
+    border: 1px #00bfa5 solid;
+    
+}
+
+.btnAdd{
+    position: fixed;
+    right: 100px;
+    bottom: 50px;
+    
+}
+
+
+.demo-card-wide.mdl-card {
+  width: 512px;
+}
+.demo-card-wide > .mdl-card__title {
+  color: #fff;
+  height: 176px;
+  background: url('/../../resources/images/contact-image.jpg') center / cover;
+}
+.demo-card-wide > .mdl-card__menu {
+  color: #fff;
+}
+
+h:commandLink{
+    color: #000;
+    
+}
+
+
+/* Template */
+html,body{
+    padding: 0px;
+    margin: 0px;
+}
+
+h1, h2, h3, h4, h5, h6, p, span, a{
+    font-family: verdana;
+    color: #7b7474;
+}
+
+
+content{
+    float: left;
+    clear: both;
+    margin-top: 95px;
+    width: 100%;
+    min-height: 400px;
+    background-color: #F8F8F8;
+    
+}
+
+
+main{
+    padding: 10px 0px;
+    align-content: center;
+}
+
+/*Seção para conteudo da pagina*/
+
+section.unico{
+    float: left;
+    width: 100%;
+}
+
+section.duplo{
+    float: left;
+    width: 50%;
+}
+
+section.triplo{
+    float: left;
+    width: 33%;
+}
+
+section.quadroplo{
+    float: left;
+    width: 25%;
+}
+
+
+footer{
+    width: 100%;
+    min-height: 100px;
+    background-color: #FFF;
+    clear: both;
+}
+
+/*  CSS Antigo, para a pagina do login*/
+
+.centro{
+    display: block;
+    margin: 0px auto;
+    
+}
+.centro p ,form, a, h1, h2, h3, h4, h5{
+    text-align: center;
+}
+
+/**/
+/*Login*/
+/**/
+.conteudo_login{
+    width: 500px;
+    margin: 100px auto;
+    border: 1px solid;
+    padding: 70px 10px;
+    
+}
+
+.conteudo_login img{
+    margin-bottom: 60px;
+}
+
+.conteudo_login button{
+    margin:20px;
+}
+
+
+
+

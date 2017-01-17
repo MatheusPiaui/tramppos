@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns   = "http://www.w3.org/1999/xhtml"
+      xmlns:h = "http://java.sun.com/jsf/html"
+      xmlns:ui= "http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core" >
+    
+   
+    <h:head>
+        
+<!--    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"/>
+        <link rel="stylesheet" href="https://code.getmdl.io/1.2.1/material.indigo-pink.min.css"/>
+        <script defer="true" src="https://code.getmdl.io/1.2.1/material.min.js"></script>-->
+
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"/>
+<!--        <link rel="stylesheet" href="/css/material.css"/>
+        <script defer="true" src="/js/material.js"></script>-->
+        
+       
+        
+        <h:outputStylesheet library="css" name="style.css"/>
+        <h:outputStylesheet library="css" name="material.css"/>
+        <h:outputScript library="js" name="material.js"/>
+        <title> Tramppos - <ui:insert name="titulo">None</ui:insert></title>
+        
+        
+    </h:head>
+    
+    <h:body>
+        <ui:include src="header.xhtml"/>
+        
+        <main class="mdl-layout__content">
+            
+            <div class="page-content">
+                <ui:insert name="conteudo"></ui:insert>
+            </div>
+            
+            
+        </main>       
+    </h:body>
+</html>
