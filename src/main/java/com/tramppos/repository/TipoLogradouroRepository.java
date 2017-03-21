@@ -9,6 +9,7 @@ import com.tramppos.domain.TipoLogradouro;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
+import javax.persistence.NonUniqueResultException;
 import javax.persistence.Query;
 
 /**
@@ -69,5 +70,31 @@ public class TipoLogradouroRepository {
         entityManager.close();
         return lista;
     }// fim do método list
+    
+    // Busca por nome do tipoLogradouro
+    public TipoLogradouro consult(String nome)     
+    {
+        EntityManager entityManager = JPAconnection.getEntityManager();
+        TipoLogradouro tipoLogradouro = null;
+        //try {
+            Query query = entityManager.createQuery("SELECT u FROM TipoLogradouro u WHERE u.nome = :p1");
+            query.setParameter("p1", nome);
+            //tipoLogradouro = (TipoLogradouro) query.getSingleResult();            
+            
+        List results = query.getResultList();
+
+        if (results.isEmpty()) 
+        {
+            return null;
+        }
+        else
+        {
+            if (results.size() == 1)
+            {
+                return (TipoLogradouro) results.get(0);
+            }
+        }
+        throw new NonUniqueResultException(); 
+    }
     
 }

@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.NonUniqueResultException;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
 
@@ -86,4 +87,33 @@ public class EstadoRepository implements Serializable{
         
         return estado;
     }
+    
+    // Busca por nome do estado
+    public Estado consult(String sigla)     
+    {
+        EntityManager entityManager = JPAconnection.getEntityManager();
+        Estado estado = null;
+        //try {
+            Query query = entityManager.createQuery("SELECT u FROM Estado u WHERE u.sigla = :p1");
+            query.setParameter("p1", sigla);
+           // estado = (Estado) query.getSingleResult();            
+            
+        List results = query.getResultList();
+
+        if (results.isEmpty()) 
+        {
+            return null;
+        }
+        else
+        {
+            if (results.size() == 1)
+            {
+                return (Estado) results.get(0);
+            }
+        }
+        throw new NonUniqueResultException(); 
+    }
+    
+    
+    
 }

@@ -54,4 +54,7 @@ public class EstadoService {
         return getEstadoRepository().consult(id);
     }
     
+    public Estado consult(String sigla){
+        return getEstadoRepository().consult(sigla);
+    }
 }

@@ -49,4 +49,8 @@ public class CepService {
         return getCepRepository().consult();
     }
     
+    public Cep consult(String numCep){
+        return getCepRepository().consult(numCep);
+    }
+    
 }

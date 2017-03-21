@@ -29,19 +29,19 @@ public class EstadoTeste {
         
       
         // inserir
-        estado.setNome("Distrito Federal");
-        estado.setSigla("DF");       
+        //estado.setNome("Distrito Federal");
+        //estado.setSigla("DF");       
         //estadoRepository.insert(estado);
         //estadoService.insert(estado);
         
         //alterar
-        estado.setId(6);
-        estado.setNome("Basilia");
-        estado.setSigla("DF");
+        //estado.setId(6);
+        //estado.setNome("Basilia");
+        //estado.setSigla("DF");
         //estadoService.update(estado);
         
         //deletar
-        estado.setId(1);
+        //estado.setId(1);
         //estadoService.delete(estado);
         
         
@@ -50,10 +50,16 @@ public class EstadoTeste {
         //  Teste de de Consultas
         ///
         // Lista todos os dados
-        List<Estado> listaEstado = estadoService.consult();        
+        //List<Estado> listaEstado = estadoService.consult();        
         //Util.printList((List<Object>) (Object) listaEstado);
         
-        System.out.println(estadoService.consult(67));
+        //System.out.println(estadoService.consult(67));
+        
+        /// consulta passando estado
+        //estado.setId(0);
+        //estado.setNome("Piaui");
+        //estado.setSigla(null);
+        System.out.println(estadoService.consult("SP"));
     }
     
     

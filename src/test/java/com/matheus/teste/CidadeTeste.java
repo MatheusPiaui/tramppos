@@ -56,7 +56,12 @@ public class CidadeTeste {
         ///
         // lista por estado
         estado.setId(67);
-        Util.printList((List<Object>) (Object) cidadeService.consult(estado));
+        //Util.printList((List<Object>) (Object) cidadeService.consult(estado));
+        
+        // consulta cidade pelo nome
+        System.out.println(cidadeService.consult("Birigüi"));
+        
+        System.err.println("teste");
 
     }
     

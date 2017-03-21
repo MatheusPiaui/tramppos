@@ -54,4 +54,8 @@ public class CidadeService {
         return getCidadeRepository().consult(uf);
     }
     
+    public Cidade consult(String nome){
+        return getCidadeRepository().consult(nome);
+    }
+    
 }

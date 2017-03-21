@@ -10,6 +10,7 @@ import com.tramppos.domain.Estado;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
+import javax.persistence.NonUniqueResultException;
 import javax.persistence.Query;
 
 /**
@@ -91,4 +92,32 @@ public class CidadeRepository {
         entityManager.close();
         return lista;
     }// fim do método list
+    
+    // Busca por nome do cidade
+    public Cidade consult(String nome)     
+    {
+        EntityManager entityManager = JPAconnection.getEntityManager();
+        Cidade cidade = null;
+        
+        Query query = entityManager.createQuery("SELECT u FROM Cidade u WHERE u.nome = :p1");
+        query.setParameter("p1", nome);       
+            
+                    
+        List results = query.getResultList();
+
+        if (results.isEmpty()) 
+        {
+            return null;
+        }
+        else
+        {
+            if (results.size() == 1)
+            {
+                return (Cidade) results.get(0);
+            }
+        }
+        throw new NonUniqueResultException();    
+            
+        
+    }
 }

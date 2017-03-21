@@ -49,4 +49,8 @@ public class LogradouroService {
         return getLogradouroRepository().consult();
     }
     
+    public Logradouro consult(String nomeLogra, String tipoLogra){
+        return getLogradouroRepository().consult(nomeLogra,tipoLogra);
+    }
+    
 }

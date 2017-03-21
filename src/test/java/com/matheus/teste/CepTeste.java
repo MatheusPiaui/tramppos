@@ -12,6 +12,7 @@ import com.tramppos.domain.Estado;
 import com.tramppos.domain.Logradouro;
 import com.tramppos.service.CepService;
 import com.matheus.util.Util;
+import java.time.Clock;
 import java.util.List;
 
 /**
@@ -57,7 +58,15 @@ public class CepTeste {
         
         ///
         //lista
-        Util.printList((List<Object>) (Object) cepService.consult());
+        //Util.printList((List<Object>) (Object) cepService.consult());
+        
+        // Busca CEP
+        
+//        System.out.println(cepService.buscaCep("16202000"));
+        // ex que nao existe: 16202003;
+        // cep sem bairro e logradouro: 16265000
+        System.out.println(cepService.consult("16202338"));
+        
     }
     
 }

@@ -49,4 +49,8 @@ public class BairroService {
         return getBairroRepository().consult();
     }
     
+    public Bairro consult(String nome){
+        return getBairroRepository().consult(nome);
+    }
+    
 }

@@ -9,6 +9,7 @@ import com.tramppos.domain.Bairro;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
+import javax.persistence.NonUniqueResultException;
 import javax.persistence.Query;
 
 /**
@@ -69,5 +70,31 @@ public class BairroRepository {
         entityManager.close();
         return lista;
     }// fim do método list
+    
+    // Busca por nome do bairro
+    public Bairro consult(String nome)     
+    {
+        EntityManager entityManager = JPAconnection.getEntityManager();
+        Bairro bairro = null;
+        //try {
+            Query query = entityManager.createQuery("SELECT u FROM Bairro u WHERE u.nome = :p1");
+            query.setParameter("p1", nome);
+                        
+            
+       List results = query.getResultList();
+
+        if (results.isEmpty()) 
+        {
+            return null;
+        }
+        else
+        {
+            if (results.size() == 1)
+            {
+                return (Bairro) results.get(0);
+            }
+        }
+        throw new NonUniqueResultException(); 
+    }
     
 }
