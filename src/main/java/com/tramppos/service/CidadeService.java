@@ -33,7 +33,7 @@ public class CidadeService {
     }
     
     // comandos
-    public void insert(Cidade cidade){
+    public void insert(Cidade cidade){  
         getCidadeRepository().insert(cidade);
     }    
     public void update(Cidade cidade){

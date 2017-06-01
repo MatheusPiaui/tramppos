@@ -26,13 +26,14 @@ public class Orcamento implements Serializable{
     private double valor;
     private int tempoPrevisto;
     private String materiais;
-    private boolean selecionado;    
-    @ManyToOne
-    @JoinColumn(name = "idPessoa", nullable = false, referencedColumnName = "id")
-    private Profissional profissional;
+    private boolean selecionado;  
     @ManyToOne
     @JoinColumn(name = "idServico", nullable = false, referencedColumnName = "id")
     private Servico servico;
+    @ManyToOne
+    @JoinColumn(name = "idPessoa", nullable = false, referencedColumnName = "id")
+    private Profissional profissional;
+    
 
     public int getId() {
         return id;

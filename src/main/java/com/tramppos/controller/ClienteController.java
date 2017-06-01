@@ -46,23 +46,23 @@ public class ClienteController implements Serializable{
         this.clienteEdit = new Cliente();
         this.listaCliente = new ArrayList<>();
         this.endereco = new Endereco();
-        this.listEnd = new ArrayList<>();
+        //this.listEnd = new ArrayList<>();
     }
     
     ///
     // 
     public String insert(){
-        if(this.getEndereco() != null){            
-            this.getListEnd().add(endereco);    
-        } else {
-            this.setListEnd(null);
-        } 
-        this.cliente.setEnderecos(listEnd);
+//        if(this.getEndereco() != null){            
+//            this.getListEnd().add(endereco);    
+//        } else {
+//            this.setListEnd(null);
+//        } 
+        //this.cliente.setEnderecos(listEnd);
         
-        this.getClienteService().insert(cliente);
+        this.clienteService.insert(cliente);
         this.clear();
         this.list();
-        return "lista.xhtml?faces-redirect=true";
+        return "login.xhtml?faces-redirect=true";
     }
   
     public String update(){

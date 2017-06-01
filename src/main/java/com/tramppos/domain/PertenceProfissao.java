@@ -6,6 +6,7 @@
 package com.tramppos.domain;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;
@@ -19,6 +20,7 @@ import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 
 /**
  *
@@ -26,24 +28,21 @@ import javax.persistence.ManyToMany;
  */
 
 @Entity
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name = "discrimina",discriminatorType = DiscriminatorType.INTEGER,length = 1)
-@DiscriminatorValue("0")
-public class Pessoa implements Serializable{
+public class PertenceProfissao implements Serializable{
     
     @Id
     @GeneratedValue
     private int id;
-    private String nome;
-    protected String email;
-    private String senha;
-    protected String telefone;
+    private Date dataCadastroNaProfissao;
     
-       
-    
-    @Column(insertable=false, updatable=false)    
-    private int discrimina;
+    @ManyToOne
+    @JoinColumn(name = "idPessoa", nullable = false, referencedColumnName = "id")
+    private Pessoa pessoa;
+    @ManyToOne
+    @JoinColumn(name = "idProfissao", nullable = false, referencedColumnName = "id")
+    private Profissao profissao;
 
+    
     public int getId() {
         return id;
     }
@@ -52,51 +51,34 @@ public class Pessoa implements Serializable{
         this.id = id;
     }
 
-    public String getNome() {
-        return nome;
+    public Date getDataCadastroNaProfissao() {
+        return dataCadastroNaProfissao;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setDataCadastroNaProfissao(Date dataCadastroNaProfissao) {
+        this.dataCadastroNaProfissao = dataCadastroNaProfissao;
     }
 
-    public String getEmail() {
-        return email;
+    public Pessoa getPessoa() {
+        return pessoa;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setPessoa(Pessoa pessoa) {
+        this.pessoa = pessoa;
     }
 
-    public String getSenha() {
-        return senha;
+    public Profissao getProfissao() {
+        return profissao;
     }
 
-    public void setSenha(String senha) {
-        this.senha = senha;
+    public void setProfissao(Profissao profissao) {
+        this.profissao = profissao;
     }
-
-    public String getTelefone() {
-        return telefone;
-    }
-
-    public void setTelefone(String telefone) {
-        this.telefone = telefone;
-    }
-
-    public int getDiscrimina() {
-        return discrimina;
-    }
-
-    public void setDiscrimina(int discrimina) {
-        this.discrimina = discrimina;
-    }
-
 
     @Override
     public int hashCode() {
-        int hash = 5;
-        hash = 73 * hash + this.id;
+        int hash = 3;
+        hash = 19 * hash + this.id;
         return hash;
     }
 
@@ -111,7 +93,7 @@ public class Pessoa implements Serializable{
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Pessoa other = (Pessoa) obj;
+        final PertenceProfissao other = (PertenceProfissao) obj;
         if (this.id != other.id) {
             return false;
         }
@@ -120,7 +102,7 @@ public class Pessoa implements Serializable{
 
     @Override
     public String toString() {
-        return "Pessoa{" + "id=" + id + ", nome=" + nome + ", email=" + email + ", senha=" + senha + ", telefone=" + telefone + ", discrimina=" + discrimina + '}';
+        return "PertenceProfissao{" + "id=" + id + ", dataCadastroNaProfissao=" + dataCadastroNaProfissao + ", pessoa=" + pessoa + ", profissao=" + profissao + '}';
     }
     
     

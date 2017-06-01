@@ -1,36 +1,62 @@
-<?xml version='1.0' encoding='UTF-8' ?>
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:jsf="http://xmlns.jcp.org/jsf">
-    <h:head>
-        <h:outputStylesheet library="css" name="style.css"/>
-        <h:outputStylesheet library="css" name="material.css"/>
-        <h:outputStylesheet library="css" name="button.css"/>
+  <h:head>
+    <meta charset="utf-8"/>
+    <title>Trampos - Sistema de Gerenciamento de Jobs</title>
+    <!-- Habilita o sistema para ediçoes responsivas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <!-- Adiciona Favicon -->
+    <link rel="icon" href="../resources/images/favicon.png" type="image/png" sizes="30x30"/>
+    <!-- Importar arquivos CSS -->
+<!--    <link rel="stylesheet" href="/assets/css/principal.css"/>
+    <link rel="stylesheet" href="/assets/css/modal.css"/>
+    <link rel="stylesheet" href="/assets/css/responsivo.css"/>-->
+    <h:outputStylesheet library="css" name="principal.css"/>
+    <h:outputStylesheet library="css" name="modal.css"/>
+    <h:outputStylesheet library="css" name="responsivo.css"/>
 
-        <h:outputScript library="js" name="material.js"/>
-        <title>Login Web</title>
-    </h:head>
+    <!-- Impostar os Arquivos JS -->
+<!--    <script src="assets/js/funcoes.js" charset="utf-8"></script>
+    <script src="assets/js/modal.js" charset="utf-8"></script>-->
+    <h:outputScript library="js" name="funcoes.js"/>
+    <h:outputScript library="js" name="modal.js"/>    
     
-    <body jsf:id="body">
+  </h:head>
+  <body>
+    <!-- Cabeçalho  -->
+    <header class="header-simples">
+      <div class="centraliza">
+        <a href=""><img src="../resources/images/logo.png" alt="Trampos"/></a>
+        <h1>Bem Vindo(a)! De volda ;)</h1>
+        <div class="clear"></div>
+      </div>
+    </header>
 
-        <article class="centro conteudo_login">
-            <img class="centro" src="../resources/images/logo.png"/>
-            <form jsf:id="login" jsf:prependId="false">
-                <p>E-Mail: <input jsf:id="email" jsf:value="#{autenticadorBean.email}" 
-                                  type="e-mail" name="email" placeholder="Entre com seu email"/></p>
-                <p>Senha: <input jsf:id="senha" jsf:value="#{autenticadorBean.senha}"
-                                 type="password" name="senha"/></p>
-                
-                <h:commandButton class="btn_verde" action="#{autenticadorBean.autentica()}" value="Entrar"/>
+    <!-- Formulario de cadastro de clientes -->
+    <form jsf:id="login" jsf:prependId="false">
+      <section class="cadastro login">
+        <input  jsf:id="email" jsf:value="#{autenticadorBean.email}" 
+                type="email" name="email" placeholder="Email" class="block" required="true" />
+        <input jsf:id="senha" jsf:value="#{autenticadorBean.senha}" 
+               type="password" name="senha" placeholder="Senha" class="block" required="true" />
+
+        <div class="margin-top">
+            <h2>Esqueceu a Senha? <a href="#">Clique aqui</a></h2>
+            <h2>Não é Cadastrado? <a href="cadastro.xhtml">Clique aqui</a></h2>
+        </div>
+      </section>
+
+        <button jsf:action="#{autenticadorBean.autentica()}"
+              class="grande block btn-verde" type="submit">Continuar</button>
+    </form>
   
-                
-            </form> 
-            <a href="cadastro.xhtml" class="centro">Cadastrar</a>      
-        </article>
-
-        <footer>
-        	
-        </footer>
-    </body>    
+ </body>
 </html>

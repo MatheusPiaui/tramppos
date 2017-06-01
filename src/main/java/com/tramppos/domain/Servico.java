@@ -26,13 +26,24 @@ public class Servico implements Serializable{
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date dataSolicitacao;
     private int status;
+    
     @ManyToOne
     @JoinColumn(name = "idPessoa", nullable = false, referencedColumnName = "id")
     private Cliente cliente;
+    
     @ManyToOne
     @JoinColumn(name = "idEndereco", nullable = false, referencedColumnName = "id")
     private Endereco endereco;
+    
+    @ManyToOne
+    @JoinColumn(name = "idAvaliacao", nullable = false, referencedColumnName = "id")
+    private Avaliacao Avaliacao;
+    
+    @ManyToOne
+    @JoinColumn(name = "idProfissao", nullable = false, referencedColumnName = "id")
+    private Profissao profissao;
 
+    
     public int getId() {
         return id;
     }
@@ -81,12 +92,26 @@ public class Servico implements Serializable{
         this.endereco = endereco;
     }
 
-    
+    public Avaliacao getAvaliacao() {
+        return Avaliacao;
+    }
+
+    public void setAvaliacao(Avaliacao Avaliacao) {
+        this.Avaliacao = Avaliacao;
+    }
+
+    public Profissao getProfissao() {
+        return profissao;
+    }
+
+    public void setProfissao(Profissao profissao) {
+        this.profissao = profissao;
+    }
 
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 47 * hash + this.id;
+        int hash = 7;
+        hash = 79 * hash + this.id;
         return hash;
     }
 
@@ -110,7 +135,6 @@ public class Servico implements Serializable{
 
     @Override
     public String toString() {
-        return "Servico{" + "id=" + id + ", descricao=" + descricao + ", dataSolicitacao=" + dataSolicitacao + ", status=" + status + ", Cliente=" + cliente + ", Endereco=" + endereco + '}';
+        return "Servico{" + "id=" + id + ", descricao=" + descricao + ", dataSolicitacao=" + dataSolicitacao + ", status=" + status + ", cliente=" + cliente + ", endereco=" + endereco + ", Avaliacao=" + Avaliacao + ", profissao=" + profissao + '}';
     }
-    
 }

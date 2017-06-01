@@ -5,112 +5,79 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
 <!DOCTYPE html>
-<ui:composition     xmlns   = "http://www.w3.org/1999/xhtml"
-                    xmlns:h = "http://java.sun.com/jsf/html"
-                    xmlns:ui= "http://java.sun.com/jsf/facelets"
-                    xmlns:f="http://java.sun.com/jsf/core" 
-                    xmlns:b="http://bootsfaces.net/ui"
-                    template="../WEB-INF/templates/template.xhtml">
-    <head>
-        
-        <ui:define name="titulo">Cadastro</ui:define>
-    </head>
-              
-    <ui:define name="main">
-        
-        <h3>Um simples cadastro</h3>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:jsf="http://xmlns.jcp.org/jsf">
+  <h:head>
+    <meta charset="utf-8"/>
+    <title>Trampos - Sistema de Gerenciamento de Jobs</title>
+    <!-- Habilita o sistema para ediçoes responsivas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <!-- Adiciona Favicon -->
+    <link rel="icon" href="assets/img/favicon.png" type="image/png" sizes="30x30"/>
+    <!-- Importar arquivos CSS -->
+    <h:outputStylesheet library="css" name="principal.css"/>
+    <h:outputStylesheet library="css" name="modal.css"/>
+    <h:outputStylesheet library="css" name="responsivo.css"/>
 
-        <section class="duplo ">
-            <h4>Cliente</h4>
-            <form id="cadastro_cliente">
-                <p>Nome Completo: <input type="text" name="nome"/></p>
-                <p>E-Mail: <input type="text" name="email"/></p>
-                <p>Telefone: <input type="text" name="telefone"/></p>
-                <p>Senha: <input type="password" name="senha"/></p>
-                <p>Confirmar Senha: <input type="password" name="senha"/></p>
-                
-                <h5>Endereço</h5>
-                <p>CEP: <input type="text" name="cep"/></p>
-                    <p>Logradouro: 
-                        <select>
-                            <option>Rua</option>
-                            <option>Avenida</option>
-                            <option>Alameda</option>
-                        </select>
-                        <input type="text" name="logradouro"/>
-                    </p>                             
+    <h:outputScript library="js" name="funcoes.js"/>
+    <h:outputScript library="js" name="modal.js"/>
+  </h:head>
+  <h:body>
+    <!-- Cabeçalho  -->
+    <header class="header-simples">
+      <div class="centraliza">
+        <img src="../resources/images/logo.png" alt="Tramppos"/>
+        <h1>Um simples cadastro basta</h1>
+        <div class="clear"></div>
+      </div>
+    </header>
 
-                    <p> 
-                        <select>
-                            <option>Estado</option>
-                            <option>SP</option>
-                            <option>RJ</option>
-                            <option>BA</option>
-                        </select>
-                        <select>
-                            <option>Cidade</option>
-                            <option>Birigui</option>
-                            <option>São Paulo</option>
-                            <option>Araçatuba</option>
-                        </select>
-                    </p>
-                    <p>Bairro: <input type="text" name="bairro"/></p>                        
-                    <p>Número: <input type="number" name="numero"/></p>
-                    <p>Complemento: <input type="text" name="complemento"/></p>
+    <!-- Pagina de cadastro geral -->
+    <div class="centraliza">
+      <div class="dois-botoes">
+        <button class="ativado" id="btn_cliente" onclick="cadastro('cliente')">Cliente</button>
+        <button class="" id="btn_profissional" onclick="cadastro('profissional')"> Profissional</button>
+        <div class="clear"></div>
+      </div>
 
-                    <button class="btn_verde">Terminar Cadastro</button>
+      <!-- Formulario de cadastro de clientes -->
+      <h:form id="cadastro_cliente">
+        <section class="cadastro">
+            <input jsf:id="nome" jsf:value="#{clienteController.cliente.nome}" type="text" name="nome" placeholder="Nome" class="block" required="true"/>
+            <input jsf:id="email" jsf:value="#{clienteController.cliente.email}" type="email" name="email" placeholder="Email" class="block" required="true"/>
+            <input jsf:id="senha" jsf:value="#{clienteController.cliente.senha}" type="password" name="senha" placeholder="Senha" class="block" required="true"/>
+            <input jsf:id="telefone" jsf:value="#{clienteController.cliente.telefone}" type="tel" name="telefone" placeholder="Telefone" class="block" required="true"/>
 
-            </form> 
-        </section>  
-
-        <section class="duplo">
-            <h4>Profissional</h4>
-            <h:form id="cadastro_profissional">
-                <p>Nome Completo: <input type="text" name="nome"/></p>
-                <p>E-Mail: <input type="text" name="email"/></p>
-                <p>Telefone: <input type="text" name="telefone"/></p>
-                <p>Senha: <input type="password" name="senha"/></p>
-                <p>Confirmar Senha: <input type="password" name="senha"/></p>
-                <p>Nome Fantasia: <input type="text" name="nomefantasia"/></p>
-                
-                <h5>Endereço</h5>
-                <p>CEP: <input type="text" name="cep"/></p>
-                    <p>Logradouro: 
-                        <select>
-                            <option>Rua</option>
-                            <option>Avenida</option>
-                            <option>Alameda</option>
-                        </select>
-                        <input type="text" name="logradouro"/>
-                    </p>                             
-
-                    <p> 
-                        <h:selectOneMenu value="#{profissionalController.estado}"
-                                         valueChangeListener="#{cidadeController.trocaCidadesEstado}"
-                                         onchange="submit()" >
-
-                            <f:selectItem itemLabel="Estado"/>
-                            <f:selectItems value="#{estadoController.listaEstado}" var="item"
-                                           itemLabel="#{item.sigla}"/>
-                            <!--<f:converter converterId="estadoConverter"/>-->
-                            <!--<f:converter converterId="tipoUsuarioConverter"/>-->     
-                        </h:selectOneMenu>
-                        
-                        <h:selectOneMenu value="#{profissionalController.endereco.cep.cidade}" label="">                 
-                            <f:selectItem itemLabel="Cidade"/>
-                            <f:selectItems value="#{cidadeController.listaCidadePorEstado}" var="item"
-                                           itemLabel="#{item.nome}"/>
-                            
-                            
-                        </h:selectOneMenu>
-                    </p>
-                    <p>Bairro: <input type="text" name="bairro"/></p>                        
-                    <p>Número: <input type="number" name="numero"/></p>
-                    <p>Complemento: <input type="text" name="complemento"/></p>
-
-                    <button class="btn_azul">Terminar Cadastro</button>
-            </h:form> 
+          
         </section>
-        
-    </ui:define>
-</ui:composition>
+
+          <button jsf:action="#{clienteController.insert()}" class="grande block btn-verde" type="submit">Continuar</button>
+      </h:form>
+
+      <!-- Formulário de cadastro de Profissional -->
+      <h:form id="cadastro_profissional" style="display: none;">
+        <section class="cadastro">
+            <input jsf:id="nome" jsf:value="#{profissionalController.profissional.nome}" type="text" name="nome" placeholder="Nome" class="block" required="true"/>
+            <input jsf:id="email" jsf:value="#{profissionalController.profissional.email}" type="email" name="email" placeholder="Email" class="block" required="true"/>
+            <input jsf:id="senha" jsf:value="#{profissionalController.profissional.senha}" type="password" name="senha" placeholder="Senha" class="block" required="true"/>
+            <input jsf:id="telefone" jsf:value="#{profissionalController.profissional.telefone}" type="tel" name="telefone" placeholder="Telefone" class="block" required="true"/>
+            <input jsf:id="nomeFantasia" jsf:value="#{profissionalController.profissional.nomeFantasia}" type="text" name="nomefantasia" placeholder="Nome Fantasia" class="block" required="true"/>
+	  
+
+<!--          <h1>Cadastre seu endereço</h1>
+
+          <select name="logradouro" style="width: 20%;">
+            <option value="rua">Rua</option>
+            <option value="av">Av</option>
+          </select>
+
+          <input type="text" name="endereco" placeholder="Endereco" class="lado" required="true" style="width: 50%;"/>
+          <input type="text" name="numero" placeholder="Numero" class="lado" required="true" style="width: 18%;"/>-->
+        </section>
+
+          <button jsf:action="#{profissionalController.insert()}" class="grande block btn-verde" type="submit">Continuar</button>
+      </h:form>
+    </div>
+  </h:body>
+</html>

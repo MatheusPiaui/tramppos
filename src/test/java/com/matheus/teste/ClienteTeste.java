@@ -33,42 +33,42 @@ public class ClienteTeste {
         ///
         //  inserir
         //
-        cliente.setNome("Matheus Piaui - cliente");
+        cliente.setNome("Matheus Cliente");
         cliente.setEmail("matheus@piaui.com");
         cliente.setSenha("123");
-        cliente.setTelefone(null);
+        cliente.setTelefone("123");
         //
         //cliente.setDiscrimina(1);
 //        cliente.setNomeFantasia(null);
 //        cliente.setNota(0);
 //        cliente.setRaioAtendimento(0);
         
-        //clienteService.insert(cliente);
-        
-        
-        ///
-        //  inserir - Com endereço
-        //
-        Endereco endereco1 = new Endereco();
-        Endereco endereco2 = new Endereco();
-        List<Endereco> listaEnd = new ArrayList<>();
-        
-        // 1
-        endereco1.setId(1);
-        // 2
-        endereco2.setId(2);
-        
-        listaEnd.add(endereco2);
-        listaEnd.add(endereco1);                
-        
-        
-        cliente.setNome("Matheus Piaui - cliente");
-        cliente.setEmail("matheus@piaui.com");
-        cliente.setSenha("123");
-        cliente.setTelefone(null);
-        cliente.setEnderecos(listaEnd);
-        
         clienteService.insert(cliente);
+        
+        
+//        ///
+//        //  inserir - Com endereço
+//        //
+//        Endereco endereco1 = new Endereco();
+//        Endereco endereco2 = new Endereco();
+//        List<Endereco> listaEnd = new ArrayList<>();
+//        
+//        // 1
+//        endereco1.setId(1);
+//        // 2
+//        endereco2.setId(2);
+//        
+//        listaEnd.add(endereco2);
+//        listaEnd.add(endereco1);                
+        
+        
+//        cliente.setNome("Matheus Piaui - cliente");
+//        cliente.setEmail("matheus@piaui.com");
+//        cliente.setSenha("123");
+//        cliente.setTelefone(null);
+//        //cliente.setEnderecos(listaEnd);
+//        
+//        clienteService.insert(cliente);
         
         //Consulta
         

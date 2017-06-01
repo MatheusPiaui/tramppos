@@ -31,7 +31,7 @@ public class AutenticadorBean implements Serializable {
         System.out.println("autentica..");  
 
         // valida se for administrador
-        if (email.equals("admin") && senha.equals("admin")) 
+        if (email.equals("admin@admin") && senha.equals("admin")) 
         {
            System.out.println("Confirmou  usuario e senha ...");		
 

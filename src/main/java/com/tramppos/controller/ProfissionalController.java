@@ -61,12 +61,12 @@ public class ProfissionalController implements Serializable{
         } else {
             this.setListEnd(null);
         } 
-        this.profissional.setEnderecos(listEnd);
+        //this.profissional.setEnderecos(listEnd);
         
         this.getProfissionalService().insert(profissional);
         this.clear();
         this.list();
-        return "lista.xhtml?faces-redirect=true";
+        return "login.xhtml?faces-redirect=true";
     }
   
     public String update(){

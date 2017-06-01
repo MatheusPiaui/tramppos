@@ -23,7 +23,7 @@ public class Endereco implements Serializable{
     @Id
     @GeneratedValue
     private int id;
-    private String nome;
+    private String tipo;
     private String numero;
     private String complemento;
     @ManyToOne
@@ -35,6 +35,9 @@ public class Endereco implements Serializable{
     @ManyToOne
     @JoinColumn(name = "idBairro", nullable = false, referencedColumnName = "id")
     private Bairro bairro;
+    @ManyToOne
+    @JoinColumn(name = "idPessoa", nullable = false, referencedColumnName = "id")
+    private Pessoa pessoa;
     
     
     public int getId() {
@@ -45,12 +48,12 @@ public class Endereco implements Serializable{
         this.id = id;
     }
 
-    public String getNome() {
-        return nome;
+    public String getTipo() {
+        return tipo;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
     }
 
     public String getNumero() {
@@ -93,6 +96,15 @@ public class Endereco implements Serializable{
         this.bairro = bairro;
     }
 
+    public Pessoa getPessoa() {
+        return pessoa;
+    }
+
+    public void setPessoa(Pessoa pessoa) {
+        this.pessoa = pessoa;
+    }
+    
+    
     @Override
     public int hashCode() {
         int hash = 5;
@@ -120,7 +132,9 @@ public class Endereco implements Serializable{
 
     @Override
     public String toString() {
-        return "Endereco{" + "id=" + id + ", nome=" + nome + ", numero=" + numero + ", complemento=" + complemento + ", cep=" + cep + ", logradouro=" + logradouro + ", bairro=" + bairro + '}';
+        return "Endereco{" + "id=" + id + ", tipo=" + tipo + ", numero=" + numero + ", complemento=" + complemento + ", cep=" + cep + ", logradouro=" + logradouro + ", bairro=" + bairro + ", pessoa=" + pessoa + '}';
     }
+
+    
     
 }

@@ -12,6 +12,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
 
 /**
  *
@@ -26,6 +27,9 @@ public class Foto implements Serializable{
     private int id;
     private String titulo;
     private String descricao;
+    
+    @Temporal(javax.persistence.TemporalType.DATE)
+    private Date dataPestagem;
     private String link;
     
     @ManyToOne
@@ -35,7 +39,7 @@ public class Foto implements Serializable{
     @JoinColumn(name = "idPessoa", nullable = false, referencedColumnName = "id")
     private Pessoa pessoa;
     
-    private Date dataPestagem;
+    
 
     public int getId() {
         return id;

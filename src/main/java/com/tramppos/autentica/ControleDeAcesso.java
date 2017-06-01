@@ -30,8 +30,7 @@ public class ControleDeAcesso implements Filter {
 
         if ((session.getAttribute("logAdm") != null)              
                     || (req.getRequestURI().endsWith("login.xhtml"))
-                                    || (req.getRequestURI().endsWith("login_1.xhtml"))
-
+                    
                     || (req.getRequestURI().endsWith("index.xhtml"))
                     || (req.getRequestURI().startsWith(req.getContextPath() +"/paginas/cadastro.xhtml"))
                     || (req.getRequestURI().contains("javax.faces.resource/"))) 

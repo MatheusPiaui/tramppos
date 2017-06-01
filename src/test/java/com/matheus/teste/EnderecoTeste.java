@@ -46,7 +46,7 @@ public class EnderecoTeste {
 //      bairro.setId(2);
 //      logradouro.setId(3);
         
-        endereco.setNome("Trabalho");
+        endereco.setTipo("Trabalho");
         endereco.setNumero("21");
         endereco.setCep(cep);
         endereco.setBairro(bairro);

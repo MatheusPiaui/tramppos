@@ -1,0 +1,203 @@
+body, html
+{
+  margin: 0;
+  padding: 0;
+  background: #fff;
+}
+
+h1,h2,h3,h4,h5,h6,
+p,a,span
+{
+  padding: 0;
+  margin: 0;
+  text-decoration: none;
+  font-family: ariel, sans-serif;
+  color: #86898A;
+}
+
+button
+{
+  outline: 0;
+  cursor: pointer;
+  color: #86898A;
+}
+
+input, select
+{
+  outline: 0;
+  color: #86898A;
+}
+
+*
+{
+  transition: all 0.5s;
+}
+
+/* ======== UTILITÁRIOS ========*/
+
+.centraliza
+{
+  width: 100%;
+  max-width: 1200px;
+  display: block;
+  margin: 0 auto;
+}
+
+.clear
+{
+  clear: both;
+}
+
+.block
+{
+  display: block;
+  margin: 0 auto;
+}
+
+.margin-top
+{
+  margin-top: 50px;
+}
+
+/*  ========= HEADERS ========= */
+
+.header-simples
+{
+  width: 100%;
+  border-bottom: 1px solid #DADFE5;
+  padding: 30px 0;
+}
+
+.header-simples img
+{
+  float: left;
+}
+
+.header-simples h1
+{
+  text-align: center;
+  font-weight: normal;
+  font-size: 1.5em;
+  padding-top: 15px;
+  width: calc(100% - 210px);
+}
+
+
+/* ============== CORPOS =========== */
+
+.dois-botoes
+{
+  width: 80%;
+  max-width: 500px;
+  margin: 30px auto;
+  box-shadow: 1px 1px 2px 1px #ccc;
+}
+
+.cadastro
+{
+  width: 80%;
+  max-width: 440px;
+  margin: 30px auto;
+  box-shadow: 1px 1px 2px 1px #ccc;
+  padding: 40px 30px;
+}
+
+.login
+{
+  margin: 100px auto 20px;
+}
+
+/* ============== BOTOES ==============*/
+
+.dois-botoes button
+{
+  width: 50%;
+  border: 0;
+  float: left;
+  font-size: 1.2em;
+  padding: 20px 0;
+  background: #fff;
+}
+
+.dois-botoes button:hover
+{
+  background: #70C92C;
+  color: #fff;
+}
+
+.dois-botoes .ativado
+{
+  background: #F59B1D;
+  color: #fff;
+}
+
+.grande
+{
+  width: 80%;
+  max-width: 500px;
+  font-size: 1.3em;
+  border: 0;
+  padding: 20px;
+}
+
+/* ============= FORMULARIOS ===========*/
+
+.cadastro .block
+{
+  display: block;
+  width: calc(100% - 20px);
+}
+
+.cadastro input:focus,
+.cadastro select:focus
+{
+  border-bottom: 1px solid #70C92C;
+}
+
+.cadastro input, .cadastro select
+{
+  border: 0;
+  border-bottom: 1px solid #929494;
+  padding: 10px;
+  margin-top: 20px;
+  font-size: 1.2em;
+  background: transparent;
+}
+
+/* ============== TEXTO ============ */
+
+.cadastro h1,
+.cadastro h2
+{
+  text-align: center;
+  font-weight: normal;
+}
+
+.cadastro h1
+{
+  padding: 50px 0 30px;
+}
+
+.cadastro h2
+{
+  font-size: 1em;
+  padding-bottom: 20px;
+}
+
+.cadastro h2 a
+{
+  font-weight: bold;
+}
+
+/* ============ CORES =============== */
+
+.btn-verde
+{
+  background: #70C92C;
+  color: #fff;
+}
+
+.btn-verde:hover
+{
+  background: #59ab1a;
+}
