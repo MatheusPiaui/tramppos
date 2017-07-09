@@ -2,7 +2,9 @@ package com.tramppos.autentica;
 
 import com.tramppos.domain.Cliente;
 import com.tramppos.domain.Profissional;
+import com.tramppos.service.ClienteService;
 import com.tramppos.service.PessoaService;
+import com.tramppos.service.ProfissionalService;
 import java.io.Serializable;
 
 import javax.faces.bean.ManagedBean;
@@ -21,6 +23,7 @@ public class AutenticadorBean implements Serializable {
     private String senha;
 
     private PessoaService pessoaService;
+    
 
     @PostConstruct
     public void startDados(){
@@ -51,11 +54,14 @@ public class AutenticadorBean implements Serializable {
                 System.out.println("Confirmou  usuario e senha ...");		
 
                 //ADD USUARIO NA SESSION
-                Cliente cliente = new Cliente();
+                Cliente cliente = new Cliente();                
+                ClienteService clienteService = new ClienteService();                
+             
+                cliente = clienteService.consult(email);
 
                 SessionUtil.setParam("logCliente", cliente);
 
-                return "cliente/homeCliente.xhtml?faces-redirect=true";
+                return "cliente/homegeral.xhtml?faces-redirect=true";
 
             } 
             else 
@@ -65,10 +71,14 @@ public class AutenticadorBean implements Serializable {
 
                     //ADD USUARIO NA SESSION
                     Profissional profissional = new Profissional();
+                    ProfissionalService profissionalService = new ProfissionalService();
+                    
+                    profissional = profissionalService.consult(email);
+                    
 
                     SessionUtil.setParam("logProf", profissional);
 
-                    return "profissional/homeProf.xhtml?faces-redirect=true";
+                    return "profissional/homegeral.xhtml?faces-redirect=true";
 
                 } 
                 else
@@ -87,6 +97,8 @@ public class AutenticadorBean implements Serializable {
 
             //REMOVER USUARIO DA SESSION
             SessionUtil.remove("logAdm");
+            SessionUtil.remove("logProf");
+            SessionUtil.remove("logCliente");
 
             return "/paginas/index.xhtml?faces-redirect=true";
     }

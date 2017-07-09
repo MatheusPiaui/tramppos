@@ -43,7 +43,7 @@ public class ClienteTeste {
 //        cliente.setNota(0);
 //        cliente.setRaioAtendimento(0);
         
-        clienteService.insert(cliente);
+//        clienteService.insert(cliente);
         
         
 //        ///
@@ -73,6 +73,8 @@ public class ClienteTeste {
         //Consulta
         
         //Util.printList((List<Object>) (Object) clienteService.consult());
+        
+        System.out.println(clienteService.consult("igor@gordo.com"));
         
         
         

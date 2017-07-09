@@ -1,0 +1,109 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:head>
+        <meta charset="utf-8"/>
+        <title>Trampos - Sistema de Gerenciamento de Jobs</title>
+        <!-- Habilita o sistema para ediçoes responsivas -->
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <!-- Adiciona Favicon -->
+        <link rel="icon" href="../../resources/images/favicon.png" type="image/png" sizes="30x30"/>
+        <!-- Importar arquivos CSS -->
+        <h:outputStylesheet library="css" name="principal.css"/>
+        <h:outputStylesheet library="css" name="modal.css"/>
+        <h:outputStylesheet library="css" name="responsivo.css"/>
+        <!-- Impostar os Arquivos JS -->
+        <h:outputScript library="js" name="funcoes.js"/>
+        <h:outputScript library="js" name="modal.js"/> 
+    </h:head>
+    
+    <h:body class="escuro">
+
+        <!-- Cabeçalho  -->
+        <header class="header-geral">
+          <div class="centraliza">
+            <a href=""><img src="../../resources/images/logo.png" alt="Trampos"/></a>
+            <h1>
+              Entrar como
+              <a href="#"><button class="btn-azul">Profissional</button></a>
+              ou
+              <a href="#"><button class="btn-laranja">Cliente</button></a>
+            </h1>
+            <div class="clear"></div>
+          </div>
+        </header>
+
+        <!-- Deixa o Site Centralizado e Alinhado -->
+        <article class="centraliza">
+          <!-- Barra que fica no canto esquerdo, contendo os dados do perfil -->
+          <section class="barra-lateral">
+            <h1>Seu Perfil</h1>
+            <hr/>
+            <img src="../../resources/images/perfil_01.png" class="perfil" alt="Perfil do Ususário"/>
+            <h3>#{perfilController.profissional.nome}</h3>
+            
+            <h2>Avaliado em <i class="estrelas estrelas-#{perfilController.profissional.nota}"></i></h2>            
+            
+            <h2 class="bold">
+              <a href="#">
+                <i class="camera"></i> Ver todas as Fotos
+              </a>
+            </h2>
+            <hr/>
+            <!--lista de profissoes-->
+            
+            <h2>Profissão 1: Pedreiro a 1 ano</h2>
+            
+            <h2>Email: <h:outputText value="#{perfilController.profissional.email}"></h:outputText></h2>
+            <h2>Senha: <h:outputText value="#{perfilController.profissional.senha}"></h:outputText></h2>
+            <h2>Telefone: <h:outputText value="#{perfilController.profissional.telefone}"></h:outputText></h2>
+            <hr/>
+            <a href="#"><h1>Editar Perfil</h1></a>
+          </section>
+
+          <!-- NOTIFICAÇÕES  -->
+          <section class="p-b-50 barra-grande">
+            <div class="topo">
+              <h1>Notificações</h1>
+              <a href="#">Ver todas</a>
+              <div class="clear"></div>
+            </div>
+
+            <ul class="notificacao-ul">
+              <li>
+                <img src="../../resources/images/perfil_01.png" alt="NOME DO USUÁRIO"/>
+                <p>Prabéns! <a href="#">Xanaina</a> te escolhei para realizar o trabalho dela</p>
+                <button type="button" class="btn btn-verde">Contatar profissional agora</button>
+                <div class="clear"></div>
+              </li>
+            </ul>
+          </section>
+
+
+          <!-- Endereços  -->
+          <section class="m-t-20 barra-grande">
+            <div class="topo">
+              <h1>Seus Endereços</h1>
+              <button type="button" class="btn-right btn-cinza">+ Adicionar um novo endereço</button>
+              <div class="clear"></div>
+            </div>
+
+            <ul class="end-ul">
+              <li>
+                <img src="../../resources/images/icones/point.png"/>
+                <p>Av Pepeca, 666 <br/> Bairro Centro <br/> CEP 16200-000 <br/> Birigui - SP </p>
+                <div class="clear"></div>
+              </li>
+            </ul>
+
+            <div class="topo footer">
+              <button type="button">Editar Endereços</button>
+              <a href="#">Ver todas</a>
+            </div>
+          </section>
+
+        </article>
+     </h:body>
+</html>
+

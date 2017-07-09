@@ -50,4 +50,7 @@ public class ClienteService {
         return getClienteRepository().consult();
     }
     
+    public Cliente consult(String mail){
+        return getClienteRepository().consult(mail);
+    }
 }

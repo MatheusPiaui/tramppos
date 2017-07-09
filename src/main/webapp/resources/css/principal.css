@@ -3,6 +3,11 @@ body, html
   margin: 0;
   padding: 0;
   background: #fff;
+  position: absolute;
+  width: 100%;
+  min-height: 100%;
+  left: 0;
+  top: 0;
 }
 
 h1,h2,h3,h4,h5,h6,
@@ -28,6 +33,11 @@ input, select
   color: #86898A;
 }
 
+hr
+{
+  border: 0;
+}
+
 *
 {
   transition: all 0.5s;
@@ -41,6 +51,7 @@ input, select
   max-width: 1200px;
   display: block;
   margin: 0 auto;
+  position: relative;
 }
 
 .clear
@@ -58,6 +69,12 @@ input, select
 {
   margin-top: 50px;
 }
+
+.escuro
+{
+  background: #F8F8F8;
+}
+
 
 /*  ========= HEADERS ========= */
 
@@ -83,6 +100,28 @@ input, select
 }
 
 
+.header-geral
+{
+  width: 100%;
+  padding: 20px 0;
+  background: #fff;
+  box-shadow: 1px 1px 2px 1px #ccc;
+  margin-bottom: 30px;
+}
+
+.header-geral img
+{
+  float: left;
+}
+
+.header-geral h1
+{
+  text-align: right;
+  font-weight: normal;
+  font-size: 1.2em;
+  padding-top: 15px;
+}
+
 /* ============== CORPOS =========== */
 
 .dois-botoes
@@ -106,6 +145,58 @@ input, select
 {
   margin: 100px auto 20px;
 }
+
+.barra-lateral
+{
+  width: 25%;
+  /*max-width: 300px;*/
+  box-shadow: 1px 1px 2px 1px #ccc;
+  background: #fff;
+  padding-bottom: 15px;
+  float: left;
+  /*position: fixed;*/
+}
+
+.barra-grande
+{
+  width: 70%;
+  float: right;
+  box-shadow: 1px 1px 2px 1px #ccc;
+  background: #fff;
+}
+
+/* ============== MARGIN ==============*/
+
+/* --- 50px --- */
+.m-t-50
+{
+  margin-top: 50px;
+}
+
+.m-b-50
+{
+  margin-bottom: 50px;
+}
+
+/* --- 20px ---- */
+.m-t-20
+{
+  margin-top: 50px;
+}
+
+.m-b-20
+{
+  margin-bottom: 50px;
+}
+
+/* ============== PADDING ==============*/
+
+/* --- 50px --- */
+.p-b-50
+{
+  padding-bottom: 50px;
+}
+
 
 /* ============== BOTOES ==============*/
 
@@ -138,6 +229,33 @@ input, select
   font-size: 1.3em;
   border: 0;
   padding: 20px;
+}
+
+.btn
+{
+  border: 0;
+  border-radius: 5px;
+  padding: 10px 25px;
+}
+
+.btn-right
+{
+  border: 0;
+  border-radius: 5px;
+  padding: 10px 25px;
+  float: right;
+  margin: 30px;
+}
+
+.header-geral button
+{
+  border: 0;
+  font-size: 0.8em;
+  padding: 10px 45px;
+  margin: 0 10px;
+  border-radius: 5px;
+  -webkit-box-sizing: 1px 1px 2px 1px #ccc;
+  box-shadow: 1px 1px 2px 1px #ccc;
 }
 
 /* ============= FORMULARIOS ===========*/
@@ -189,6 +307,54 @@ input, select
   font-weight: bold;
 }
 
+.barra-lateral h1,
+.barra-lateral h2,
+.barra-lateral h3
+{
+  text-align: center;
+  font-weight: normal;
+}
+
+.barra-lateral h1
+{
+  font-size: 1em;
+  color: #000;
+  padding: 20px 0 10px;
+}
+
+.barra-lateral a h1:hover
+{
+  color: #3273d0;
+}
+
+.barra-lateral h3
+{
+  font-size: 1.5em;
+  padding: 20px 0;
+  color: #6d7273;
+  font-weight: bold;
+}
+
+.barra-lateral h2
+{
+  font-size: 1em;
+  padding: 10px;
+}
+
+.barra-grande .topo h1
+{
+  font-size: 1.6em;
+  padding: 30px;
+  color: #000;
+  float: left;
+}
+
+.barra-grande .topo a
+{
+  float: right;
+  padding: 30px;
+
+}
 /* ============ CORES =============== */
 
 .btn-verde
@@ -200,4 +366,197 @@ input, select
 .btn-verde:hover
 {
   background: #59ab1a;
+}
+
+.btn-azul
+{
+  background: #4690F9;
+  color: #fff;
+}
+
+.btn-azul:hover
+{
+  background: #3273d0;
+}
+
+.btn-laranja
+{
+  background: #F59B1C;
+  color: #fff;
+}
+
+.btn-laranja:hover
+{
+  background: #e48f17;
+}
+
+.btn-cinza
+{
+  background: #878a8b;
+  color: #fff;
+}
+
+.btn-cinza:hover
+{
+  background: #636566;
+  color: #fff;
+}
+
+
+/* ================== ICONES ===============*/
+
+.estrelas
+{
+  background-image: url(../resources/images/icones/estrela.png);
+  background-repeat: no-repeat;
+  height: 10px;
+  display: inline-block;
+}
+
+.estrelas-5
+{
+  width: 60px;
+}
+
+.estrelas-4
+{
+  width: 45px;
+}
+
+.estrelas-3
+{
+  width: 35px;
+}
+
+.estrelas-2
+{
+  width: 23px;
+}
+
+.estrelas-1
+{
+  width: 10px;
+}
+
+.estrelas-0
+{
+  width: 0px;
+}
+
+.camera
+{
+  background-image: url(../resources/images/icones/camera.png);
+  background-repeat: no-repeat;
+  width: 18px;
+  height: 14px;
+  display: inline-block;
+  margin-right: 7px;
+}
+
+/* ===================== ADICIONAIS POR PAGINA ==================*/
+/* ==============================================================*/
+
+/*---------------------------- HOME GERAL -----------------------*/
+
+.barra-lateral hr
+{
+  background: #ccc;
+  height: 1px;
+  width: 100%;
+  margin-top: 15px;
+}
+
+.barra-lateral .perfil
+{
+  display: block;
+  margin: 20px auto 0;
+  width: 60%;
+  max-width: 130px;
+  height: auto;
+  border-radius: 100%;
+}
+
+.barra-lateral .bold
+{
+  font-weight: bold;
+}
+
+.barra-lateral .bold a
+{
+  color: #000;
+}
+
+.barra-lateral .bold:hover .camera
+{
+  margin: 0;
+}
+
+.barra-grande .topo
+{
+  border-bottom: 1px solid #d8dfe5;
+}
+
+.barra-grande .end-ul,
+.barra-grande .notificacao-ul
+{
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.barra-grande .end-ul li,
+.barra-grande .notificacao-ul li
+{
+  border-bottom: 1px solid #d8dfe5;
+  padding: 15px 30px;
+}
+
+.barra-grande .end-ul li img,
+.barra-grande .notificacao-ul li img
+{
+  float: left;
+}
+
+.barra-grande .notificacao-ul li p
+{
+  float: left;
+  margin-left: 20px;
+  margin-top: 20px;
+}
+
+.barra-grande .notificacao-ul li p a
+{
+  color: #000;
+}
+
+.barra-grande .notificacao-ul li p a:hover
+{
+  color: #0096f9;
+}
+
+.barra-grande .notificacao-ul li button
+{
+  float: right;
+  margin-top: 20px;
+}
+
+
+.barra-grande .end-ul li p
+{
+  margin-left: 40px;
+  line-height: 22px;
+}
+
+.barra-grande .footer
+{
+  border: 0;
+}
+
+.barra-grande .footer button
+{
+  border: 0;
+  background: transparent;
+  font-size: 1em;
+  color: #000;
+  margin: 30px;
 }

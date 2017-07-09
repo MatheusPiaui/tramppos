@@ -13,11 +13,15 @@
         <servlet-name>Faces Servlet</servlet-name>
         <url-pattern>*.xhtml</url-pattern>
     </servlet-mapping>
+    
+    <!--Configuraçao da sessao-->
     <session-config>
         <session-timeout>
-            30
+            3
         </session-timeout>
     </session-config>
+    
+    <!--Pagina inicial-->
     <welcome-file-list>
         <welcome-file>paginas/index.xhtml</welcome-file>
     </welcome-file-list>

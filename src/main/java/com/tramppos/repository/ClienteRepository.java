@@ -7,6 +7,7 @@ package com.tramppos.repository;
 
 
 import com.tramppos.domain.Cliente;
+import com.tramppos.domain.Pessoa;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -83,4 +84,17 @@ public class ClienteRepository implements Serializable{
         entityManager.close();
         return listaCliente;
     }// fim do método list
+    
+    public Cliente consult(String email)
+    {        
+        EntityManager entityManager = JPAconnection.getEntityManager();
+        Cliente cliente = null;
+        //try {
+            Query query = entityManager.createQuery("SELECT u FROM Pessoa u WHERE discrimina = 1 "
+                    + "and  u.email = :mail");
+            query.setParameter("mail", email);
+            cliente = (Cliente) query.getSingleResult();            
+            
+        return cliente;
+    }
 }

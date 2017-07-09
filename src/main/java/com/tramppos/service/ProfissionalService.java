@@ -50,4 +50,7 @@ public class ProfissionalService {
         return getProfissionalRepository().consult();
     }
     
+    public Profissional consult(String mail){
+        return getProfissionalRepository().consult(mail);
+    }
 }

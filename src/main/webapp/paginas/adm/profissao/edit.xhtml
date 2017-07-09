@@ -37,12 +37,19 @@ and open the template in the editor.
                                 </div>
 
                                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                    <b:selectOneMenu value="#{profissaoController.profissaoEdit.categoria}" label="">
+                                    <h:selectOneMenu value="#{profissaoController.profissaoEdit.categoria}" label="">
                                         <f:selectItem itemLabel="Selecione Categoria "/>
                                         <f:selectItems value="#{categoriaController.listaCategoria}" var="categoria"
                                                        itemLabel="#{categoria.nome}"/>
                                         <!--<f:converter converterId="tipoUsuarioConverter"/>-->
-                                    </b:selectOneMenu>
+                                    </h:selectOneMenu>
+                                </div>
+                                
+                                <div class="mdl-textfield mdl-js-textfield">
+                                  <!--<textarea class="mdl-textfield__input" type="text" rows= "3" id="sample5" ></textarea>-->
+                                  <h:inputTextarea value="#{profissaoController.profissaoEdit.descricao}" 
+                                                   class="mdl-textfield__input" rows= "3" id="sample5"> </h:inputTextarea>
+                                  <label class="mdl-textfield__label" for="sample5">Descriçao...</label>
                                 </div>
 
                                 <p>

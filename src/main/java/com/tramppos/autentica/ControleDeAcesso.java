@@ -32,6 +32,7 @@ public class ControleDeAcesso implements Filter {
                     || (req.getRequestURI().endsWith("login.xhtml"))
                     
                     || (req.getRequestURI().endsWith("index.xhtml"))
+                    || (req.getRequestURI().endsWith("erroacesso.xhtml"))
                     || (req.getRequestURI().startsWith(req.getContextPath() +"/paginas/cadastro.xhtml"))
                     || (req.getRequestURI().contains("javax.faces.resource/"))) 
         {
@@ -41,11 +42,13 @@ public class ControleDeAcesso implements Filter {
             chain.doFilter(request, response);
         }
         else { 
-            if(session.getAttribute("logProf") != null && req.getRequestURI().startsWith(req.getContextPath() +"/paginas/profissional")){
+            if((session.getAttribute("logProf") != null && req.getRequestURI().startsWith(req.getContextPath() +"/paginas/profissional"))
+               ||(session.getAttribute("logProf") != null && req.getRequestURI().startsWith(req.getContextPath() +"/paginas/pessoa"))){
                 chain.doFilter(request, response);
             }
             else{
-                if(session.getAttribute("logCliente") != null && req.getRequestURI().startsWith(req.getContextPath() +"/paginas/cliente")){
+                if(session.getAttribute("logCliente") != null && req.getRequestURI().startsWith(req.getContextPath() +"/paginas/cliente")
+                   ||(session.getAttribute("logCliente") != null && req.getRequestURI().startsWith(req.getContextPath() +"/paginas/pessoa"))){
                     chain.doFilter(request, response);
                 }else{
                     redireciona("/Web/paginas/index.xhtml", response);

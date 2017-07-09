@@ -17,5 +17,4 @@ function cadastro(id)
     document.getElementById("cadastro_cliente").style.display = "none";
     document.getElementById("cadastro_profissional").style.display = "block";
   }
-
 }

@@ -39,7 +39,7 @@ public class PessoaTeste {
         
         //Util.printList((List<Object>) (Object) pessoaService.consult());
         
-        System.out.print(pessoaService.consult("teste@Cliente.com")); 
+        System.out.print(pessoaService.consult("igor@gordo.com")); 
         
         System.out.print(pessoaService.autenticar("teste@Cliente.com", "123"));
         
