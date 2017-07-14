@@ -59,7 +59,7 @@ public class ClienteController implements Serializable{
 //        } 
         //this.cliente.setEnderecos(listEnd);
         
-        this.clienteService.insert(cliente);
+        this.getClienteService().insert(cliente);
         this.clear();
         this.list();
         return "login.xhtml?faces-redirect=true";

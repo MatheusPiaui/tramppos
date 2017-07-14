@@ -58,10 +58,13 @@ public class AutenticadorBean implements Serializable {
                 ClienteService clienteService = new ClienteService();                
              
                 cliente = clienteService.consult(email);
-
-                SessionUtil.setParam("logCliente", cliente);
-
-                return "cliente/homegeral.xhtml?faces-redirect=true";
+                
+                if(cliente.isValidado()){
+                    SessionUtil.setParam("logCliente", cliente);
+                    return "cliente/homegeral.xhtml?faces-redirect=true";
+                }else{
+                    return "paginas/login.xhtml?faces-redirect=true";
+                }              
 
             } 
             else 
@@ -76,9 +79,13 @@ public class AutenticadorBean implements Serializable {
                     profissional = profissionalService.consult(email);
                     
 
-                    SessionUtil.setParam("logProf", profissional);
-
-                    return "profissional/homegeral.xhtml?faces-redirect=true";
+                    
+                    if(profissional.isValidado()){
+                        SessionUtil.setParam("logProf", profissional);
+                        return "profissional/homegeral.xhtml?faces-redirect=true";
+                    }else{
+                        return "paginas/login.xhtml?faces-redirect=true";
+                    }                   
 
                 } 
                 else

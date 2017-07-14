@@ -57,4 +57,8 @@ public class PessoaService {
         return getPessoaRepository().autentica(email, senha);
     }
     
+     //
+    public boolean validaCadastro(String email,String UID){
+        return getPessoaRepository().validaCadastro(email, UID);
+    }
 }

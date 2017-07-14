@@ -38,7 +38,10 @@ public class Pessoa implements Serializable{
     protected String email;
     private String senha;
     protected String telefone;
-    
+    private String uid;
+    private boolean validado = false;
+
+        
        
     
     @Column(insertable=false, updatable=false)    
@@ -92,6 +95,21 @@ public class Pessoa implements Serializable{
         this.discrimina = discrimina;
     }
 
+    public String getUid() {
+        return uid;
+    }
+
+    public void setUid(String uid) {
+        this.uid = uid;
+    }
+
+    public boolean isValidado() {
+        return validado;
+    }
+
+    public void setValidado(boolean validado) {
+        this.validado = validado;
+    }
 
     @Override
     public int hashCode() {
@@ -120,9 +138,8 @@ public class Pessoa implements Serializable{
 
     @Override
     public String toString() {
-        return "Pessoa{" + "id=" + id + ", nome=" + nome + ", email=" + email + ", senha=" + senha + ", telefone=" + telefone + ", discrimina=" + discrimina + '}';
-    }
-    
+        return "Pessoa{" + "id=" + id + ", nome=" + nome + ", email=" + email + ", senha=" + senha + ", telefone=" + telefone + ", uid=" + uid + ", validado=" + validado + ", discrimina=" + discrimina + '}';
+    }    
     
     
 }

@@ -8,7 +8,10 @@ package com.tramppos.service;
 
 import com.tramppos.domain.Cliente;
 import com.tramppos.repository.ClienteRepository;
+import static com.tramppos.util.hash.GeraHash.*;
+import com.tramppos.util.mail.Mail;
 import java.util.List;
+import javax.mail.MessagingException;
 
 /**
  *
@@ -17,6 +20,7 @@ import java.util.List;
 public class ClienteService {
     
     private ClienteRepository clienteRepository;
+    
 
     //contrutor
     public ClienteService() 
@@ -33,8 +37,38 @@ public class ClienteService {
     }
     
     // comandos
-    public void insert(Cliente cliente){
-        getClienteRepository().insert(cliente);
+    public void insert(Cliente cliente) {
+        
+       
+        
+        // Gera UID(hash)
+        
+        cliente.setUid(stringHexa(gerarHash(cliente.getEmail(), "MD5")));
+        
+        //Verifica se:
+        //     email    => unico
+        //     telefone => unico
+        
+        
+        // antes de inserir, mandar email de validaçao
+        try {
+            // envia email
+            Mail m = new Mail();
+            
+            //System.out.println("## email: "+ m.getEndMail());  
+            //System.out.println("## "+ m.sendMail("matheus.piaui.iami@gmail.com", "teste ", "teste"));
+            
+            System.out.println(" ## Email enviado: " + m.validaCadastro(cliente.getEmail(),cliente.getUid()));
+            
+            //Se estiver tudo certo manda inserir! 
+            getClienteRepository().insert(cliente);  
+            
+        } catch (MessagingException e) {
+                  throw new RuntimeException(e);
+        }
+        
+              
+        
     }    
     public void update(Cliente cliente){
         getClienteRepository().update(cliente);

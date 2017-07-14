@@ -106,4 +106,30 @@ public class PessoaRepository implements Serializable{
            return false; 
         }      
     }
+    
+    
+    public boolean validaCadastro(String email,String hash){
+        
+        Pessoa log = new Pessoa();
+        
+        log = this.consult(email);
+        
+        if(log != null){
+            if(log.getUid().equals(hash)){
+                
+                //validando no banco
+                log.setValidado(true);
+                update(log);
+                
+                return true;
+            }
+            else{
+                return false;
+            }
+        }else{ // mais de 1 registro, com o mesmo email
+           
+           System.out.println("Nao existe PESSOA");
+           return false; 
+        }      
+    }
 }
