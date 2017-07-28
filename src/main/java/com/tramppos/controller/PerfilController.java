@@ -5,15 +5,19 @@
  */
 package com.tramppos.controller;
 
-import com.tramppos.domain.Cliente;
+import com.tramppos.domain.Pessoa;
 import com.tramppos.domain.Profissional;
-import com.tramppos.service.ClienteService;
+import com.tramppos.service.PessoaService;
 import com.tramppos.service.ProfissionalService;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
 import com.tramppos.util.jsf.SessionUtil;
+import com.tramppos.util.upload.Image;
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
+import javax.servlet.http.Part;
 
 /**
  *
@@ -23,50 +27,63 @@ import javax.annotation.PostConstruct;
 @SessionScoped
 public class PerfilController implements Serializable {
     
-    private Cliente cliente;
-    private Profissional profissional;
-    private ClienteService clienteService;
-    private ProfissionalService profissionalService;    
+    private Pessoa pessoa;
+    
+    private PessoaService pessoaService;
+    
+    private Part arquivo;
     
     
-    @PostConstruct
+     @PostConstruct
     public void start() {
-       this.cliente = (Cliente) SessionUtil.getParam("logCliente");
-       this.profissional = (Profissional) SessionUtil.getParam("logProf");
+//        this.pessoa = new Pessoa();
+        this.pessoaService = new PessoaService();
+       this.pessoa = (Pessoa) SessionUtil.getParam("logPessoa");       
+    }   
+
+    public void enviarImg() {      
+        
+        if(this.getPessoaService().upImagemPerfil(arquivo, pessoa)){
+             adicionarMensagem(FacesMessage.SEVERITY_INFO, "Arquivo enviado com sucesso.");
+        }else{
+            adicionarMensagem(FacesMessage.SEVERITY_ERROR, "Erro ao enviar arquivo.");
+        }
+    }
+    
+     private void adicionarMensagem(FacesMessage.Severity nivel, String mensagem) {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(nivel, mensagem, mensagem));
     }    
 
-    public ClienteService getClienteService() {
-        return clienteService;
+    public PessoaService getPessoaService() {
+        return pessoaService;
     }
 
-    public void setClienteService(ClienteService clienteService) {
-        this.clienteService = clienteService;
+    public void setPessoaService(PessoaService pessoaService) {
+        this.pessoaService = pessoaService;
     }
 
-    public Cliente getCliente() {
-        return cliente;
+    public Pessoa getPessoa() {
+        return pessoa;
     }
 
-    public void setCliente(Cliente cliente) {
-        this.cliente = cliente;
+    public void setPessoa(Pessoa pessoa) {
+        this.pessoa = pessoa;
+    }   
+
+    public Part getArquivo() {
+        return arquivo;
     }
 
-    public Profissional getProfissional() {
-        return profissional;
-    }
-
-    public void setProfissional(Profissional profissional) {
-        this.profissional = profissional;
-    }
-
-    public ProfissionalService getProfissionalService() {
-        return profissionalService;
-    }
-
-    public void setProfissionalService(ProfissionalService profissionalService) {
-        this.profissionalService = profissionalService;
+    public void setArquivo(Part arquivo) {
+        this.arquivo = arquivo;
     }
     
+    public String update(){
+        this.getPessoaService().update(pessoa);
+        return "homegeral.xhtml?faces-redirect=true";
+    }
     
-    
+    public String getImgPerfil(){      
+        return this.pessoaService.linkImgPerfil(pessoa);
+    }
 }

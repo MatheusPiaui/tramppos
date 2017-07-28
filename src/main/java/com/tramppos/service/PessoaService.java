@@ -7,7 +7,11 @@ package com.tramppos.service;
 
 import com.tramppos.domain.Pessoa;
 import com.tramppos.repository.PessoaRepository;
+import com.tramppos.util.upload.Image;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import javax.servlet.http.Part;
 
 /**
  *
@@ -60,5 +64,35 @@ public class PessoaService {
      //
     public boolean validaCadastro(String email,String UID){
         return getPessoaRepository().validaCadastro(email, UID);
+    }
+    
+    public boolean upImagemPerfil(Part arquivo,Pessoa pessoa){
+        
+        Image image = new Image();
+        
+        SimpleDateFormat format = new SimpleDateFormat("yyyyMMdd");
+        Date date = new Date(System.currentTimeMillis());
+        
+        String nome = format.format(date) + "-perfil"+ arquivo.getSubmittedFileName();
+        
+        String idPessoa = String.valueOf(pessoa.getId());
+        String album = "perfil";
+
+        String caminho = idPessoa + "/" + album + "/";
+        
+        if(image.up(arquivo, caminho, nome)){            
+            pessoa.setFotoPerfil(caminho + nome);            
+            this.update(pessoa);            
+            return true;
+        }else{
+            return false;
+        }
+    }
+    
+    public String linkImgPerfil(Pessoa pessoa){
+        
+        Image image = new Image();
+                       
+        return image.linkImg(pessoa.getFotoPerfil());
     }
 }

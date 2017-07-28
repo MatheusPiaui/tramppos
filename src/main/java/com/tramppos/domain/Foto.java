@@ -29,7 +29,7 @@ public class Foto implements Serializable{
     private String descricao;
     
     @Temporal(javax.persistence.TemporalType.DATE)
-    private Date dataPestagem;
+    private Date dataPostagem;
     private String link;
     
     @ManyToOne
@@ -90,11 +90,11 @@ public class Foto implements Serializable{
     }
 
     public Date getDataPestagem() {
-        return dataPestagem;
+        return dataPostagem;
     }
 
-    public void setDataPestagem(Date dataPestagem) {
-        this.dataPestagem = dataPestagem;
+    public void setDataPestagem(Date dataPostagem) {
+        this.dataPostagem = dataPostagem;
     }
     
     @Override

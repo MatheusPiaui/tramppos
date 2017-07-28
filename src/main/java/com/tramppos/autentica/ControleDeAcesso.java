@@ -29,8 +29,8 @@ public class ControleDeAcesso implements Filter {
         
 
         if ((session.getAttribute("logAdm") != null)              
-                    || (req.getRequestURI().endsWith("login.xhtml"))
-                    
+                    || (req.getRequestURI().endsWith("login.xhtml"))  
+                    || (req.getRequestURI().endsWith("teste.xhtml")) 
                     || (req.getRequestURI().endsWith("index.xhtml"))
                     || (req.getRequestURI().endsWith("valida.xhtml"))
                     || (req.getRequestURI().endsWith("valida"))
@@ -44,18 +44,23 @@ public class ControleDeAcesso implements Filter {
             chain.doFilter(request, response);
         }
         else { 
-            if((session.getAttribute("logProf") != null && req.getRequestURI().startsWith(req.getContextPath() +"/paginas/profissional"))
-               ||(session.getAttribute("logProf") != null && req.getRequestURI().startsWith(req.getContextPath() +"/paginas/pessoa"))){
+            if((session.getAttribute("logPessoa") != null && req.getRequestURI().startsWith(req.getContextPath() +"/paginas/profissional"))
+               ||(session.getAttribute("logPessoa") != null && req.getRequestURI().startsWith(req.getContextPath() +"/paginas/pessoa"))){
                 chain.doFilter(request, response);
+            }else{
+                if((session.getAttribute("logProf") != null && req.getRequestURI().startsWith(req.getContextPath() +"/paginas/profissional"))
+                    ||(session.getAttribute("logProf") != null && req.getRequestURI().startsWith(req.getContextPath() +"/paginas/pessoa"))){
+                     chain.doFilter(request, response);
+                 }
+                 else{
+                     if(session.getAttribute("logCliente") != null && req.getRequestURI().startsWith(req.getContextPath() +"/paginas/cliente")
+                        ||(session.getAttribute("logCliente") != null && req.getRequestURI().startsWith(req.getContextPath() +"/paginas/pessoa"))){
+                         chain.doFilter(request, response);
+                     }else{
+                         redireciona("/Web/paginas/index.xhtml", response);
+                     }
+                 }        
             }
-            else{
-                if(session.getAttribute("logCliente") != null && req.getRequestURI().startsWith(req.getContextPath() +"/paginas/cliente")
-                   ||(session.getAttribute("logCliente") != null && req.getRequestURI().startsWith(req.getContextPath() +"/paginas/pessoa"))){
-                    chain.doFilter(request, response);
-                }else{
-                    redireciona("/Web/paginas/index.xhtml", response);
-                }
-            }        
                 
         }
 

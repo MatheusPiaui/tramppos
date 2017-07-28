@@ -1,7 +1,8 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:jsf="http://xmlns.jcp.org/jsf">
     <h:head>
         <meta charset="utf-8"/>
         <title>Trampos - Sistema de Gerenciamento de Jobs</title>
@@ -40,8 +41,9 @@
           <section class="barra-lateral">
             <h1>Seu Perfil</h1>
             <hr/>
-            <img src="../../resources/images/perfil_01.png" class="perfil" alt="Perfil do Ususário"/>
-            <h3><h:outputLabel value="#{perfilController.cliente.nome}"></h:outputLabel></h3>
+            <a href="#editarFoto"><img src="../../#{perfilController.imgPerfil}" class="perfil" alt="Perfil do Ususário"/>
+            </a>
+            <h3>#{perfilController.pessoa.nome}</h3>
             <h2>Avaliado em <i class="estrelas estrelas-5"></i></h2>
             <h2 class="bold">
               <a href="#">
@@ -50,12 +52,20 @@
             </h2>
             <hr/>
             <h2>Profissão 1: Pedreiro a 1 ano</h2>
-            <h2>Email: <h:outputLabel value="#{perfilController.cliente.email}"></h:outputLabel></h2>
-            <h2>Senha: <h:outputLabel value="#{perfilController.cliente.senha}"></h:outputLabel></h2>
-            <h2>Telefone: <h:outputLabel value="#{perfilController.cliente.telefone}"></h:outputLabel></h2>
+            <h2>Email: #{perfilController.pessoa.email}</h2>
+            <h2>Senha: #{perfilController.pessoa.senha}</h2>
+            <h2>Telefone: #{perfilController.pessoa.telefone}</h2>
+            <h:form>
+                <h2>
+                    <h:commandLink value="" action="#{autenticadorBean.registraSaida()}"> SAIR</h:commandLink>
+                </h2>
+            </h:form>
+            
             <hr/>
-            <a href="#"><h1>Editar Perfil</h1></a>
+            <a href="#editarPerfil"><h1>Editar Perfil</h1></a>
           </section>
+          
+          
 
           <!-- NOTIFICAÇÕES  -->
           <section class="p-b-50 barra-grande">
@@ -67,9 +77,9 @@
 
             <ul class="notificacao-ul">
               <li>
-                <img src="../../resources/images/perfil_01.png" alt="NOME DO USUÁRIO"/>
-                <p>Prabéns! <a href="#">Xanaina</a> te escolhei para realizar o trabalho dela</p>
-                <button type="button" class="btn btn-verde">Contatar cliente agora</button>
+                <img src="../../resources/images/perfil.png" alt="NOME DO USUÁRIO"/>
+                <p>Parabéns! <a href="#">Xanaina</a> te escolheu para realizar o trabalho dela</p>
+                <button type="button" class="btn btn-verde">Contatar pessoa agora</button>
                 <div class="clear"></div>
               </li>
             </ul>
@@ -99,6 +109,53 @@
           </section>
 
         </article>
+        
+        <!--modal-->
+          <section id="editarPerfil" class="modal">
+            <h1>Seu Perfil</h1>
+            <hr/>
+            <form jsf:id="perfil" jsf:prependId="false" >
+                
+                <h3>Nome: <input  jsf:id="nome" jsf:value="#{perfilController.pessoa.nome}" 
+                type="nome" name="nome" placeholder="nome" required="true" /></h3>
+                <hr/>
+                <h3>Email: <h:inputText value="#{perfilController.pessoa.email}"></h:inputText></h3>
+                <hr/>
+                <h3>Senha: <h:inputText value="#{perfilController.pessoa.senha}"></h:inputText></h3>
+                <hr/>
+                <h3>Telefone: <h:inputText value="#{perfilController.pessoa.telefone}"></h:inputText></h3>
+                <hr/>
+                
+                <button jsf:action="#{perfilController.update()}" class="grande block btn-verde" type="submit">Salvar</button>
+                                
+            </form>          
+            
+            <a href="#fechar" class="fechar"><h1>X</h1></a>
+          </section>
+        
+        <div id="editarFoto" class="modal">
+            
+            <h:form enctype="multipart/form-data">
+                
+                <h:messages />
+                
+                <h:outputLabel value="Arquivo" />
+                <h:inputFile required="true" requiredMessage="Arquivo é obrigatório." 
+                             value="#{perfilController.arquivo}" />
+                        
+<!--                <input name="imagem" type="file" accept="image/jpeg; image/gif; image/bmp; image/png" 
+                       jsf:id="imagem" maxlength="60" tabindex="1" />-->
+                
+                <!--<input type="submit" id="upload" name="upload" tabindex="2" />-->
+                <h:commandButton value="Enviar" action="#{perfilController.enviarImg()}" />
+                
+            </h:form>
+            
+            <!--<img src="#{perfilController.pessoa.fotoPerfil}" class="perfil" alt="Perfil do Ususário"/>-->
+            
+            <a href="#fechar" class="fechar"><h1>X</h1></a>
+        </div>
+        
      </h:body>
 </html>
 

@@ -35,7 +35,10 @@ input, select
 
 hr
 {
-  border: 0;
+  background: #ccc;
+  height: 1px;
+  width: 100%;
+  margin-top: 15px;
 }
 
 *

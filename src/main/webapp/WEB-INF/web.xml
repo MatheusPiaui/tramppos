@@ -13,6 +13,7 @@
         <servlet-name>ValidarServlet</servlet-name>
         <servlet-class>com.tramppos.controller.servlet.ValidarServlet</servlet-class>
     </servlet>
+    
     <servlet-mapping>
         <servlet-name>Faces Servlet</servlet-name>
         <url-pattern>*.xhtml</url-pattern>
@@ -22,6 +23,7 @@
         <servlet-name>ValidarServlet</servlet-name>
         <url-pattern>/paginas/valida</url-pattern>
     </servlet-mapping>
+    
     <session-config>
         <session-timeout>
             3

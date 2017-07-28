@@ -9,6 +9,7 @@ import com.tramppos.domain.Foto;
 import com.tramppos.domain.Pessoa;
 import com.tramppos.domain.Servico;
 import com.tramppos.service.FotoService;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -39,12 +40,29 @@ public class FotoTeste {
         foto.setLink("teste.jpg");
         
         Date data = new Date(System.currentTimeMillis());
-        System.out.println("Data: " + data);
+        System.out.println("Data: " + data.toString());
+        System.out.println("Year: " + data.getYear());
+        System.out.println("Month: " + data.getMonth());
+        System.out.println("Day: " + data.getDay());
+
         
         foto.setDataPestagem(data);
+        //        fotoService.insert(foto);
         
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date date = new Date(System.currentTimeMillis());
         
-        fotoService.insert(foto);
+        SimpleDateFormat year = new SimpleDateFormat("yyyy");
+        SimpleDateFormat month = new SimpleDateFormat("MM");
+        SimpleDateFormat day = new SimpleDateFormat("dd");
+        
+        System.out.println("Data: " + format.format(date));
+        System.out.println("Year: " + year.format(date));
+        System.out.println("Month: " + month.format(date));
+        System.out.println("Day: " + day.format(date));
+
+        
+
         
         
     }

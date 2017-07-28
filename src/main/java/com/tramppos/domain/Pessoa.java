@@ -40,12 +40,10 @@ public class Pessoa implements Serializable{
     protected String telefone;
     private String uid;
     private boolean validado = false;
-
-        
-       
-    
+    private String fotoPerfil;    
     @Column(insertable=false, updatable=false)    
     private int discrimina;
+    
 
     public int getId() {
         return id;
@@ -110,6 +108,15 @@ public class Pessoa implements Serializable{
     public void setValidado(boolean validado) {
         this.validado = validado;
     }
+
+    public String getFotoPerfil() {
+        return fotoPerfil;
+    }
+
+    public void setFotoPerfil(String fotoPerfil) {
+        this.fotoPerfil = fotoPerfil;
+    }
+    
 
     @Override
     public int hashCode() {

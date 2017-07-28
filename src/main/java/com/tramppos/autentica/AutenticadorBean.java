@@ -1,6 +1,7 @@
 package com.tramppos.autentica;
 
 import com.tramppos.domain.Cliente;
+import com.tramppos.domain.Pessoa;
 import com.tramppos.domain.Profissional;
 import com.tramppos.service.ClienteService;
 import com.tramppos.service.PessoaService;
@@ -49,52 +50,73 @@ public class AutenticadorBean implements Serializable {
         } 
         else 
         {
-            // valida se for cliente
-            if (pessoaService.autenticar(email, senha) && pessoaService.consult(email).getDiscrimina() == 1) {
+            // valida Pessoa
+            if (pessoaService.autenticar(email, senha)) {
                 System.out.println("Confirmou  usuario e senha ...");		
 
                 //ADD USUARIO NA SESSION
-                Cliente cliente = new Cliente();                
-                ClienteService clienteService = new ClienteService();                
+                Pessoa pessoa = new Pessoa();                
+                PessoaService pessoaService = new PessoaService();                
              
-                cliente = clienteService.consult(email);
+                pessoa = pessoaService.consult(email);
                 
-                if(cliente.isValidado()){
-                    SessionUtil.setParam("logCliente", cliente);
-                    return "cliente/homegeral.xhtml?faces-redirect=true";
+                if(pessoa.isValidado()){
+                    SessionUtil.setParam("logPessoa", pessoa);
+                    return "pessoa/homegeral.xhtml?faces-redirect=true";
                 }else{
                     return "paginas/login.xhtml?faces-redirect=true";
                 }              
 
             } 
-            else 
-            {// valida se for profissional
-                if (pessoaService.autenticar(email, senha) && pessoaService.consult(email).getDiscrimina() == 2) {
-                    System.out.println("Confirmou  usuario e senha ...");		
-
-                    //ADD USUARIO NA SESSION
-                    Profissional profissional = new Profissional();
-                    ProfissionalService profissionalService = new ProfissionalService();
-                    
-                    profissional = profissionalService.consult(email);
-                    
-
-                    
-                    if(profissional.isValidado()){
-                        SessionUtil.setParam("logProf", profissional);
-                        return "profissional/homegeral.xhtml?faces-redirect=true";
-                    }else{
-                        return "paginas/login.xhtml?faces-redirect=true";
-                    }                   
-
-                } 
-                else
-                {
-                    return null;
-                }
+            else{
+//                // valida se for cliente
+//                if (pessoaService.autenticar(email, senha) && pessoaService.consult(email).getDiscrimina() == 1) {
+//                    System.out.println("Confirmou  usuario e senha ...");		
+//
+//                    //ADD USUARIO NA SESSION
+//                    Cliente cliente = new Cliente();                
+//                    ClienteService clienteService = new ClienteService();                
+//
+//                    cliente = clienteService.consult(email);
+//
+//                    if(cliente.isValidado()){
+//                        SessionUtil.setParam("logCliente", cliente);
+//                        return "cliente/homegeral.xhtml?faces-redirect=true";
+//                    }else{
+//                        return "paginas/login.xhtml?faces-redirect=true";
+//                    }              
+//
+//                } 
+//                else 
+//                {// valida se for profissional
+//                    if (pessoaService.autenticar(email, senha) && pessoaService.consult(email).getDiscrimina() == 2) {
+//                        System.out.println("Confirmou  usuario e senha ...");		
+//
+//                        //ADD USUARIO NA SESSION
+//                        Profissional profissional = new Profissional();
+//                        ProfissionalService profissionalService = new ProfissionalService();
+//
+//                        profissional = profissionalService.consult(email);
+//
+//
+//
+//                        if(profissional.isValidado()){
+//                            SessionUtil.setParam("logProf", profissional);
+//                            return "profissional/homegeral.xhtml?faces-redirect=true";
+//                        }else{
+//                            return "paginas/login.xhtml?faces-redirect=true";
+//                        }                   
+//
+//                    } 
+//                    else
+//                    {
+//                        return null;
+//                    }
+//       
+                return null;
             }       
         }
-    }   
+    }
     /**
      * M�todo que efetua o logout
      * 
@@ -103,11 +125,12 @@ public class AutenticadorBean implements Serializable {
     public String registraSaida() {
 
             //REMOVER USUARIO DA SESSION
-            SessionUtil.remove("logAdm");
-            SessionUtil.remove("logProf");
-            SessionUtil.remove("logCliente");
+//            SessionUtil.remove("logAdm");
+//            SessionUtil.remove("logProf");
+//            SessionUtil.remove("logPessoa");
+        SessionUtil.invalidate();
 
-            return "/paginas/index.xhtml?faces-redirect=true";
+        return "/paginas/index.xhtml?faces-redirect=true";
     }
 
     // GETTERS E SETTERS
