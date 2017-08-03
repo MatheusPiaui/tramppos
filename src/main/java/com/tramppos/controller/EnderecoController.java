@@ -9,12 +9,15 @@ import com.tramppos.domain.Bairro;
 import com.tramppos.domain.Cep;
 import com.tramppos.domain.Endereco;
 import com.tramppos.domain.Cep;
+import com.tramppos.domain.Cidade;
 import com.tramppos.domain.Estado;
 import com.tramppos.domain.Logradouro;
+import com.tramppos.domain.Pessoa;
 import com.tramppos.service.BairroService;
 import com.tramppos.service.CepService;
 import com.tramppos.service.EnderecoService;
 import com.tramppos.service.CepService;
+import com.tramppos.service.CidadeService;
 import com.tramppos.service.EstadoService;
 import com.tramppos.service.LogradouroService;
 import java.io.Serializable;
@@ -41,13 +44,30 @@ public class EnderecoController implements Serializable{
     private Cep cep;
     private CepService cepService;
     //
+    private Cidade cidade;
+    private CidadeService cidadeService;
+    //
     private Bairro bairro;
     private BairroService bairroService;
     //
     private Logradouro logradouro;
     private LogradouroService logradouroService;
     
+    private String strCep = null;
+        
+
+    public void buscaCEP(){
+            cep = cepService.consult(getStrCep());      
             
+        
+            if(cep != null){
+                cepService.insert(cep);
+                setCidade(cep.getCidade());
+                setBairro(cep.getBairro());
+                setLogradouro(cep.getLogradouro());
+            }
+        }    
+
 
     @PostConstruct
     public void start() {
@@ -58,6 +78,8 @@ public class EnderecoController implements Serializable{
     ///
     //  limpar
     public void clear(){
+        this.cidade = new Cidade();
+        this.cidadeService = new CidadeService();
         //
         this.bairro = new Bairro();
         this.bairroService = new BairroService();
@@ -76,7 +98,13 @@ public class EnderecoController implements Serializable{
     
     ///
     // 
-    public String insert(){
+    public String insert(Pessoa pessoa){
+        
+        this.endereco.setBairro(bairro);
+        this.endereco.setLogradouro(logradouro);
+        this.endereco.setCep(cep);        
+        this.endereco.setPessoa(pessoa);
+        
         this.getEnderecoService().insert(endereco);
         this.clear();
         this.list();
@@ -200,6 +228,30 @@ public class EnderecoController implements Serializable{
 
     public void setLogradouroService(LogradouroService logradouroService) {
         this.logradouroService = logradouroService;
+    }
+
+    public String getStrCep() {
+        return strCep;
+    }
+
+    public void setStrCep(String strCep) {
+        this.strCep = strCep;
+    }
+
+    public Cidade getCidade() {
+        return cidade;
+    }
+
+    public void setCidade(Cidade cidade) {
+        this.cidade = cidade;
+    }
+
+    public CidadeService getCidadeService() {
+        return cidadeService;
+    }
+
+    public void setCidadeService(CidadeService cidadeService) {
+        this.cidadeService = cidadeService;
     }
 
       

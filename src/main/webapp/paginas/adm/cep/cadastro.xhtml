@@ -29,65 +29,50 @@ and open the template in the editor.
                     <div class="mdl-card__supporting-text">  
                         <h:panelGrid>
                             
-                            <h:form id="formCadastroCep" class="">
-
-                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                    <h:inputText value="#{cepController.cep.numeroCep}" class="mdl-textfield__input" label="Nome" maxlength="100"  />
+                            <h:form>
+                                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                    <h:inputText value="#{cepController.strCep}" class="mdl-textfield__input" label="Nome" maxlength="100"  />
 
                                     <label class="mdl-textfield__label" for="Numero CEP">Numero CEP</label>
                                     <span class="mdl-textfield__error">Input is not a number!</span>
                                 </div>
+                                <p>
+                                    <h:commandButton action="#{cepController.buscaCEP}" value="Buscar" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"/>
+                                </p>
                                 
+                            </h:form>                               
+                            
+                            <h:form id="formCadastroCep" class="">    
                                  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                     <h:inputText value="#{cepController.cep.numeroInicial}" class="mdl-textfield__input" label="Nome" maxlength="100"  />
+                                     <h:inputText value="#{cepController.cidade.estado.nome}" class="mdl-textfield__input" label="Nome" maxlength="100"  />
 
-                                    <label class="mdl-textfield__label" for="nº Inicial">nº Inicial</label>
+                                    <label class="mdl-textfield__label" for="Estado">Estado</label>
                                     <span class="mdl-textfield__error">Letters and spaces only</span>
                                 </div>
                                  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                     <h:inputText value="#{cepController.cep.numeroFinal}" class="mdl-textfield__input" label="Nome" maxlength="100"  />
+                                     <h:inputText value="#{cepController.cidade.nome}" class="mdl-textfield__input" label="Nome" maxlength="100"  />
 
-                                    <label class="mdl-textfield__label" for="nº Final">nº Final</label>
+                                    <label class="mdl-textfield__label" for="Cidade">Cidade</label>
                                     <span class="mdl-textfield__error">Letters and spaces only</span>
                                 </div>
-
                                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                    <b:selectOneMenu value="#{cepController.cep.cidade}" label="">
-                       
-                                        <f:selectItem itemLabel="Cidade "/>
-                                        <f:selectItems value="#{cidadeController.listaCidade}" var="cidade"
-                                                       itemLabel="#{cidade.nome}"/>
-                                        <!--<f:converter converterId="tipoUsuarioConverter"/>-->
-                                    </b:selectOneMenu>
-                                </div>
-                                
-                                  
-                                <h:panelGrid>                                           
-                                    <h:selectBooleanCheckbox value="#{cepController.existeBairro}">
-                                        <f:ajax render="select_bairro"/>
-                                    </h:selectBooleanCheckbox>                                                                             
-                                </h:panelGrid>                                        
-                                <b:selectOneMenu id="select_bairro" value="#{cepController.cep.bairro}" label="" disabled="#{cepController.existeBairro}" >
+                                    <h:inputText value="#{cepController.bairro.nome}" class="mdl-textfield__input" label="Nome" maxlength="100"  />
 
-                                    <f:selectItem itemLabel="Bairro "/>                                
-                                    <f:selectItems value="#{bairroController.listaBairro}" var="bairro"
-                                                   itemLabel="#{bairro.nome}"/>                 
-                                </b:selectOneMenu>
-                                
-                                
-                                <h:panelGrid>                                           
-                                    <h:selectBooleanCheckbox value="#{cepController.existeLogradouro}">
-                                        <f:ajax render="select_logradouro"/>
-                                    </h:selectBooleanCheckbox>                                                                             
-                                </h:panelGrid>                                       
-                                <b:selectOneMenu id="select_logradouro" value="#{cepController.cep.logradouro}" label="" disabled="#{cepController.existeLogradouro}">                       
-                                    <f:selectItem itemLabel="Logradouro "/>
-                                    
-                                    <f:selectItems value="#{logradouroController.listaLogradouro}" var="logradouro"
-                                                   itemLabel="#{logradouro.nome}"/>  
-                                    <!--<f:converter converterId="tipoUsuarioConverter"/>-->
-                                </b:selectOneMenu>
-                                
+                                    <label class="mdl-textfield__label" for="Bairro">Bairro</label>
+                                    <span class="mdl-textfield__error">Input is not a number!</span>
+                                </div>
+                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                    <h:inputText value="#{cepController.logradouro.tipoLogradouro.nome}" class="mdl-textfield__input" label="Nome" maxlength="100"  />
+
+                                    <label class="mdl-textfield__label" for="Tipo logradouro">Tipo logradouro</label>
+                                    <span class="mdl-textfield__error">Input is not a number!</span>
+                                </div>
+                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                    <h:inputText value="#{cepController.logradouro.nome}" class="mdl-textfield__input" label="Nome" maxlength="100"  />
+
+                                    <label class="mdl-textfield__label" for="Logradouro">Logradouro</label>
+                                    <span class="mdl-textfield__error">Input is not a number!</span>
+                                </div>                      
                                 <p>
                                     <h:commandButton action="#{cepController.insert()}" value="Salvar" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"/>
                                     
@@ -97,6 +82,7 @@ and open the template in the editor.
                                 </p>
                             </h:form>
                         </h:panelGrid>
+                       
                         
                     </div>
                 </div>                        
@@ -104,3 +90,7 @@ and open the template in the editor.
         </ui:composition>        
     </h:body>
 </html>
+
+
+                    
+                  

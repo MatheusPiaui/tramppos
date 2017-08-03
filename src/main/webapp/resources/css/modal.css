@@ -41,6 +41,7 @@
     .modal a{
       text-decoration: none;
     }
+    
 
     /*id de cada modal*/
     #editarPerfil{
@@ -64,6 +65,7 @@
         background: #ff9900;
     }
     
+    /*editarfoto*/
     #editarFoto{
         box-shadow: 1px 1px 2px 1px #ccc;
       /*background: #fff;*/
@@ -78,6 +80,25 @@
     }
     
     #editarFoto.fechar{
+        color: #fff;
+        background: #ff9900;
+    }
+    
+    /*addEndereco*/
+    #addEndereco{
+        box-shadow: 1px 1px 2px 1px #ccc;
+        
+        padding-bottom: 15px;
+        float: left;        
+        width: 700px;
+        height: 600px;     
+        margin-top:-300px;
+        margin-left:-350px;
+        background: rgba(255, 255, 255,1);
+      
+    }
+    
+    #addEndereco.fechar{
         color: #fff;
         background: #ff9900;
     }

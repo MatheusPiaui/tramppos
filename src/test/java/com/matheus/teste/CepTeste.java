@@ -65,7 +65,7 @@ public class CepTeste {
 //        System.out.println(cepService.buscaCep("16202000"));
         // ex que nao existe: 16202003;
         // cep sem bairro e logradouro: 16265000
-        System.out.println(cepService.consult("16202338"));
+        System.out.println(cepService.consult("16265000"));
         
     }
     

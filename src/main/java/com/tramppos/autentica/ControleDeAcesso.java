@@ -43,20 +43,24 @@ public class ControleDeAcesso implements Filter {
 
             chain.doFilter(request, response);
         }
-        else { 
-            if((session.getAttribute("logPessoa") != null && req.getRequestURI().startsWith(req.getContextPath() +"/paginas/profissional"))
-               ||(session.getAttribute("logPessoa") != null && req.getRequestURI().startsWith(req.getContextPath() +"/paginas/pessoa"))){
+        else {   
+            
+            if((session.getAttribute("logPessoa") != null && req.getRequestURI().startsWith(req.getContextPath() +"/paginas/pessoa"))){
                 chain.doFilter(request, response);
+                System.out.println("Esta como pessoa!!!!!!");
             }else{
                 if((session.getAttribute("logProf") != null && req.getRequestURI().startsWith(req.getContextPath() +"/paginas/profissional"))
                     ||(session.getAttribute("logProf") != null && req.getRequestURI().startsWith(req.getContextPath() +"/paginas/pessoa"))){
                      chain.doFilter(request, response);
+                     
                  }
                  else{
                      if(session.getAttribute("logCliente") != null && req.getRequestURI().startsWith(req.getContextPath() +"/paginas/cliente")
                         ||(session.getAttribute("logCliente") != null && req.getRequestURI().startsWith(req.getContextPath() +"/paginas/pessoa"))){
                          chain.doFilter(request, response);
+                         System.out.println("Esta como cliente!!!!!!");
                      }else{
+                         System.out.println("Esta aqui!!!!!!");
                          redireciona("/Web/paginas/index.xhtml", response);
                      }
                  }        

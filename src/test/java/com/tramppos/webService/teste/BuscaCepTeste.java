@@ -19,7 +19,9 @@ public class BuscaCepTeste {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        buscaCep("16265000");
+//        buscaCep("16265000");
+        buscaCep("216265000");
+
         
     }
     
@@ -30,14 +32,14 @@ public class BuscaCepTeste {
         //A ferramenta de busca ignora qualquer caracter que n?o seja n?mero.
 
         //caso a busca ocorra bem, imprime os resultados.
-        if (webServiceCep.wasSuccessful()) 
+        if (!webServiceCep.isCepNotFound()) 
         {
 //            r1.setText(webServiceCep.getLogradouroFull());
 //            c1.setText(webServiceCep.getCidade());
 //            b1.setText(webServiceCep.getBairro());
 //            e1.setSelectedItem(webServiceCep.getUf());
             
-            System.out.println("logradouro: " + webServiceCep.getLogradouro());
+            System.out.println("logradouro: " + webServiceCep.getLogradouro().toUpperCase());
 
             System.out.println("tipo logradouro: " + webServiceCep.getLogradouroType());
             System.out.println("Cep: " + webServiceCep.getCep());

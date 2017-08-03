@@ -86,6 +86,7 @@ public class CepRepository {
     
     
     
+    
     public Cep consult(String numeroCep)
     {
         // 1- consulta no banco
@@ -121,38 +122,48 @@ public class CepRepository {
              /////
             // 2- consulta no WebServiceCEp
             WebServiceCep WSCep = WebServiceCep.searchCep(numeroCep);
-            
+              
              //caso a busca ocorra bem, imprime os resultados.
-            if (WSCep.wasSuccessful()) 
+            if (!WSCep.isCepNotFound()) 
             {   
 
                 // Logradouro
                 if(WSCep.getLogradouro().equals("") != true)// se tiver logradouro vai procurar no BD
                 {
+                    //Deixando em caixa alta
+                    String logra = WSCep.getLogradouro().toUpperCase();
+                    String tipoLogra = WSCep.getLogradouroType().toUpperCase();
+
+
+                    // Procura tipo de logradouro
+                    tipoLogradouro = tipoLogradouroService.consult(tipoLogra);
+
+                    if(tipoLogradouro == null){ // tipo logradouro
+                        tipoLogradouro = new TipoLogradouro();
+
+                        tipoLogradouro.setNome(tipoLogra);                        
+                        tipoLogradouroService.insert(tipoLogradouro);
+
+                        ///buscar tipoLogradouro
+                        tipoLogradouro = tipoLogradouroService.consult(tipoLogra);
+                    }
+
                     //Procurando no BD
+                    logradouro = logradouroService.consult(logra,tipoLogra);
 
-                    logradouro = logradouroService.consult(WSCep.getLogradouro(),WSCep.getLogradouroType());
-                    
+                    //System.out.println("Logradouro.: " + logra+ " tipo log.: " + tipoLogra);
 
-                    if(logradouro == null)// caso nao tenha cadastrado no BD
+                    if(logradouro == null)// caso nao tenha cadastrado no BD // logradouro
                     {
                         logradouro = new Logradouro();
                         //vamos cadastrar
-
-                        logradouro.setNome(WSCep.getLogradouro());
-
-                                // Procura tipo de logradouro - deve ter todos cadstrados no BD
-                        tipoLogradouro = tipoLogradouroService.consult(WSCep.getLogradouroType());
-
+                        logradouro.setNome(logra);
                         logradouro.setTipoLogradouro(tipoLogradouro);
-
                         // cadastra no BD
                         logradouroService.insert(logradouro);
-
                         // 
-                        logradouro = logradouroService.consult(WSCep.getLogradouro(),WSCep.getLogradouroType());
-                    }
-
+                        logradouro = logradouroService.consult(logra,tipoLogra);
+                    }                   
                 }
                 else
                 {
@@ -162,18 +173,18 @@ public class CepRepository {
                 // Bairro
                 if(WSCep.getBairro().equals("") != true)
                 {
-                    
-                    
-                    bairro = bairroService.consult(WSCep.getBairro()); // Busca bairro no BD
+                    String bar = WSCep.getBairro().toUpperCase();
+
+                    bairro = bairroService.consult(bar); // Busca bairro no BD
                     if(bairro == null)// Caso nao tenha cadastrado
                     {//vamos cadastrar
                         bairro = new Bairro();
-                        bairro.setNome(WSCep.getBairro());
+                        bairro.setNome(bar);
 
                         bairroService.insert(bairro);
 
                         ///
-                        bairro = bairroService.consult(WSCep.getBairro()); // Busca bairro no BD
+                        bairro = bairroService.consult(bar); // Busca bairro no BD
                     }
                 }
                 else
@@ -187,71 +198,71 @@ public class CepRepository {
                    so precisamos verificar se ambos estao cadastrados no BD.
                     Caso nao estiver cadastrado, cadastrar!!*/
 
-                 //estado
-                estado = estadoService.consult(WSCep.getUf());// Busca Estado no BD
-                
+            String uf = WSCep.getUf().toUpperCase();
+             //estado
+            estado = estadoService.consult(uf);// Busca Estado no BD
+
                 if(estado == null)// estado nao esta cadastrada
                 {
                     //cadastrar estado
                     estado = new Estado();
-                                        
-                    estado.setSigla(WSCep.getUf());
-                    
-//                    System.out.println(estado);
+
+                    estado.setSigla(uf);
+
+    //                    System.out.println(estado);
 
                     estadoService.insert(estado);
-                    
-                    estado = estadoService.consult(WSCep.getUf()); // Busca Cidade no BD
-                    
-//                    System.out.println(estado);
-//                    System.out.println();
+
+                    estado = estadoService.consult(uf); // Busca Estado no BD
+
+    //                    System.out.println(estado);
+    //                    System.out.println();
 
                 }
 
-                cidade = cidadeService.consult(WSCep.getCidade()); // Busca Cidade no BD
-                
-//                System.out.println();
-//                System.out.println("****** Teste ********");
-//                System.out.println(cidade);
-//                System.out.println(WSCep.getCidade());
-//                System.out.println();
+            String city = WSCep.getCidade().toUpperCase();
+            cidade = cidadeService.consult(city); // Busca Cidade no BD
 
-                
-                
+    //                System.out.println();
+    //                System.out.println("****** Teste ********");
+    //                System.out.println(cidade);
+    //                System.out.println(WSCep.getCidade());
+    //                System.out.println();                
+
                 if(cidade == null)// cidade nao esta cadastrada
                 {
                     //cadastrar cidade
                     cidade = new Cidade();
-                    
+
                     cidade.setEstado(estado);
-                    cidade.setNome(WSCep.getCidade());
-                    
-//                    System.out.println(cidade);
+                    cidade.setNome(city);
+
+    //                    System.out.println(cidade);
 
                     cidadeService.insert(cidade);
-                    
-                    cidade = cidadeService.consult(WSCep.getCidade()); // Busca Cidade no BD
-                    
-//                    System.out.println(cidade);
-//                    System.out.println();
+
+                    cidade = cidadeService.consult(city); // Busca Cidade no BD
+
+    //                    System.out.println(cidade);
+    //                    System.out.println();
 
                 }
-                
 
-                // agora vamos retornar o CEP
-                cep = new Cep();
-                cep.setNumeroCep(WSCep.getCep());
-                cep.setNumeroFinal(0);
-                cep.setNumeroInicial(0);
-                cep.setBairro(bairro);
-                cep.setLogradouro(logradouro);
-                cep.setCidade(cidade);
 
-                //caso haja problemas imprime as exce??es.
-                return cep;
-            } 
-            else 
-            {
+            // agora vamos retornar o CEP
+            cep = new Cep();
+            cep.setNumeroCep(WSCep.getCep());
+            cep.setNumeroFinal(0);
+            cep.setNumeroInicial(0);
+            cep.setBairro(bairro);
+            cep.setLogradouro(logradouro);
+            cep.setCidade(cidade);
+
+            //caso haja problemas imprime as exce??es.
+            return cep;
+        }
+        else
+        {
                 System.err.println("Erro numero: " + WSCep.getResulCode());
                 System.err.println("Descrição do erro: " + WSCep.getResultText());
 //                JOptionPane.showMessageDialog(null, "Erro numero: " + WSCep.getResulCode());

@@ -2,7 +2,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:jsf="http://xmlns.jcp.org/jsf">
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
+      xmlns:f="http://java.sun.com/jsf/core">
     <h:head>
         <meta charset="utf-8"/>
         <title>Trampos - Sistema de Gerenciamento de Jobs</title>
@@ -24,13 +25,20 @@
         <!-- Cabeçalho  -->
         <header class="header-geral">
           <div class="centraliza">
-            <a href=""><img src="../../resources/images/logo.png" alt="Trampos"/></a>
-            <h1>
-              Entrar como
-              <a href="#"><button class="btn-azul">Profissional</button></a>
-              ou
-              <a href="#"><button class="btn-laranja">Cliente</button></a>
-            </h1>
+            <a href=""><img src="../../resources/images/logo.png" alt="Trampos"/></a>     
+            <form jsf:id="login" jsf:prependId="false">
+                <h1>
+                    Entrar como
+                    <button class="btn-azul" jsf:action="#{criaSessaoBean.sessaoProf()}" >Profissional</button>
+                    <a class="btn-azul" href="../profissional/homeprof.xhtml">Profissional</a>
+                    ou             
+                    <!--<a href="../cliente/homecliente.xhtml"><button class="btn-laranja">Cliente</button></a>-->
+                    <a href="teste.xhtml"><button class="btn-laranja">Cliente</button></a>                    
+                    <a href="teste.xhtml">cliente</a>
+
+                </h1>
+            </form>
+            
             <div class="clear"></div>
           </div>
         </header>
@@ -90,17 +98,40 @@
           <section class="m-t-20 barra-grande">
             <div class="topo">
               <h1>Seus Endereços</h1>
-              <button type="button" class="btn-right btn-cinza">+ Adicionar um novo endereço</button>
+              <a href="#addEndereco"><button  type="button" class="btn-right btn-cinza">+ Adicionar um novo endereço</button></a>
+             
               <div class="clear"></div>
             </div>
-
-            <ul class="end-ul">
+              
+              <h:panelGrid title="Endereco" >
+                  <h:dataTable id="enderecoData" value="#{enderecoController.listaEndereco}"
+                               var="item">
+                      <h:column>
+                          <ul class="end-ul">
+                            <li>
+                                <img src="../../resources/images/icones/point.png"/>
+                                
+                                <p>#{item.logradouro.tipoLogradouro.nome}, #{item.logradouro.nome} <br/> Bairro #{item.bairro.nome}
+                                    <br/> CEP #{item.cep.numeroCep} <br/> #{item.cep.cidade.nome} - #{item.cep.cidade.estado.sigla} </p>
+                                <div class="clear"></div>
+                           </li>
+                          </ul>
+                      </h:column>
+                      
+                      
+                      
+                      
+                  </h:dataTable>
+              </h:panelGrid>
+              
+              
+<!--            <ul class="end-ul">
               <li>
                 <img src="../../resources/images/icones/point.png"/>
                 <p>Av Pepeca, 666 <br/> Bairro Centro <br/> CEP 16200-000 <br/> Birigui - SP </p>
                 <div class="clear"></div>
               </li>
-            </ul>
+            </ul>-->
 
             <div class="topo footer">
               <button type="button">Editar Endereços</button>
@@ -108,7 +139,7 @@
             </div>
           </section>
 
-        </article>
+        </article>        
         
         <!--modal-->
           <section id="editarPerfil" class="modal">
@@ -133,6 +164,7 @@
             <a href="#fechar" class="fechar"><h1>X</h1></a>
           </section>
         
+        <!--modal editar foto do perfil-->
         <div id="editarFoto" class="modal">
             
             <h:form enctype="multipart/form-data">
@@ -151,11 +183,51 @@
                 
             </h:form>
             
-            <!--<img src="#{perfilController.pessoa.fotoPerfil}" class="perfil" alt="Perfil do Ususário"/>-->
+            <!--<img src="../../#{perfilController.imgPerfil}" class="perfil" alt="Perfil do Ususário"/>-->
             
             <a href="#fechar" class="fechar"><h1>X</h1></a>
         </div>
         
+        <!--modal add endereço-->
+        <div id="addEndereco" class="modal">
+           
+            <form jsf:id="buscaCEP" action="homegeral.xhtml#addEndereco">                
+                <h3>CEP: <input  jsf:id="cep" jsf:value="#{enderecoController.strCep}" 
+                type="cep" name="cep" placeholder="cep" required="true" /></h3>
+                <button jsf:action="#{enderecoController.buscaCEP()}"  type="submit">Buscar</button>
+                <a href="http://www.buscacep.correios.com.br/sistemas/buscacep/">Nao sei meu CEP!</a>
+                
+                
+                <br/>
+            </form>
+            
+            <form jsf:id="addEnd" jsf:prependId="false" >
+                <br/>
+                <h3>Tipo: <h:inputText value="#{enderecoController.endereco.tipo}"></h:inputText></h3>
+                <hr/>
+                <h3>Nº: <h:inputText value="#{enderecoController.endereco.numero}"></h:inputText></h3>
+                <hr/>
+                <h3>Complemento: <h:inputText value="#{enderecoController.endereco.complemento}"></h:inputText></h3>
+                <hr/>
+                <h3>Cidade: <h:inputText value="#{enderecoController.cidade.nome}"></h:inputText>
+                            <h:inputText value="#{enderecoController.cidade.estado.sigla}"></h:inputText>
+                </h3>
+                <hr/>
+                <h3>Bairro: <h:inputText value="#{enderecoController.bairro.nome}"></h:inputText></h3>
+                <hr/>
+                <h3>Logradouro: <h:inputText value="#{enderecoController.logradouro.tipoLogradouro.nome}"></h:inputText>
+                                <h:inputText value="#{enderecoController.logradouro.nome}"></h:inputText>
+                </h3>
+                <hr/>
+                
+                
+                <button jsf:action="#{enderecoController.insert(perfilController.pessoa)}" class="grande block btn-verde" type="submit">Salvar</button>
+                                
+            </form>     
+           
+            
+           <a href="#fechar" class="fechar"><h1>X</h1></a>
+        </div>
      </h:body>
 </html>
 

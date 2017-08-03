@@ -20,6 +20,8 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.inject.Named;
 
 /**
@@ -48,7 +50,57 @@ public class CepController implements Serializable{
     private Boolean existeBairro;
     private Boolean existeLogradouro;
     
+    private String strCep = null;
+ 
+    private String strTipoLogradouro;
+    private String strLogradouro;
+    private String strEstado;
+    private String strCidade;
+    private String strBairro;
+ 
+    public void encontraCEP() {
+        
+        Cep c = cepService.consult(getStrCep());
+        
+        if(c != null){
+            setStrCidade(c.getCidade().getNome());
+            setStrEstado(c.getCidade().getEstado().getSigla());
             
+            if(c.getBairro() != null){
+                setStrBairro(c.getBairro().getNome()); 
+            }else{
+                setStrBairro("null"); 
+            }
+            
+            if(c.getLogradouro() != null){
+                setStrLogradouro(c.getLogradouro().getNome());
+                setStrTipoLogradouro(c.getLogradouro().getTipoLogradouro().getNome());
+            }else{
+                setStrLogradouro("null");
+                setStrTipoLogradouro("null");
+            }
+                       
+            
+        } else {
+ 
+            FacesContext.getCurrentInstance().addMessage(
+                    null,
+                    new FacesMessage(FacesMessage.SEVERITY_ERROR,
+                            "Servidor não está respondendo",
+                            "Servidor não está respondendo"));
+        }
+    }
+        public void buscaCEP(){
+            cep = cepService.consult(getStrCep());      
+            
+        
+            if(cep != null){
+                
+                setCidade(cep.getCidade());
+                setBairro(cep.getBairro());
+                setLogradouro(cep.getLogradouro());
+            } 
+        }    
 
     @PostConstruct
     public void start() {
@@ -229,5 +281,54 @@ public class CepController implements Serializable{
         this.existeLogradouro = existeLogradouro;
     }
 
+    public String getStrCep() {
+        return strCep;
+    }
+
+    public void setStrCep(String strCep) {
+        this.strCep = strCep;
+    }
+
+    public String getStrTipoLogradouro() {
+        return strTipoLogradouro;
+    }
+
+    public void setStrTipoLogradouro(String strTipoLogradouro) {
+        this.strTipoLogradouro = strTipoLogradouro;
+    }
+
+    public String getStrLogradouro() {
+        return strLogradouro;
+    }
+
+    public void setStrLogradouro(String strLogradouro) {
+        this.strLogradouro = strLogradouro;
+    }
+
+    public String getStrEstado() {
+        return strEstado;
+    }
+
+    public void setStrEstado(String strEstado) {
+        this.strEstado = strEstado;
+    }
+
+    public String getStrCidade() {
+        return strCidade;
+    }
+
+    public void setStrCidade(String strCidade) {
+        this.strCidade = strCidade;
+    }
+
+    public String getStrBairro() {
+        return strBairro;
+    }
+
+    public void setStrBairro(String strBairro) {
+        this.strBairro = strBairro;
+    }
+    
+    
       
 }
