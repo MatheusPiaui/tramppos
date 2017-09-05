@@ -5,6 +5,7 @@
  */
 package com.tramppos.service;
 
+import com.tramppos.domain.Categoria;
 import com.tramppos.domain.Profissao;
 import com.tramppos.repository.ProfissaoRepository;
 import java.util.List;
@@ -48,5 +49,10 @@ public class ProfissaoService {
     public List<Profissao> consult(){
         return getProfissaoRepository().consult();
     }
-    
+    public List<Profissao> consult(Categoria categoria){
+        return getProfissaoRepository().consult(categoria);
+    }
+    public Profissao consult(int id){
+        return getProfissaoRepository().consult(id);
+    }
 }

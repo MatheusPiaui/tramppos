@@ -60,6 +60,8 @@ public class EstadoTeste {
         //estado.setNome("Piaui");
         //estado.setSigla(null);
         System.out.println(estadoService.consult("SP"));
+        System.out.println(estadoService.consult(1));
+
     }
     
     

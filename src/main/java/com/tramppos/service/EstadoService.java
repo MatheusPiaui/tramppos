@@ -51,6 +51,7 @@ public class EstadoService {
     ///
     //
     public Estado consult(int id){
+        System.out.println("teste: "+id);
         return getEstadoRepository().consult(id);
     }
     

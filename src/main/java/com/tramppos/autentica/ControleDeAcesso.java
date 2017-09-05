@@ -52,7 +52,7 @@ public class ControleDeAcesso implements Filter {
                 if((session.getAttribute("logProf") != null && req.getRequestURI().startsWith(req.getContextPath() +"/paginas/profissional"))
                     ||(session.getAttribute("logProf") != null && req.getRequestURI().startsWith(req.getContextPath() +"/paginas/pessoa"))){
                      chain.doFilter(request, response);
-                     
+                     System.out.println("Esta como Profissional!!!!!!");                    
                  }
                  else{
                      if(session.getAttribute("logCliente") != null && req.getRequestURI().startsWith(req.getContextPath() +"/paginas/cliente")
@@ -60,7 +60,7 @@ public class ControleDeAcesso implements Filter {
                          chain.doFilter(request, response);
                          System.out.println("Esta como cliente!!!!!!");
                      }else{
-                         System.out.println("Esta aqui!!!!!!");
+                         System.out.println("Nao teve permissao de acesso!");
                          redireciona("/Web/paginas/index.xhtml", response);
                      }
                  }        

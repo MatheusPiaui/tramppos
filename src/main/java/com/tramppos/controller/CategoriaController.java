@@ -26,6 +26,12 @@ public class CategoriaController implements Serializable{
     private Categoria categoriaEdit;
     private CategoriaService categoriaService;
     private List<Categoria> listaCategoria;
+    
+    public String teste() {
+//        clear();
+        System.out.println(categoria);
+        return "";
+    }
 
     @PostConstruct
     public void start() {

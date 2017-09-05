@@ -22,6 +22,7 @@ public class Servico implements Serializable{
     
     @Id    
     private int id;
+    private String titulo;
     private String descricao;
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date dataSolicitacao;
@@ -136,5 +137,13 @@ public class Servico implements Serializable{
     @Override
     public String toString() {
         return "Servico{" + "id=" + id + ", descricao=" + descricao + ", dataSolicitacao=" + dataSolicitacao + ", status=" + status + ", cliente=" + cliente + ", endereco=" + endereco + ", Avaliacao=" + Avaliacao + ", profissao=" + profissao + '}';
+    }
+
+    public String getTitulo() {
+        return titulo;
+    }
+
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
     }
 }

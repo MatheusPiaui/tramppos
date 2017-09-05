@@ -5,9 +5,11 @@
  */
 package com.matheus.teste;
 
+import com.matheus.util.Util;
 import com.tramppos.domain.Categoria;
 import com.tramppos.domain.Profissao;
 import com.tramppos.service.ProfissaoService;
+import java.util.List;
 
 /**
  *
@@ -27,12 +29,16 @@ public class ProfissaoTeste {
         
         categoria.setId(1);
         
-        profissao.setCategoria(categoria);        
+        profissao.setCategoria(categoria);
+        
         profissao.setNome("Pedreiro");
         profissao.setDescricao("Construçao Civil");
         
         // insert
-        profissaoService.insert(profissao);
+//        profissaoService.insert(profissao);
+        
+        
+        Util.printList((List<Object>) (Object) profissaoService.consult(categoria));
         
         
         

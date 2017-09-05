@@ -6,6 +6,7 @@
 package com.tramppos.repository;
 
 import com.tramppos.domain.Endereco;
+import com.tramppos.domain.Pessoa;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -70,4 +71,35 @@ public class EnderecoRepository {
         entityManager.close();
         return lista;
     }// fim do método list
+    
+     public List<Endereco> consult(Pessoa pessoa)
+    {
+        List<Endereco> lista = new ArrayList<>();
+        EntityManager entityManager = JPAconnection.getEntityManager();
+        
+        try 
+        {       
+            Query query;
+            query = entityManager.createQuery("SELECT tp FROM Endereco tp WHERE tp.pessoa.id = :idPessoa");
+            query.setParameter("idPessoa", pessoa.getId());
+            lista = query.getResultList();
+        } 
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+        
+        entityManager.close();
+        return lista;
+    }// fim do método list
+    
+    public Endereco consult(int id)
+    {
+        EntityManager entityManager = JPAconnection.getEntityManager();
+        Endereco endereco = null;
+        
+        endereco=entityManager.find(Endereco.class, id);
+        
+        return endereco;
+    }
 }

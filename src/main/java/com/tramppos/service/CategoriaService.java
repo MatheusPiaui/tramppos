@@ -49,4 +49,8 @@ public class CategoriaService {
         return getCategoriaRepository().consult();
     }
     
+    public Categoria consult(int id){
+        return getCategoriaRepository().consult(id);
+    }
+    
 }

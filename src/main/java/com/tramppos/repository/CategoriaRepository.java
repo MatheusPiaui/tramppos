@@ -70,4 +70,14 @@ public class CategoriaRepository {
         return lista;
     }// fim do método list
     
+    public Categoria consult(int id)
+    {
+        EntityManager entityManager = JPAconnection.getEntityManager();
+        Categoria categoria = null;
+        
+        categoria=entityManager.find(Categoria.class, id);
+        
+        return categoria;
+    }
+    
 }

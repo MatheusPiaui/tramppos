@@ -1,0 +1,165 @@
+html,body{
+  padding: 0;
+  margin: 0;
+  background-color: #f8f8f8;
+}
+
+
+/*geral*/
+hr{
+  clear: both;
+  padding: 0;
+  margin: 0;
+}
+
+/*Tipografia*/
+@font-face {
+    font-family: HelveticaNeue;
+    src: url(fonts/HelveticaNeue.otf);
+}
+
+h1,h2,h3,h4,h5,h6,p,a,span{
+  padding: 0;
+  margin: 0;
+  text-decoration: none;
+  font-family: HelveticaNeue, Helvetica;
+}
+h2{
+  font-size: 26px;
+  color: #484949;
+}
+
+  /*HEADER*/
+header{
+  width: 100%;
+  /*height: 121px;*/
+  background-color: #ffffff;
+}
+
+header img.logo{
+  margin-left: 156px;
+  margin-top: 51px;
+  /*margin-right: 277px;*/
+  float: left;
+}
+
+/*div entrar*/
+header div.entrar{
+  margin: 46px 71px 29px 0;
+  /*width: 400px;*/
+  float: right;
+}
+header div.entrar button{
+  margin: 0 0 0 36px;
+}
+
+/*div acao*/
+header div.acao{
+  float:right;
+  margin: 39px 95px 0 0;
+}
+
+header div.acao img{
+
+  position: relative;
+  margin-left: 41px;
+    /*padding-top: */
+    /*margin-bottom: 50%;*/
+}
+
+header div.acao img.perfil{
+  width: 61px;
+  height: 61px;
+  border-radius: 100%;
+}
+
+/*NAV*/
+nav{
+  clear: both;
+  width: 100%;
+  height: 85px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.16);
+  background-color: #ffffff;
+}
+nav ul{
+  padding:0px;
+  margin:0px;
+  /*background-color:#EDEDED;*/
+  list-style:none;
+}
+nav ul li{
+  display: inline;
+
+
+}
+nav ul li a{
+  font-size: 26px;
+  color: #484949;
+  padding: 25px 175.5px;
+  padding-bottom: 17px;
+  display: inline-block;
+
+  border-style: solid;
+  border-top-width: 0px;
+  border-right-width: 0px;
+  border-left-width: 0px;
+  border-bottom-width: 0px;
+
+}
+/*nav ul li a:hover{
+  background-color: #c9c9c9;
+  color: white;
+}*/
+nav ul li a.ativo{
+  border-bottom-width: 11px;
+  border-color: #ff9b00;
+
+}
+
+/*section*/
+section{
+  margin-top: 63px;
+  clear: both;
+
+}
+section center div#criarServicos{
+  background-color: #fff;
+  width: 1044px;
+  height: 466px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.16);
+}
+section center div#criarServicos form{
+  float: left;
+}
+section center div#criarServicos form.img_serv{
+  padding: 50px;
+
+  border: solid #f0f3f5;
+  border-top-width: 0px;
+  border-right-width: 1px;
+  border-left-width: 0px;
+  border-bottom-width: 0px;
+}
+section center div#criarServicos form.img_serv button{
+  margin-bottom: 65px;
+}
+section center div#criarServicos form.cad_servico{
+  width: 428px;
+  height: 361px;
+  padding: 57px;
+  padding-left: 111px;
+}
+
+
+section center div#seusServicos{
+
+  display: none;
+
+  background-color: #fff;
+  width: 1044px;
+  height: 466px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.16);
+}
+section center div#seusServicos form.cad_servico{
+  margin: 50px;
+}

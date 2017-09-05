@@ -20,7 +20,7 @@ public class BuscaCepTeste {
     public static void main(String[] args) {
         // TODO code application logic here
 //        buscaCep("16265000");
-        buscaCep("216265000");
+        buscaCep("16201013");
 
         
     }

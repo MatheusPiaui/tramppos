@@ -19,7 +19,7 @@ public class ServiceLocator {
         }
     }
 
-    @SuppressWarnings("unchecked")
+    
     public static <T> T getBean(Class<T> clazz) {
         BeanManager bm = getBeanManager();
         Set<Bean<?>> beans = (Set<Bean<?>>) bm.getBeans(clazz);

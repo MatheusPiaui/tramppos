@@ -38,15 +38,19 @@ and open the template in the editor.
                                 </div>
 
                                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                    <b:selectOneMenu value="#{cidadeController.cidade.estado}" label="">
+                                    <h:selectOneMenu value="#{cidadeController.cidade.estado}" converter="estadoConverter"  label="">
                        
                                         <f:selectItem itemLabel="Selecione Estado "/>
                                         <f:selectItems value="#{estadoController.listaEstado}" var="estado"
                                                        itemLabel="#{estado.sigla}"/>
                                         <!--<f:converter converterId="tipoUsuarioConverter"/>-->
-                                    </b:selectOneMenu>
+                                    </h:selectOneMenu>
                                 </div>
-
+                                <p>
+                                    <h:commandButton action="#{cidadeController.teste()}" value="teste" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"/>
+                                    
+                                </p>
+                                
                                 <p>
                                     <h:commandButton action="#{cidadeController.insert()}" value="Salvar" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"/>
                                     

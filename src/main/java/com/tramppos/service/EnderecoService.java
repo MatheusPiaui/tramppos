@@ -6,6 +6,7 @@
 package com.tramppos.service;
 
 import com.tramppos.domain.Endereco;
+import com.tramppos.domain.Pessoa;
 import com.tramppos.repository.EnderecoRepository;
 import java.util.List;
 
@@ -33,6 +34,10 @@ public class EnderecoService {
     
     // comandos
     public void insert(Endereco endereco){
+        
+        //Antes de inserir deve procurar buscas LOGRADOURO, caso o mesmo nao 
+//        tenha sido encontrado no busca CEP
+        
         getEnderecoRepository().insert(endereco);
     }    
     public void update(Endereco endereco){
@@ -47,6 +52,12 @@ public class EnderecoService {
     ///
     public List<Endereco> consult(){
         return getEnderecoRepository().consult();
+    }    
+    public List<Endereco> consult(Pessoa pessoa){
+        return getEnderecoRepository().consult(pessoa);
+    }
+    public Endereco consult(int id){
+        return getEnderecoRepository().consult(id);
     }
     
 }

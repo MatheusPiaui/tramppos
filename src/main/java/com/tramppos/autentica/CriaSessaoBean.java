@@ -8,8 +8,10 @@ import com.tramppos.service.PessoaService;
 import com.tramppos.service.ProfissionalService;
 import java.io.Serializable;
 import com.tramppos.util.jsf.SessionUtil;
+import java.io.IOException;
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.context.FacesContext;
 import javax.inject.Named;
 
 @Named
@@ -29,7 +31,7 @@ public class CriaSessaoBean implements Serializable {
         this.pessoaService = new PessoaService();
     }
 
-    public String sessaoCliente() {
+    public void sessaoCliente() throws IOException {
         
         // valida se for cliente
         if (pessoaService.autenticar(pessoa.getEmail(), pessoa.getSenha()) && pessoaService.consult(pessoa.getEmail()).getDiscrimina() == 1) {
@@ -47,19 +49,22 @@ public class CriaSessaoBean implements Serializable {
                 System.out.println("VAMO VE.: "+pessoa);
 //                SessionUtil.invalidate();
                 SessionUtil.setParam("logCliente", cliente);
-                return "Web/paginas/cliente/homecliente.xhtml?faces-redirect=true";
+                
+                FacesContext.getCurrentInstance().getExternalContext().redirect("../cliente/homecliente.xhtml");
+                
+//                return "/Web/paginas/pessoa/teste.xhtml?faces-redirect=true";
             }else{
-                return "paginas/login.xhtml?faces-redirect=true";
+//                return "paginas/login.xhtml?faces-redirect=true";
             }              
 
         } 
         else   
         {
-            return null;
+//            return null;
         }
         
     }
-    public String sessaoProf() {       
+    public void sessaoProf() throws IOException {       
         
         // valida se for profissional
         if (pessoaService.autenticar(pessoa.getEmail(), pessoa.getSenha()) && pessoaService.consult(pessoa.getEmail()).getDiscrimina() == 2) {
@@ -74,14 +79,17 @@ public class CriaSessaoBean implements Serializable {
             if(profissional.isValidado()){
 //                SessionUtil.invalidate();
                 SessionUtil.setParam("logProf", profissional);
-                return "profissional/homeprof.xhtml?faces-redirect=true";
+                
+                //muda para a pagina do home prof
+                FacesContext.getCurrentInstance().getExternalContext().redirect("../profissional/homeprof.xhtml");
+//                return "profissional/homeprof.xhtml?faces-redirect=true";
             }else{
-                return "paginas/login.xhtml?faces-redirect=true";
+//                return "paginas/login.xhtml?faces-redirect=true";
             }
         } 
         else
         {
-            return null;
+//            return null;
         }
     }
     /**

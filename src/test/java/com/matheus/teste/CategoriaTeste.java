@@ -27,7 +27,9 @@ public class CategoriaTeste {
         categoria.setDescricao("Toda e qualquer profissao que se relacione com algum"
                 + "processo de construçao de imoveis");
         
-        categoriaService.insert(categoria);
+//        categoriaService.insert(categoria);
+        
+//        categoriaService.consult()
     }
     
 }

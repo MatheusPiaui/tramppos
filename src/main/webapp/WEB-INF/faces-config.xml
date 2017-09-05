@@ -11,8 +11,8 @@
     </application>
     
     <converter>
-        <converter-id>estadoConverter</converter-id>
-        <converter-class>com.tramppos.util.converter.ConverterEstado</converter-class>
+        <converter-id>converterEstado</converter-id>
+        <converter-class>com.tramppos.controller.converter.EstadoConverter</converter-class>
     </converter>
     
 </faces-config>

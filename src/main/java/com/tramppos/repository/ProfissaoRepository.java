@@ -5,6 +5,8 @@
  */
 package com.tramppos.repository;
 
+import com.tramppos.domain.Categoria;
+
 import com.tramppos.domain.Profissao;
 import java.util.ArrayList;
 import java.util.List;
@@ -70,4 +72,34 @@ public class ProfissaoRepository {
         return lista;
     }// fim do método list
     
+     public List<Profissao> consult(Categoria categoria)
+    {
+        List<Profissao> lista = new ArrayList<>();
+        EntityManager entityManager = JPAconnection.getEntityManager();
+        
+        try 
+        {       
+            Query query;
+            query = entityManager.createQuery("SELECT tp FROM Profissao tp WHERE tp.categoria.id = :idCategoria");
+            query.setParameter("idCategoria", categoria.getId());
+            lista = query.getResultList();
+        } 
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+        
+        entityManager.close();
+        return lista;
+    }// fim do método list
+     
+    public Profissao consult(int id)
+    {
+        EntityManager entityManager = JPAconnection.getEntityManager();
+        Profissao profissao = null;
+        
+        profissao=entityManager.find(Profissao.class, id);
+        
+        return profissao;
+    }
 }

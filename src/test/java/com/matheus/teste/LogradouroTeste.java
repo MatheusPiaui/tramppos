@@ -19,7 +19,7 @@ public class LogradouroTeste {
     public static void main(String[] args) {
         // TODO code application logic here
         
-        LogradouroService logradouroService =new LogradouroService();
+        LogradouroService logradouroService = new LogradouroService();
         
         System.out.println(logradouroService.consult("Valdevino Pereira","Rua"));
     }

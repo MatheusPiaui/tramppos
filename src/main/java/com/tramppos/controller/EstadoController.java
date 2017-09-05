@@ -34,6 +34,12 @@ public class EstadoController implements Serializable{
         list();
     }
     
+    public String teste() {
+//        clear();
+        System.out.println(estado);
+        return "";
+    }
+    
     ///
     //  limpar
     public void clear(){

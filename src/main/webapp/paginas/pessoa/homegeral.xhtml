@@ -3,7 +3,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:jsf="http://xmlns.jcp.org/jsf"
-      xmlns:f="http://java.sun.com/jsf/core">
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <h:head>
         <meta charset="utf-8"/>
         <title>Trampos - Sistema de Gerenciamento de Jobs</title>
@@ -26,22 +28,29 @@
         <header class="header-geral">
           <div class="centraliza">
             <a href=""><img src="../../resources/images/logo.png" alt="Trampos"/></a>     
-            <form jsf:id="login" jsf:prependId="false">
+            
                 <h1>
-                    Entrar como
-                    <button class="btn-azul" jsf:action="#{criaSessaoBean.sessaoProf()}" >Profissional</button>
-                    <a class="btn-azul" href="../profissional/homeprof.xhtml">Profissional</a>
-                    ou             
+                    <h:form>
+                        Entrar como
+                        <h:commandLink title="Cadastro" action="#{criaSessaoBean.sessaoProf()}">
+                            <button class="btn-azul">Profissional</button>
+                        </h:commandLink>
+                        ou  
+                        <h:commandLink title="Cadastro" action="#{criaSessaoBean.sessaoCliente()}">
+                            <button class="btn-laranja">Cliente</button>
+                        </h:commandLink>
+                    </h:form>
+                    
                     <!--<a href="../cliente/homecliente.xhtml"><button class="btn-laranja">Cliente</button></a>-->
-                    <a href="teste.xhtml"><button class="btn-laranja">Cliente</button></a>                    
-                    <a href="teste.xhtml">cliente</a>
+                    <!--<a href="../cliente/homecliente.xhtml"><button class="btn-laranja">Cliente</button></a>-->                    
+                    
 
                 </h1>
-            </form>
+            
             
             <div class="clear"></div>
           </div>
-        </header>
+        </header>       
 
         <!-- Deixa o Site Centralizado e Alinhado -->
         <article class="centraliza">
@@ -103,26 +112,76 @@
               <div class="clear"></div>
             </div>
               
-              <h:panelGrid title="Endereco" >
-                  <h:dataTable id="enderecoData" value="#{enderecoController.listaEndereco}"
-                               var="item">
-                      <h:column>
-                          <ul class="end-ul">
-                            <li>
-                                <img src="../../resources/images/icones/point.png"/>
-                                
-                                <p>#{item.logradouro.tipoLogradouro.nome}, #{item.logradouro.nome} <br/> Bairro #{item.bairro.nome}
-                                    <br/> CEP #{item.cep.numeroCep} <br/> #{item.cep.cidade.nome} - #{item.cep.cidade.estado.sigla} </p>
-                                <div class="clear"></div>
-                           </li>
-                          </ul>
-                      </h:column>
-                      
-                      
-                      
-                      
-                  </h:dataTable>
-              </h:panelGrid>
+                <h:form>
+                    <ui:repeat var="item" value="#{enderecoPessoaController.listaEndereco}" varStatus="status" >
+                            <ul class="end-ul">
+                            <tr>
+                            <!--<h:panelGroup rendered="#{status.even}">-->                                  
+                                <td>
+                                        <li>
+                                            <img src="../../resources/images/icones/point.png">
+                                                
+                                            </img>
+                                            <!--<h:link hreflang=""></h:link>-->
+                                            
+   
+
+                                            <p >
+                                                #{item.tipo}
+                                                <br/> #{item.logradouro.tipoLogradouro.nome}   #{item.logradouro.nome}, #{item.numero}
+                                                <br/> Bairro: #{item.bairro.nome}
+                                                <br/> CEP: #{item.cep.numeroCep} 
+                                                <br/> #{item.cep.cidade.nome} - #{item.cep.cidade.estado.sigla}
+                                                <br/>
+                                               
+                                                <h:commandLink title="Atualiza os dados tipo pessoa" action="#{enderecoPessoaController.doUpdate()}">
+                                                    <h:graphicImage value="/resources/images/icones/update.png"/>
+                                                    <f:setPropertyActionListener value="#{item}" target="#{enderecoPessoaController.enderecoEdit}"/>
+                                                </h:commandLink> 
+
+                                               
+                                                <h:commandLink title="Atualiza os dados tipo pessoa" action="#{enderecoPessoaController.delete()}">
+                                                    <h:graphicImage value="/resources/images/icones/delete.png"/>
+                                                    <f:setPropertyActionListener value="#{item}" target="#{enderecoPessoaController.enderecoEdit}"/>
+                                                </h:commandLink> 
+                                            </p>
+                                            
+                                        </li>
+                                         
+                                </td>
+<!--                            </h:panelGroup>
+
+                            <h:panelGroup rendered="#{status.odd}">-->
+
+<!--                                 <td>
+                                      
+                                        <li>
+                                            <img src="../../resources/images/icones/point.png"/>
+
+                                            <p>
+                                                #{item.logradouro.tipoLogradouro.nome}, #{item.logradouro.nome} 
+                                                <br/> Bairro #{item.bairro.nome}
+                                                <br/> CEP #{item.cep.numeroCep} 
+                                                <br/> #{item.cep.cidade.nome} - #{item.cep.cidade.estado.sigla}
+                                            </p>                                    
+                                        </li>
+                                 </td>-->
+                                  
+
+                            <!--</h:panelGroup>--> 
+                                </tr>
+                            </ul>
+                       
+                  </ui:repeat>
+                 </h:form>
+                  <div class="clear"></div>
+              <!--</table>-->
+              
+              
+             
+
+           
+              
               
               
 <!--            <ul class="end-ul">
@@ -172,13 +231,15 @@
                 <h:messages />
                 
                 <h:outputLabel value="Arquivo" />
-                <h:inputFile required="true" requiredMessage="Arquivo é obrigatório." 
+                <h:inputFile required="true" requiredMessage="Arquivo é obrigatório."
                              value="#{perfilController.arquivo}" />
                         
 <!--                <input name="imagem" type="file" accept="image/jpeg; image/gif; image/bmp; image/png" 
                        jsf:id="imagem" maxlength="60" tabindex="1" />-->
                 
-                <!--<input type="submit" id="upload" name="upload" tabindex="2" />-->
+                <!--<input type="submit" id="upload" name="upload" tabindex="2" />-->               
+ 
+                
                 <h:commandButton value="Enviar" action="#{perfilController.enviarImg()}" />
                 
             </h:form>
@@ -192,9 +253,9 @@
         <div id="addEndereco" class="modal">
            
             <form jsf:id="buscaCEP" action="homegeral.xhtml#addEndereco">                
-                <h3>CEP: <input  jsf:id="cep" jsf:value="#{enderecoController.strCep}" 
+                <h3>CEP: <input  jsf:id="cep" jsf:value="#{enderecoPessoaController.strCep}" 
                 type="cep" name="cep" placeholder="cep" required="true" /></h3>
-                <button jsf:action="#{enderecoController.buscaCEP()}"  type="submit">Buscar</button>
+                <button jsf:action="#{enderecoPessoaController.buscaCEP()}"  type="submit">Buscar</button>
                 <a href="http://www.buscacep.correios.com.br/sistemas/buscacep/">Nao sei meu CEP!</a>
                 
                 
@@ -203,31 +264,57 @@
             
             <form jsf:id="addEnd" jsf:prependId="false" >
                 <br/>
-                <h3>Tipo: <h:inputText value="#{enderecoController.endereco.tipo}"></h:inputText></h3>
+                <h3>Tipo: <h:inputText value="#{enderecoPessoaController.endereco.tipo}"></h:inputText></h3>
                 <hr/>
-                <h3>Nº: <h:inputText value="#{enderecoController.endereco.numero}"></h:inputText></h3>
+                <h3>Nº: <h:inputText value="#{enderecoPessoaController.endereco.numero}"></h:inputText></h3>
                 <hr/>
-                <h3>Complemento: <h:inputText value="#{enderecoController.endereco.complemento}"></h:inputText></h3>
+                <h3>Complemento: <h:inputText value="#{enderecoPessoaController.endereco.complemento}"></h:inputText></h3>
                 <hr/>
-                <h3>Cidade: <h:inputText value="#{enderecoController.cidade.nome}"></h:inputText>
-                            <h:inputText value="#{enderecoController.cidade.estado.sigla}"></h:inputText>
+                <h3>Cidade: <h:inputText value="#{enderecoPessoaController.cidade.nome}"></h:inputText>
+                            <h:inputText value="#{enderecoPessoaController.cidade.estado.sigla}"></h:inputText>
                 </h3>
                 <hr/>
-                <h3>Bairro: <h:inputText value="#{enderecoController.bairro.nome}"></h:inputText></h3>
+                <h3>Bairro: <h:inputText value="#{enderecoPessoaController.bairro.nome}"></h:inputText></h3>
                 <hr/>
-                <h3>Logradouro: <h:inputText value="#{enderecoController.logradouro.tipoLogradouro.nome}"></h:inputText>
-                                <h:inputText value="#{enderecoController.logradouro.nome}"></h:inputText>
+                <h3>Logradouro: <h:inputText value="#{enderecoPessoaController.logradouro.tipoLogradouro.nome}"></h:inputText>
+                                <h:inputText value="#{enderecoPessoaController.logradouro.nome}"></h:inputText>
                 </h3>
                 <hr/>
                 
                 
-                <button jsf:action="#{enderecoController.insert(perfilController.pessoa)}" class="grande block btn-verde" type="submit">Salvar</button>
-                                
-            </form>     
-           
-            
-           <a href="#fechar" class="fechar"><h1>X</h1></a>
+                <button jsf:action="#{enderecoPessoaController.insert()}" class="grande block btn-verde" type="submit">Salvar</button>
+                <a href="#fechar" class="fechar"><h1>X</h1></a>         
+            </form>           
         </div>
+        <div id="upEndereco" class="modal">
+            <form jsf:id="upEnd" jsf:prependId="false" >
+            <br/>
+            <h3>Tipo: <h:inputText value="#{enderecoPessoaController.enderecoEdit.tipo}"></h:inputText></h3>
+            <hr/>
+            <h3>Nº: <h:inputText value="#{enderecoPessoaController.enderecoEdit.numero}"></h:inputText></h3>
+            <hr/>
+            <h3>Complemento: <h:inputText value="#{enderecoPessoaController.enderecoEdit.complemento}"></h:inputText></h3>
+            <hr/>
+            <h3>Cidade: <h:inputText value="#{enderecoPessoaController.enderecoEdit.cep.cidade.nome}"></h:inputText>
+                        <h:inputText value="#{enderecoPessoaController.enderecoEdit.cep.cidade.estado.sigla}"></h:inputText>
+            </h3>
+            <hr/>
+            <h3>Bairro: <h:inputText value="#{enderecoPessoaController.enderecoEdit.bairro.nome}"></h:inputText></h3>
+            <hr/>
+            <h3>Logradouro: <h:inputText value="#{enderecoPessoaController.enderecoEdit.logradouro.tipoLogradouro.nome}"></h:inputText>
+                            <h:inputText value="#{enderecoPessoaController.enderecoEdit.logradouro.nome}"></h:inputText>
+            </h3>
+            <hr/>
+
+
+            <button jsf:action="#{enderecoPessoaController.update()}" class="grande block btn-verde" type="submit">Salvar</button>
+            <a href="#fechar" class="fechar"><h1>X</h1></a>
+
+        </form>
+            
+        
+        </div>
+        
      </h:body>
 </html>
 

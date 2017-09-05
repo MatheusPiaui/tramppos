@@ -11,6 +11,7 @@ import com.tramppos.domain.Endereco;
 import com.tramppos.domain.Logradouro;
 import com.tramppos.service.EnderecoService;
 import com.matheus.util.Util;
+import com.tramppos.domain.Pessoa;
 import java.util.List;
 
 /**
@@ -51,9 +52,18 @@ public class EnderecoTeste {
         endereco.setCep(cep);
         endereco.setBairro(bairro);
         endereco.setLogradouro(logradouro);
-        enderecoService.insert(endereco);
         
-        //Util.printList((List<Object>) (Object) enderecoService.consult());
+//        enderecoService.insert(endereco);
+        
+//        Util.printList((List<Object>) (Object) enderecoService.consult());
+        
+
+        Pessoa pessoa = new Pessoa();
+        
+        pessoa.setId(23);
+        
+        Util.printList((List<Object>) (Object) enderecoService.consult(pessoa));
+
     }
     
 }

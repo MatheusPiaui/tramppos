@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.tramppos.controller;
+package com.tramppos.controller.pessoa;
 
+import com.tramppos.controller.*;
 import com.tramppos.controller.pessoa.PerfilController;
 import com.tramppos.domain.Bairro;
 import com.tramppos.domain.Cep;
@@ -21,11 +22,15 @@ import com.tramppos.service.CepService;
 import com.tramppos.service.CidadeService;
 import com.tramppos.service.EstadoService;
 import com.tramppos.service.LogradouroService;
+import com.tramppos.service.PessoaService;
+import com.tramppos.util.jsf.SessionUtil;
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.context.FacesContext;
 import javax.inject.Named;
 
 /**
@@ -35,15 +40,15 @@ import javax.inject.Named;
 
 @Named
 @SessionScoped
-public class EnderecoController implements Serializable{
+public class EnderecoPessoaController implements Serializable{
     
     private Endereco endereco;
     private Endereco enderecoEdit;
     private EnderecoService enderecoService;
     private List<Endereco> listaEndereco;
     
-    
-    
+    //Endereco
+    private List<Endereco> listaEnderecoPessoa;
     
     //
     private Cep cep;
@@ -57,36 +62,45 @@ public class EnderecoController implements Serializable{
     //
     private Logradouro logradouro;
     private LogradouroService logradouroService;
+    //
+    private Pessoa pessoa;
+    private PessoaService pessoaService;
     
     private String strCep = null;
         
 
+   
+
     @PostConstruct
-    public void start() {
-        
+    public void start() {  
+        this.pessoa = new Pessoa();
         clear();
-//        list();
+                
+//        this.pessoaService = new PessoaService();
+        this.pessoa = (Pessoa) SessionUtil.getParam("logPessoa");
+        
+        list();
     }
     
     public void buscaCEP(){
-            cep = cepService.consult(getStrCep());  
-            System.out.println(cep);
-            
-        
-            if(cep != null){
-                cepService.insert(cep);
-                setCidade(cep.getCidade());
-                setBairro(cep.getBairro());
-                setLogradouro(cep.getLogradouro());
-            }
-        }    
+        cep = cepService.consult(getStrCep());  
+        System.out.println(cep);
 
-    
-    
+
+        if(cep != null){
+            cepService.insert(cep);
+            setCidade(cep.getCidade());
+            setBairro(cep.getBairro());
+            setLogradouro(cep.getLogradouro());
+        }
+    }    
+
     
     ///
     //  limpar
     public void clear(){
+        this.pessoaService = new PessoaService();
+        
         this.cidade = new Cidade();
         this.cidadeService = new CidadeService();
         //
@@ -99,16 +113,15 @@ public class EnderecoController implements Serializable{
         this.cepService = new CepService();
         this.cep = new Cep();
         //
-        this.enderecoService = new EnderecoService();
         this.endereco = new Endereco();
         this.enderecoEdit = new Endereco();
-        
-        
+        this.enderecoService = new EnderecoService();        
+        this.listaEndereco = new ArrayList<>();
     }
     
     ///
     // 
-    public String insert(Pessoa pessoa){
+    public String insert(){
         
         this.endereco.setBairro(bairro);
         this.endereco.setLogradouro(logradouro);
@@ -116,55 +129,40 @@ public class EnderecoController implements Serializable{
         this.endereco.setPessoa(pessoa);
         
         this.getEnderecoService().insert(endereco);
+        
         this.clear();
-        this.list();
+        this.list();    
         
-        PerfilController perfilController = new PerfilController();
-        
-        perfilController.getListaEnderecoPessoa();
-        
-        return "lista.xhtml?faces-redirect=true";
+        return "homegeral.xhtml?faces-redirect=true";
     }
   
     public String update(){
         this.getEnderecoService().update(enderecoEdit);
-        this.clear();
+        this.clear();        
         this.list();
-        return "lista.xhtml?faces-redirect=true";
+        
+        return "homegeral.xhtml?faces-redirect=true";
     }
     
     public String delete(){
         this.getEnderecoService().delete(enderecoEdit);
         this.clear();
         this.list();
-        return "lista.xhtml?faces-redirect=true";
+        
+        return "homegeral.xhtml?faces-redirect=true";
     }
     
-    public void list(){
-        this.listaEndereco = getEnderecoService().consult();
+    // Lista de endereços por pessoa
+    public void list(){        
+//        System.out.println(pessoa);
+        this.listaEndereco = getEnderecoService().consult(pessoa);
+    }   
+    
+//    links
+    public void doUpdate() throws IOException{
+//        return "homegeral.xhtml#upEndereco?faces-redirect=true
+        FacesContext.getCurrentInstance().getExternalContext().redirect("homegeral.xhtml#upEndereco");
     }
-    
-    
-    ///
-    // Métodos para chamada às páginas    
-    public String doAdd(){
-        return "cadastro.xhtml?faces-redirect=true";
-    }
-    
-    public String doUpdate(){
-        return "edit.xhtml?faces-redirect=true";
-    }
-    
-    public String doList(){
-        return "lista.xhtml?faces-redirect=true";
-    }
-    
-    public String doVoltar(){
-        this.clear();
-        this.list();
-        return "lista.xhtml?faces-redirect=true";
-    }
-    
 
     public EnderecoService getEnderecoService() {
         return enderecoService;
@@ -270,7 +268,29 @@ public class EnderecoController implements Serializable{
         this.cidadeService = cidadeService;
     }
 
-    
+    public List<Endereco> getListaEnderecoPessoa() {
+        return listaEnderecoPessoa;
+    }
+
+    public void setListaEnderecoPessoa(List<Endereco> listaEnderecoPessoa) {
+        this.listaEnderecoPessoa = listaEnderecoPessoa;
+    }
+
+    public Pessoa getPessoa() {
+        return pessoa;
+    }
+
+    public void setPessoa(Pessoa pessoa) {
+        this.pessoa = pessoa;
+    }
+
+    public PessoaService getPessoaService() {
+        return pessoaService;
+    }
+
+    public void setPessoaService(PessoaService pessoaService) {
+        this.pessoaService = pessoaService;
+    }
 
       
 }

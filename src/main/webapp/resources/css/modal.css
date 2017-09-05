@@ -102,3 +102,22 @@
         color: #fff;
         background: #ff9900;
     }
+    
+    /*addEndereco*/
+    #upEndereco{
+        box-shadow: 1px 1px 2px 1px #ccc;
+        
+        padding-bottom: 15px;
+        float: left;        
+        width: 700px;
+        height: 600px;     
+        margin-top:-300px;
+        margin-left:-350px;
+        background: rgba(255, 255, 255,1);
+      
+    }
+    
+    #upEndereco.fechar{
+        color: #fff;
+        background: #ff9900;
+    }

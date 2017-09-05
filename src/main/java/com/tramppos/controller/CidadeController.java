@@ -53,6 +53,12 @@ public class CidadeController implements Serializable{
         list();
     }
     
+     public String teste() {
+//        clear();
+        System.out.println(cidade.getEstado().toString());
+        return "";
+    }
+    
     ///
     //  limpar
     public void clear(){
