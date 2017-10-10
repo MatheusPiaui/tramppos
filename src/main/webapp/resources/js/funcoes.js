@@ -18,3 +18,11 @@ function cadastro(id)
     document.getElementById("cadastro_profissional").style.display = "block";
   }
 }
+
+
+function loadFile(event,idOutput)
+{
+  var output = document.getElementById(idOutput);
+  output.src = URL.createObjectURL(event.target.files[0]);
+};
+

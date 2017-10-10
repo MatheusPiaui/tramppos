@@ -65,6 +65,9 @@ public class PessoaService {
     public boolean validaCadastro(String email,String UID){
         return getPessoaRepository().validaCadastro(email, UID);
     }
+    public boolean alterarSenha(String email,String UID,String novaSenha){
+        return getPessoaRepository().validaCadastro(email, UID);
+    }
     
     public boolean upImagemPerfil(Part arquivo,Pessoa pessoa){
         
@@ -73,15 +76,16 @@ public class PessoaService {
         SimpleDateFormat format = new SimpleDateFormat("yyyyMMdd");
         Date date = new Date(System.currentTimeMillis());
         
-        String nome = format.format(date) + "-perfil"+ arquivo.getSubmittedFileName();
+        String nome = format.format(date) + "-perfil";
         
         String idPessoa = String.valueOf(pessoa.getId());
         String album = "perfil";
 
         String caminho = idPessoa + "/" + album + "/";
         
-        if(image.up(arquivo, caminho, nome)){            
-            pessoa.setFotoPerfil(caminho + nome);            
+        String e = image.up(arquivo, caminho, nome);
+        if(e != null){            
+            pessoa.setFotoPerfil(e);            
             this.update(pessoa);            
             return true;
         }else{

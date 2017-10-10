@@ -39,17 +39,23 @@ public class Image {
         
     }
     
-    public boolean up(Part arquivo, String caminho, String nome) {
+    public String up(Part arquivo, String caminho, String nome) {
 
 
        String nomeArquivoSaida;        
 //        nomeArquivoSaida = diretorio + arquivo.getSubmittedFileName();
-       caminho = diretorio + caminho;
-       nomeArquivoSaida = caminho + nome;
+       String caminhoAbs; 
+       caminhoAbs = diretorio + caminho;
+       
+       String extensao = arquivo.getSubmittedFileName().substring(
+               arquivo.getSubmittedFileName().lastIndexOf(".")
+               ,arquivo.getSubmittedFileName().length());
+       
+       nomeArquivoSaida = caminhoAbs + nome + extensao;
 
         System.out.println("caminho entrada: " + caminho);
        //  Verifica se apasta exeite, caso contrario cria 
-        System.out.println("Criou?: "+this.buildCaminho(caminho));
+        System.out.println("Criou?: " + this.buildCaminho(caminhoAbs));
 //       File fileSaveDir = new File(caminho);
 //       
 //       if (!fileSaveDir.exists()) {
@@ -60,7 +66,7 @@ public class Image {
 
        try (InputStream is = arquivo.getInputStream();
 
-           OutputStream out = new FileOutputStream(nomeArquivoSaida)) {
+           FileOutputStream out = new FileOutputStream(nomeArquivoSaida)) {
 
            int read = 0;
            byte[] bytes = new byte[1024];
@@ -69,20 +75,25 @@ public class Image {
                out.write(bytes, 0, read);
            }
 
-           return true;
+           return caminho + nome + extensao;
 
 //                    adicionarMensagem(FacesMessage.SEVERITY_INFO, "Arquivo \"" 
 //                                    + nome + "\" enviado com sucesso.");
        } catch (IOException e) {
-           return false;
+           return null;
 //                adicionarMensagem(FacesMessage.SEVERITY_ERROR, "Erro ao enviar arquivo.");
        }
+   }
+    
+   //funçao nova para o servelet
+   public boolean up(){
+       return false;
    }
     
    public String linkImg(String caminhoBD){
        
        if(caminhoBD == null){
-           return "resources/images/perfil.png";
+           return null;
        }else{
            return this.path + caminhoBD;
        }

@@ -1,33 +1,31 @@
-button{
-    border: 0;
-    font-family: verdana;
-    color:white;
-    text-transform: uppercase; 
-    transition: all 0.5s;
-    padding: 10px 55px;
-    border-radius: 5px;
-    cursor: pointer;
+
+/*Tipografia*/
+@font-face {
+    font-family: HelveticaNeue;
+    src: url("#{resource['css/fonts/HelveticaNeue.otf']}");
 }
 
-button.btn_verde{
-    background-color: rgba(142, 210, 37, 1);
-}
-button.btn_verde:hover{
-    background-color: rgba(142, 210, 37, 0.29);
-    
-    /*background-color: greenyellow;*/
+button, input[type="button"],input[type="submit"]{
+  width: 213px;
+  height: 46px;
+  outline: 0;
+  cursor: pointer;
+  color: white;
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.24), 0 0 2px rgba(0, 0, 0, 0.12);
+  border-radius: 5px;
+  /*border-color: #fff;*/
+
+  font-family: HelveticaNeue;
+  font-size: 14px;
+
 }
 
-button.btn_azul{
-    background-color: rgba(41, 136, 255, 1);
+.btn-azul{
+  background-color: #0096f9;
 }
-button.btn_azul:hover{
-    background-color: rgba(41, 136, 255, 0.29);
+.btn-verde{
+  background-color: #66c72e;
 }
-
-button.btn_laranja{
-    background-color: rgb(232, 150, 0);
-}
-button.btn_laranja:hover{
-    background-color: rgba(232, 150, 0, 0.29);
+.btn-laranja{
+  background-color: #ffa300;
 }

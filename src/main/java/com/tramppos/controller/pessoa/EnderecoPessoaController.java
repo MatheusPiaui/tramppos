@@ -5,7 +5,6 @@
  */
 package com.tramppos.controller.pessoa;
 
-import com.tramppos.controller.*;
 import com.tramppos.controller.pessoa.PerfilController;
 import com.tramppos.domain.Bairro;
 import com.tramppos.domain.Cep;

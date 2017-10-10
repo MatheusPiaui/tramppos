@@ -33,6 +33,7 @@ public class ControleDeAcesso implements Filter {
                     || (req.getRequestURI().endsWith("teste.xhtml")) 
                     || (req.getRequestURI().endsWith("index.xhtml"))
                     || (req.getRequestURI().endsWith("valida.xhtml"))
+                    || (req.getRequestURI().endsWith("alterasenha.xhtml"))
                     || (req.getRequestURI().endsWith("valida"))
                     || (req.getRequestURI().endsWith("erroacesso.xhtml"))
                     || (req.getRequestURI().startsWith(req.getContextPath() +"/paginas/cadastro.xhtml"))

@@ -6,6 +6,7 @@
 package com.tramppos.repository;
 
 import com.tramppos.domain.Foto;
+import com.tramppos.domain.Servico;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -69,5 +70,24 @@ public class FotoRepository {
         entityManager.close();
         return lista;
     }// fim do método list
+    
+    
+    public Foto consult(Servico servico)
+    {
+        try {
+            EntityManager entityManager = JPAconnection.getEntityManager();
+           
+
+            Query query = entityManager.createQuery("SELECT tp FROM Foto tp WHERE idServico = :p1");
+            query.setParameter("p1", servico.getId());
+            
+            return (Foto) query.getSingleResult();
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+        
+    }
     
 }
