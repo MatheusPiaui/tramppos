@@ -148,19 +148,24 @@ and open the template in the editor.
             <header id="topo">
                 <img src="../resources/images/logo.png"/>
                 <h2>Encontre Profissionais em <br/> Reformas e soluçoes domesticas</h2>
-                <a href="login.xhtml"><button class="btn_verde" type="submit">Entrar</button></a>
+                <!--<a href="login.xhtml"></a>-->
+                <h:form>
+                    <h:commandLink action="#{indexController.doEntrar()}">
+                        <button class="btn-verde" type="submit">Entrar</button>
+                    </h:commandLink>
+                </h:form>               
 
             </header>
 
             <article class="conteudo">
-                <h1>Voce quer um Trampo ou oferecer um?</h1>
+                <h1>Você quer um Trampo ou oferecer um?</h1>
                 <section>
                     <img src="../resources/images/img_principal_01.png" />  
-                    <a href="cadastro.xhtml"><button class="btn_azul">Encontrar Serviço</button></a>
+                    <a href="cadastro.xhtml"><button class="btn-azul">Encontrar Serviço</button></a>
                 </section> 
                 <section>
                     <img src="../resources/images/img_principal_02.png" />  
-                    <a href="cadastro.xhtml"><button class="btn_laranja">Criar Serviço Gratis</button></a>
+                    <a href="cadastro.xhtml"><button class="btn-laranja">Criar Serviço Gratis</button></a>
                 </section>         
             </article>
     </body>

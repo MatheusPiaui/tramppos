@@ -50,7 +50,7 @@ public class CriaSessaoBean implements Serializable {
 //                SessionUtil.invalidate();
                 SessionUtil.setParam("logCliente", cliente);
                 
-                FacesContext.getCurrentInstance().getExternalContext().redirect("../cliente/homecliente.xhtml");
+                FacesContext.getCurrentInstance().getExternalContext().redirect("../cliente/criarservico.xhtml");
                 
 //                return "/Web/paginas/pessoa/teste.xhtml?faces-redirect=true";
             }else{
@@ -67,25 +67,30 @@ public class CriaSessaoBean implements Serializable {
     public void sessaoProf() throws IOException {       
         
         // valida se for profissional
-        if (pessoaService.autenticar(pessoa.getEmail(), pessoa.getSenha()) && pessoaService.consult(pessoa.getEmail()).getDiscrimina() == 2) {
-            System.out.println("Confirmou  usuario e senha ...");		
-
-            //ADD USUARIO NA SESSION
-            Profissional profissional = new Profissional();
-            ProfissionalService profissionalService = new ProfissionalService();
-
-            profissional = profissionalService.consult(pessoa.getEmail());
-
-            if(profissional.isValidado()){
-//                SessionUtil.invalidate();
-                SessionUtil.setParam("logProf", profissional);
+        if (pessoaService.autenticar(pessoa.getEmail(), pessoa.getSenha())) {
+            if (pessoaService.consult(pessoa.getEmail()).getDiscrimina() == 2) {
                 
-                //muda para a pagina do home prof
-                FacesContext.getCurrentInstance().getExternalContext().redirect("../profissional/homeprof.xhtml");
-//                return "profissional/homeprof.xhtml?faces-redirect=true";
-            }else{
-//                return "paginas/login.xhtml?faces-redirect=true";
+                //ADD USUARIO NA SESSION
+                Profissional profissional = new Profissional();
+                ProfissionalService profissionalService = new ProfissionalService();
+
+                profissional = profissionalService.consult(pessoa.getEmail());
+                
+                if(profissional.isValidado()){
+//                SessionUtil.invalidate();
+                    SessionUtil.setParam("logProf", profissional);
+
+                    //muda para a pagina do home prof
+                    FacesContext.getCurrentInstance().getExternalContext().redirect("../profissional/homeprof.xhtml");
+    //                return "profissional/homeprof.xhtml?faces-redirect=true";
+                }else{
+    //                return "paginas/login.xhtml?faces-redirect=true";
+                }
             }
+            else{
+                FacesContext.getCurrentInstance().getExternalContext().redirect("../pessoa/cadprof.xhtml");
+            }
+            System.out.println("Confirmou  usuario e senha ...");            
         } 
         else
         {

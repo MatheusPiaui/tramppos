@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
     
-    <context-param>
-        <param-name>primefaces.skin</param-name>
-        <param-value>none</param-value>
-    </context-param>    
+       
     <context-param>
         <param-name>javax.faces.PROJECT_STAGE</param-name>
         <param-value>Development</param-value>
@@ -20,6 +17,10 @@
         <servlet-name>ValidarServlet</servlet-name>
         <servlet-class>com.tramppos.controller.servlet.ValidarServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ELKFileUploader</servlet-name>
+        <servlet-class>com.tramppos.controller.servlet.ELKFileUploader</servlet-class>
+    </servlet>
     
     
     
@@ -32,12 +33,17 @@
         <servlet-name>ValidarServlet</servlet-name>
         <url-pattern>/paginas/valida</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ELKFileUploader</servlet-name>
+        <url-pattern>/paginas/drag</url-pattern>
+    </servlet-mapping>
+    
     
     
     
     <session-config>
         <session-timeout>
-            3
+            30
         </session-timeout>
     </session-config>
     

@@ -1,148 +1,315 @@
-/*
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
-*/
-/* 
-    Created on : Oct 14, 2016, 5:38:28 PM
-    Author     : matheus
-*/
-.page-content{
-    margin: 100px;
-    float: left;
-    align-items: center;
-    position:relative;
-}
-
-.cadastro{
-    width: 200px;
-    height: 200px;
-    float:right;  
-    border: 1px #000 solid;
-}
-
-.consulta{
-    width: 200px;
-    height: 200px;
-    float:right; 
-    border: 1px #00bfa5 solid;
-    
-}
-
-.btnAdd{
-    position: fixed;
-    right: 100px;
-    bottom: 50px;
-    
-}
-
-
-.demo-card-wide.mdl-card {
-  width: 512px;
-}
-.demo-card-wide > .mdl-card__title {
-  color: #fff;
-  height: 176px;
-  background: url('/../../resources/images/contact-image.jpg') center / cover;
-}
-.demo-card-wide > .mdl-card__menu {
-  color: #fff;
-}
-
-h:commandLink{
-    color: #000;
-    
-}
-
-
-/* Template */
 html,body{
-    padding: 0px;
-    margin: 0px;
+  padding: 0;
+  margin: 0;
+  background-color: #f8f8f8;
+  position: absolute;
+  width: 100%;
+  min-height: 100%;
+  left: 0;
+  top: 0;
 }
 
-h1, h2, h3, h4, h5, h6, p, span, a{
-    font-family: verdana;
-    color: #7b7474;
+
+/*geral*/
+hr{
+  clear: both;
+  padding: 0;
+  margin: 0;
+}
+
+/*Tipografia*/
+@font-face {
+    font-family: HelveticaNeue;
+    /*src: url("fonts/HelveticaNeue.otf");*/
+    src: url("#{resource['css/fonts/HelveticaNeue.otf']}");
+
+}
+
+h1,h2,h3,h4,h5,h6,p,a,span{
+  padding: 0;
+  margin: 0;
+  text-decoration: none;
+  font-family: HelveticaNeue, Helvetica;
+  color: #484949;
+}
+h2{
+  font-size: 26px;
+}
+h3{
+  font-size: 20px;
+}
+h4{
+  font-size: 19px;
+}
+a{
+  cursor: pointer;
+}
+
+*
+{
+  transition: all 0.1s;
 }
 
 
-content{
-    float: left;
-    clear: both;
-    margin-top: 95px;
-    width: 100%;
-    min-height: 400px;
-    background-color: #F8F8F8;
+  /*HEADER*/
+header{
+  width: 100%;
+  /*height: 121px;*/
+  background-color: #ffffff;
+}
+
+header img.logo{
+  margin-left: 156px;
+  margin-top: 51px;
+  /*margin-right: 277px;*/
+  float: left;
+}
+
+/*div entrar*/
+header div.entrar{
+  margin: 46px 71px 29px 0;
+  /*width: 400px;*/
+  float: right;
+}
+header div.entrar button{
+  margin: 0 0 0 36px;
+}
+
+/*div acao*/
+header div.acao{
+  float:right;
+  margin: 39px 95px 0 0;
+}
+
+header div.acao img{
+  position: relative;
+    margin-left: 41px;
+    /*padding-top: */
+    /*margin-bottom: 50%;*/
+}
+
+header div.acao img.perfil{
+    width: 61px;
+    height: 61px;
+    border-radius: 100%;
+}
+
+
+/*NAV*/
+nav{
+  clear: both;
+  width: 100%;
+  height: 85px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.16);
+  background-color: #ffffff;
+}
+nav ul{
+  padding:0px;
+  margin:0px;
+  /*background-color:#EDEDED;*/
+  list-style:none;
+}
+nav ul li{
+  display: inline;
+}
+nav ul li a{
+  font-size: 26px;
+  color: #484949;
+  padding: 25px 175.5px;
+  padding-bottom: 17px;
+  display: inline-block;
+
+  border-style: solid;
+  border-top-width: 0px;
+  border-right-width: 0px;
+  border-left-width: 0px;
+  border-bottom-width: 0px;
+
+}
+/*nav ul li a:hover{
+  background-color: #c9c9c9;
+  color: white;
+}*/
+nav ul li a.ativo{
+  border-bottom-width: 11px;
+  border-color: #ff9b00;
+
+}
+
+/*section*/
+section{
+  /*margin-top: 63px;*/
+  clear: both;
+
+}
+div.criarServicos{
+  margin-top: 63px;
+
+  background-color: #fff;
+  width: 1044px;
+  height: 466px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.16);
+}
+div.criarServicos form, div.criarServicos div{
+  float: left;
+}
+div.criarServicos div.img_serv{
+    
+  padding: 50px;
+
+  border: solid #f0f3f5;
+  border-top-width: 0px;
+  border-right-width: 1px;
+  border-left-width: 0px;
+  border-bottom-width: 0px;
+  text-align: center;
+
+}
+div.criarServicos div.img_serv button{
+  margin-bottom: 65px;
+}
+
+div.criarServicos div.img_serv img#previewImg{
+    width: 313px;
+    height: 238px;
+    background-color: #e3e3e3;
+    margin-top: 50px;
+}
+#previewEditImg{
+    width: 313px;
+    height: 238px;
+    background-color: #e3e3e3;
+    margin-top: 50px;
+}
+
+div.criarServicos div.cad_servico{
+  width: 428px;
+  height: 361px;
+  padding: 44px;
+  padding-left: 111px;
+
+  text-align: left;
+}
+
+
+
+
+section center div.seusServicos{
+  /*display: none;*/
+  width: 865px;
+}
+
+section center div.seusServicos div#filtro{
+
+  margin-top: 33px;
+
+  /* Style for "Rectangle" */
+  width: 862px;
+  height: 80px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.16);
+  background-color: #ffffff;
+}
+
+div#filtro ul{
+  padding:0px;
+  margin:0px;
+  /*background-color:#EDEDED;*/
+  list-style:none;
+}
+div#filtro ul li{
+  display: inline;
+}
+
+div#filtro ul li a{
+  font-size: 20px;
+  color: #484949;
+  padding: 28px 54px;
+  padding-bottom: 18px;
+  display: inline-block;
+  border-style: solid;
+  border-top-width: 0px;
+  border-right-width: 0px;
+  border-left-width: 0px;
+  border-bottom-width: 0px;
+}
+/*nav ul li a:hover{
+  background-color: #c9c9c9;
+  color: white;
+}*/
+div#filtro ul li a.ativo{
+  border-bottom-width: 11px;
+  border-color: #31de28;
+
+}
+
+section center div.seusServicos div.compServico{
+  float: left;
+  /* Style for "Rectangle" */
+  width: 421px;
+  height: 343px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.16);
+  background-color: #ffffff;
+
+  display:inline-block;
+  position:relative;
+  margin: 5px;
+}
+section center div.seusServicos div.compServico.esq{
+  /*margin-right: 23px;*/
+}
+section center div.seusServicos div.compServico.dir{
+}
+
+
+section center div.seusServicos div.compServico img{
+  /* Style for "Rectangle" */
+  width: 100%;
+  height: 188px;
+  background-color: #b8e986;
+  border: 0;
+}
+
+
+div.compServico h3, div.compServico select{
+  margin: 20px 0px;
+}
+div.compServico select{
+  width: 150px;
+}
+
+div.compServico button{
+  width: 164px;
+  height: 35px;
+  margin: 20px;
+  float: right;
+  /*margin-bottom: 18px;*/
+}
+div.compServico button.editar{
+  padding: 0;
+  margin: 0;
+
+  width: 93px;
+  height: 24px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  background-color: #ffffff;
+  border-radius: 46.5px;
+  /*border: 0;*/
+
+  position:absolute;
+  top:28px;
+  left:23px;
+  /*-webkit-transform:translate3d(-50%, -50%, 0);
+  -moz-transform:translate3d(-50%, -50%, 0);
+  transform:translate3d(-50%, -50%, 0);*/
+}
+
+div.compServico button.editar a{
+  padding: 0;
+  margin: 5px 30px;
+  font-size: 12px;
+  letter-spacing: 0.5px;
+}
+
+.editServico{
     
 }
-
-
-main{
-    padding: 10px 0px;
-    align-content: center;
-}
-
-/*Seção para conteudo da pagina*/
-
-section.unico{
-    float: left;
-    width: 100%;
-}
-
-section.duplo{
-    float: left;
-    width: 50%;
-}
-
-section.triplo{
-    float: left;
-    width: 33%;
-}
-
-section.quadroplo{
-    float: left;
-    width: 25%;
-}
-
-
-footer{
-    width: 100%;
-    min-height: 100px;
-    background-color: #FFF;
-    clear: both;
-}
-
-/*  CSS Antigo, para a pagina do login*/
-
-.centro{
-    display: block;
-    margin: 0px auto;
-    
-}
-.centro p ,form, a, h1, h2, h3, h4, h5{
-    text-align: center;
-}
-
-/**/
-/*Login*/
-/**/
-.conteudo_login{
-    width: 500px;
-    margin: 100px auto;
-    border: 1px solid;
-    padding: 70px 10px;
-    
-}
-
-.conteudo_login img{
-    margin-bottom: 60px;
-}
-
-.conteudo_login button{
-    margin:20px;
-}
-
-
-
-

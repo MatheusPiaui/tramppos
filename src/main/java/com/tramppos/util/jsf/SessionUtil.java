@@ -14,8 +14,7 @@ public class SessionUtil implements Serializable {
 
 	public static HttpSession getSession() {
 		FacesContext ctx = FacesContext.getCurrentInstance();
-		HttpSession sessao = (HttpSession) ctx.getExternalContext().getSession(
-				false);
+		HttpSession sessao = (HttpSession) ctx.getExternalContext().getSession(false);
 		return sessao;
 	}
 

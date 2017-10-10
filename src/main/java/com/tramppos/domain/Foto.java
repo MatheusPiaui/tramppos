@@ -33,8 +33,9 @@ public class Foto implements Serializable{
     private String link;
     
     @ManyToOne
-    @JoinColumn(name = "idServico", nullable = false, referencedColumnName = "id")
+    @JoinColumn(name = "idServico", referencedColumnName = "id")
     private Servico servico;
+    
     @ManyToOne
     @JoinColumn(name = "idPessoa", nullable = false, referencedColumnName = "id")
     private Pessoa pessoa;

@@ -82,12 +82,15 @@ public class PessoaRepository implements Serializable{
     {        
         EntityManager entityManager = JPAconnection.getEntityManager();
         Pessoa pessoa = null;
-        //try {
+        try {            
             Query query = entityManager.createQuery("SELECT u FROM Pessoa u WHERE u.email = :mail");
             query.setParameter("mail", email);
-            pessoa = (Pessoa) query.getSingleResult();            
-            
+            pessoa = (Pessoa) query.getSingleResult(); 
+        } catch (Exception e) {
+            pessoa = null;
+        }
         return pessoa;
+
     }
     
     public boolean autentica(String email,String senha){
@@ -131,5 +134,34 @@ public class PessoaRepository implements Serializable{
            System.out.println("Nao existe PESSOA");
            return false; 
         }      
+    }
+    public boolean alterarSenha(String email,String hash, String novaSenha){
+        try {
+            Pessoa log = new Pessoa();        
+            log = this.consult(email);
+
+            if(log != null){
+                if(log.getUid().equals(hash)){
+
+                    //trocando senha
+//                    log.setValidado(true);                    
+                    this.update(log);
+
+                    return true;
+                }
+                else{
+                    return false;
+                }
+            }else{ // mais de 1 registro, com o mesmo email
+
+               System.out.println("Nao existe PESSOA");
+               return false; 
+            }    
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+        
     }
 }

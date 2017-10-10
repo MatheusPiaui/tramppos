@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns   = "http://www.w3.org/1999/xhtml"
+      xmlns:h = "http://java.sun.com/jsf/html"
+      xmlns:ui= "http://java.sun.com/jsf/facelets"
+      xmlns:f ="http://java.sun.com/jsf/core" 
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
+      xmlns:p="http://primefaces.org/ui">
+  
+    <body>
+        <ui:composition template="./template.xhtml">
+
+            <ui:define name="titulo">
+                Home Cliente
+            </ui:define>
+            
+            <ui:define name="nav">
+                <li><a id="navCriarServico" 
+                       jsf:action="#{servicoClienteController.doCriarServico()}">Criar serviço</a></li>
+                <li><a class="ativo" id="navSeusServico"
+                       jsf:action="#{servicoClienteController.doServicos()}">Seus serviços</a></li>
+            </ui:define>
+
+            <ui:define name="content">
+                <div id="seusServicos" class="seusServicos">
+                    <div id="filtro" class="">
+                      <ul>
+                        <h:form>
+                            <ui:insert name="navServ">
+                                <li><a id="navAtivo" 
+                                       jsf:action="#{servicoClienteController.doServicosAtivos()}">Ativo</a></li>
+                                <li><a id="navAvali" 
+                                       jsf:action="#{servicoClienteController.doServicosAvaliacao()}">Em Avaliação</a></li>
+                                <li><a id="navConta"
+                                       jsf:action="#{servicoClienteController.doServicosContato()}">Em Contato</a></li>
+                                <li><a id="navFinal"
+                                       jsf:action="#{servicoClienteController.doServicosFinalizados()}">Finalizado</a></li>
+                            </ui:insert>
+                        </h:form>                      
+                      </ul>
+                    </div>
+                    <br /><br />
+                    <!--//lista de serviços-->
+                    <!--espaço-->
+                    <h:form>
+                        <ui:repeat var="item" value="#{servicoClienteController.listaServico}" varStatus="status" >
+                            <div class="compServico esq">
+                                <!--Trazer imagem do fotos-->
+
+                                <img class="imgServico" src="../../#{servicoClienteController.getImgServico(item)}" alt="Imagem do serviço"/>
+                                <h:commandLink action="#{servicoClienteController.doUpdate()}"
+                                               type="submit" >
+                                    <button class="editar" type="button" name="button">
+                                        <p>Editar</p>
+                                              <f:setPropertyActionListener value="#{item}" target="#{servicoClienteController.servicoEdit}"/>
+                                    </button>
+                                </h:commandLink>
+
+                                <h3>#{item.titulo}</h3>
+
+                                <h4>#{item.endereco.cep.cidade.nome} - #{item.endereco.bairro.nome}</h4>
+                                <select class="" name="status">
+                                  <option value="">Ativo</option>
+                                  <option value="">Em Avaliação</option>
+                                  <option value="">Em Contato</option>
+                                  <option value="">Finalizado</option>
+                                </select>
+
+                                <button class="btn-azul" type="button" name="button">Ver orçamento</button>
+
+                            </div>                     
+                        </ui:repeat>
+                    </h:form>                          
+                </div>
+                
+                <div id="editarServico" class="modal">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+
+                          <header class="container"> 
+                            <a href="#" class="closebtn">×</a>
+                            <h2>Modal Header</h2>
+                          </header>
+
+                          <div class="container">
+                              <center>
+                                  <div class="criarServicos" style="height: 522px;">
+                                      <!--imagem-->                                 
+                                        <div class="editServico" >  
+                                            <h:form id="editServico" enctype="multipart/form-data">
+                                                <div class="img_serv">
+                                                    <h:outputLabel value="Arquivo" />
+                                                    <h:inputFile id="fotoEdit" required="false" onchange="loadFile(event,'previewEditImg')" 
+                                                                 value="#{servicoClienteController.arquivoEdit}" label="Arquivo"/> 
+                                                    <br/>
+                                                    <img  id="previewEditImg" src="../../#{servicoClienteController.getImgServico(servicoClienteController.servicoEdit)}" alt="Imagem nao encontrada!"/>
+                                                    <br/>
+                                                    <h:commandButton id="btnFoto" action="#{servicoClienteController.updateFoto()}" 
+                                                                     type="submit" class="btn-azul btnFoto" value="Enviar nova foto"/>
+                                                </div>
+                                                
+                                            </h:form>
+                                            <h:form>
+                                                
+                                                <div class="cad_servico" >
+                                                    <!--formulaio de serviço-->
+                                                    <!--<h:form class="cad_servico">-->
+                                                    <p>
+                                                      Titulo do serviço
+                                                      <h:inputText value="#{servicoClienteController.servicoEdit.titulo}"/>
+                                                      <!--<input type="text" name="titulo" value=""/>-->
+                                                    </p>
+                                                    <br/>
+                                                    <p>
+                                                      Descreva o serviço
+                                                      <h:inputTextarea value="#{servicoClienteController.servicoEdit.descricao}"></h:inputTextarea>
+                                                      <!--<textarea name="descricao"></textarea>-->
+                                                    </p>
+                                                    <br/>
+                                                    <br />
+
+                                                    <h:selectOneMenu id="selectCategoria" value="#{servicoClienteController.servicoEdit.profissao.categoria}" converter="categoriaConverter">
+
+                                                        <f:ajax render="selectProfissao" event="change" execute="@this" 
+                                                                 listener="#{servicoClienteController.listProfissaoEdit()}"/>
+
+                                                        <f:selectItem itemLabel="Selecione uma categoria para o serviço"/>
+                                                        <f:selectItems value="#{servicoClienteController.listaCategoria}" var="item"
+                                                                       itemLabel="#{item.nome}"/>
+                                                        <!--<f:ajax render="selectProfissao" event="change"/>-->
+                                                        <!--<:support event="onchange" ajaxSingle="true" reRender="cbCidade"/>-->
+                                                        <!--<f:converter converterId="tipoUsuarioConverter"/>-->
+                                                    </h:selectOneMenu>
+
+                                                    <br />
+                                                    <br />
+
+                                                    <h:selectOneMenu id="selectProfissao" value="#{servicoClienteController.servicoEdit.profissao}" converter="profissaoConverter" label="">
+
+                                                        <f:selectItem itemLabel="Selecione uma profissao para o serviço"/>
+                                                        <f:selectItems value="#{servicoClienteController.listaProfissao}" var="item"
+                                                                       itemLabel="#{item.nome}"/>
+                                                        <!--<f:converter converterId="tipoUsuarioConverter"/>-->
+                                                    </h:selectOneMenu>
+
+                                                    <br />
+                                                    <br />
+
+                                                     <!-- endereço -->
+                                                    <h:selectOneMenu id="selectEndereco" value="#{servicoClienteController.servicoEdit.endereco}" converter="enderecoConverter" label="">
+
+                                                        <f:selectItem itemLabel="Selecione o endereço do serviço"/>
+                                                        <f:selectItems value="#{servicoClienteController.listaEndereco}" var="item"
+                                                                       itemLabel="#{item.tipo}"/>
+                                                        <!--<f:converter converterId="tipoUsuarioConverter"/>-->
+                                                    </h:selectOneMenu>
+                                                    
+                                                    <br />
+                                                    <br />
+                                                     
+                                                    <h:selectOneMenu id="selectStatus" value="#{servicoClienteController.servicoEdit.status}" 
+                                                                      label="" required="true">
+                                                        <f:selectItem itemLabel="Selecione o status do serviço"/>
+                                                        <f:selectItem itemLabel="Ativo" itemValue="1"/>
+                                                        <f:selectItem itemLabel="Avaliaçao" itemValue="2"/>
+                                                        <f:selectItem itemLabel="Contato" itemValue="3"/>
+                                                        <f:selectItem itemLabel="Finalizado" itemValue="4"/>
+                                                    </h:selectOneMenu>
+
+                                                    <br />
+                                                    <br />
+
+                                                    <h:commandButton action="#{servicoClienteController.update()}" type="submit" class="btn-azul" value="Salvar" />
+                                                </div>
+                                            </h:form>
+                                        </div>                                       
+                                  </div> 
+                              </center>                                
+                          </div>
+
+            <!--              <footer class="container">
+                            <p>Modal footer</p>
+                          </footer>-->
+                        </div>
+                    </div>
+                </div>
+                
+            </ui:define>
+        </ui:composition>     
+    </body>
+</html>

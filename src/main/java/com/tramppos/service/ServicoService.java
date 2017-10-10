@@ -5,6 +5,7 @@
  */
 package com.tramppos.service;
 
+import com.tramppos.domain.Cliente;
 import com.tramppos.domain.Servico;
 import com.tramppos.repository.ServicoRepository;
 import java.util.List;
@@ -32,8 +33,8 @@ public class ServicoService {
     }
     
     // comandos
-    public void insert(Servico servico){
-        getServicoRepository().insert(servico);
+    public Servico insert(Servico servico){
+        return getServicoRepository().insert(servico);
     }    
     public void update(Servico servico){
         getServicoRepository().update(servico);
@@ -47,6 +48,16 @@ public class ServicoService {
     ///
     public List<Servico> consult(){
         return getServicoRepository().consult();
+    }
+    public List<Servico> consult(Cliente cliente){
+        return getServicoRepository().consult(cliente);
+    }
+    public List<Servico> consult(int status){
+        return getServicoRepository().consult(status);
+    }
+    
+    public Servico consultUltimo(Cliente cliente){
+        return getServicoRepository().consultUltimo(cliente);
     }
     
 }

@@ -1,77 +1,18 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns   = "http://www.w3.org/1999/xhtml"
-      xmlns:h = "http://java.sun.com/jsf/html"
-      xmlns:ui= "http://java.sun.com/jsf/facelets"
-      xmlns:f ="http://java.sun.com/jsf/core" 
-      xmlns:jsf="http://xmlns.jcp.org/jsf"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:h = "http://java.sun.com/jsf/html">
     <h:head>
-        <title>Facelet Title</title>
+            <h:outputScript library="js" name="funcoes.js"/>
+
     </h:head>
-    <h:body>
-<!--        <img src="uploadPasta/dir/aaa.png"/>
-        
-        
-        <img src="uploadTramppos/24/perfil/20170726-perfilIMG_20170214_144527.jpg"/>-->
-        
-<!--         <f:view>
-                <h:form>
-                    <h:inputText value="#{categoriaController.categoria}" converter="categoriaConverter" />
-                    <h:commandButton value="teste" action="#{categoriaController.teste()}" />
-                </h:form>
-          </f:view>-->
+    
+    <body>
 
-<!--        <h:selectOneMenu id="selectCategoria" 
-                         value="#{homeCliente.categoria}" 
-                         valueChangeListener="#{homeCliente.carregaProfissao}" 
-                         converter="categoriaConverter"
-                         label="">
+        <input type="file" accept="image/*" onchange="loadFile(event,'output')" />
+        <img id="output" />
 
-            <f:selectItem itemLabel="Selecione uma categoria para o serviço"/>
-            <f:selectItems value="#{homeCliente.listaCategoria}" var="item"
-                           itemLabel="#{item.nome}"/>
-            <f:ajax render="selectProfissao" event="change"/>
-            <:support event="onchange" ajaxSingle="true" reRender="cbCidade"/>
-            <f:converter converterId="categoriaConverter"/>
-        </h:selectOneMenu>
-            
-        <h:selectOneMenu id="selectProfissao" value="#{homeCliente.profissao}" label="">
+    </body>
 
-            <f:selectItem itemLabel="Selecione uma profissao para o serviço"/>
-            <f:selectItems value="#{homeCliente.listaProfissao}" var="item"
-                           itemLabel="#{item.nome}"/>
-            <f:converter converterId="tipoUsuarioConverter"/>
-        </h:selectOneMenu>-->
-        
-        <h:form id="frm">
-            <!--<p:messages />-->
-             
-            <!--<p:outputLabel value="Categoria" for="categoria" />-->
-
-             <h:selectOneMenu id="categoria" value="#{homeClienteController.categoria}" converter="categoriaConverter">
-                 
-                 <f:ajax render="profissao" event="change" execute="@this" 
-                         listener="#{homeClienteController.listProfissao()}"/>
-<!--                <p:ajax event="change" process="@this" update="profissao"
-                        listener="#{homeClienteController.listProfissao()}" />-->
-                
-                <f:selectItem itemLabel="Selecione Categoria" />
-                <f:selectItems value="#{homeClienteController.listaCategoria}" var="item"
-                               itemLabel="#{item.nome}" />
-            </h:selectOneMenu>
-
-            <!--<p:outputLabel value="Profissao" for="profissao" />-->
-
-            <h:selectOneMenu id="profissao" value="#{homeClienteController.profissao}">
-                <f:selectItem itemLabel="Selecione Profissao" />
-                <f:selectItems value="#{homeClienteController.listaProfissao}" var="item"
-                               itemLabel="#{item.nome}" />
-            </h:selectOneMenu>
-        </h:form>
-        
-        
-       
-    </h:body>
 </html>
 

@@ -1,123 +1,239 @@
+/*.modal {
+    top:25%;
+    left:22%;
+    position:absolute;
+    opacity:0;
+    -webkit-transition: opacity 400ms ease-in;
+    -moz-transition: opacity 400ms ease-in;
+    transition: opacity 400ms ease-in;
+    pointer-events: none;
+    z-index:40;
+}
 
-    .modal {
-        width: 1000px;
-        height: 550px;     
-        margin-top:-275px;
-        margin-left:-500px;
-        top:50%;
-        left:50%;
-        position:absolute;
-        opacity:0;
-        -webkit-transition: opacity 400ms ease-in;
-        -moz-transition: opacity 400ms ease-in;
-        transition: opacity 400ms ease-in;
-        pointer-events: none;
-    }
+.modal:target {
+    opacity: 2;
+    pointer-events: auto;
+}
 
-    .modal > div {
+.fechar {
+   Style for "Page 1" 
+  width: 35px;
+  height: 35px;
+  background-color: #9b9b9b;
+  position: absolute;
+  right: 35px;
+  top: 24px;
+  border-radius: 100%;
 
-    }
+  text-align: center;
 
-    .modal:target {
-            opacity: 2;
-            pointer-events: auto;
-    }
 
-    .fechar {
-            position: absolute;
-            width: 30px;
-            right: -15px;
-            top: -20px;
-            text-align: center;
-            line-height: 30px;
-            margin-top: 5px;
-            background: #ff9900;
-            border-radius: 50%;
-            font-size: 16px;
-            color: #fff;
+}
+.fechar a{
+  line-height: 39px;
 
-    }
+  font-weight: bold;
+  color: #fff;
+  font-size: 20px;
+  margin-top: 10px;
+  padding-top: 10px;
+}
 
-    .modal a{
-      text-decoration: none;
-    }
-    
+.fundoPreto{
+    width: 100%;
+    height: 100%;
+    display: none;
+    background: rgba(0,0,0,0.6);
+    position: fixed;
+    z-index: 9;
+    top: 0;
+}
 
-    /*id de cada modal*/
-    #editarPerfil{
-      box-shadow: 1px 1px 2px 1px #ccc;
-      /*background: #fff;*/
-      padding-bottom: 15px;
-      float: left;        
-      width: 700px;
-      height: 600px;     
-      margin-top:-300px;
-      margin-left:-350px;
-      background: rgba(255, 255, 255,1);
-      
-    }
-    
-    #editarPerfil h1{
-              text-align: center;
-    }
-    #editarPerfil.fechar{
-        color: #fff;
-        background: #ff9900;
-    }
-    
-    /*editarfoto*/
-    #editarFoto{
-        box-shadow: 1px 1px 2px 1px #ccc;
-      /*background: #fff;*/
-      padding-bottom: 15px;
-      float: left;        
-      width: 700px;
-      height: 600px;     
-      margin-top:-300px;
-      margin-left:-350px;
-      background: rgba(255, 255, 255,1);
-      
-    }
-    
-    #editarFoto.fechar{
-        color: #fff;
-        background: #ff9900;
-    }
-    
-    /*addEndereco*/
-    #addEndereco{
-        box-shadow: 1px 1px 2px 1px #ccc;
-        
-        padding-bottom: 15px;
-        float: left;        
-        width: 700px;
-        height: 600px;     
-        margin-top:-300px;
-        margin-left:-350px;
-        background: rgba(255, 255, 255,1);
-      
-    }
-    
-    #addEndereco.fechar{
-        color: #fff;
-        background: #ff9900;
-    }
-    
-    /*addEndereco*/
-    #upEndereco{
-        box-shadow: 1px 1px 2px 1px #ccc;
-        
-        padding-bottom: 15px;
-        float: left;        
-        width: 700px;
-        height: 600px;     
-        margin-top:-300px;
-        margin-left:-350px;
-        background: rgba(255, 255, 255,1);
-      
-    }
-    
-    #upEndereco.fechar{
-        color: #fff;
-        background: #ff9900;
-    }
+.fundoPreto:target{
+    display: block;
+}
+
+
+
+.modal a{
+  text-decoration: none;
+}
+
+
+
+
+
+#editarPerfil h1{
+    text-align: center;
+}
+#editarPerfil.fechar{
+    color: #fff;
+    background: #ff9900;
+}
+
+id de cada modal
+#editarServico{
+   Style for "Rectangle" 
+
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  background-color: #ffffff;
+
+  box-shadow: 1px 1px 2px 1px #ccc;
+  background: #fff;
+  padding-bottom: 15px;
+  float: left;
+
+
+  background: rgba(255, 255, 255,1);
+}
+
+
+editarfoto
+#editarFoto{
+  box-shadow: 1px 1px 2px 1px #ccc;
+  background: #fff;
+  padding-bottom: 15px;
+  float: left;        
+  width: 700px;
+  height: 400px;
+  left: calc(50% - 350px);
+  top: 200px;
+  background: rgba(255, 255, 255,1);
+
+}
+
+
+
+addEndereco
+#addEndereco{
+    box-shadow: 1px 1px 2px 1px #ccc;
+    padding-bottom: 15px;
+    float: left;        
+    width: 800px;
+    position: absolute;
+    left: calc(50% - 400px);
+    top: 100px;    
+    background: rgba(255, 255, 255,1);
+
+}
+#addEndereco .aling{
+    width: 80%;
+    margin: 30px auto;
+    display: block;
+}
+
+
+addEndereco
+#upEndereco{
+    box-shadow: 1px 1px 2px 1px #ccc;
+
+    padding-bottom: 15px;
+    float: left;        
+    width: 700px;
+    height: 600px;     
+    margin-top:-300px;
+    margin-left:-350px;
+    background: rgba(255, 255, 255,1);
+
+}
+
+#upEndereco.fechar{
+    color: #fff;
+    background: #ff9900;
+}*/
+
+/*novo metodo*/
+/*w3schools*/
+
+ /* Add animation (Chrome, Safari, Opera) */
+@-webkit-keyframes example {
+    from {top:-100px;opacity: 0;}
+    to {top:0px;opacity:1;}
+}
+
+/* Add animation (Standard syntax) */
+@keyframes example {
+    from {top:-100px;opacity: 0;}
+    to {top:0px;opacity:1;}
+}
+
+/* The modal's background */
+.modal {
+  display: none;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+/* Display the modal when targeted */
+.modal:target {
+  display: table;
+  position: fixed;
+}
+
+/* The modal box */
+.modal-dialog {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+/* The modal's content */
+.modal-dialog .modal-content {
+  margin: auto;
+  background-color: #f3f3f3;
+  position: relative;
+  padding: 0;
+  outline: 0;
+  border: 1px #777 solid;
+  text-align: justify;
+  width: 80%;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+  /* Add animation */
+  -webkit-animation-name: example; /* Chrome, Safari, Opera */
+  -webkit-animation-duration: 0.5s; /* Chrome, Safari, Opera */
+  animation-name: example;
+  animation-duration: 0.5s;
+}
+
+/* The button used to close the modal */
+.closebtn {
+  text-decoration: none;
+  float: right;
+  font-size: 35px;
+  font-weight: bold;
+  color: #fff;
+}
+
+.closebtn:hover,
+.closebtn:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.container {
+  padding: 2px 16px;
+}
+
+.modal header {
+  width: auto;
+  background-color: #5cb85c;
+  font-size: 25px;
+  color: white;
+}
+
+.modal footer {
+  background-color: #5cb85c;
+  font-size: 20px;
+  color: white;
+}
+
+/*.editServico{
+    width: 700px;
+}*/

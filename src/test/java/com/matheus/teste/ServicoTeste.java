@@ -8,6 +8,7 @@ package com.matheus.teste;
 import com.matheus.util.Util;
 import com.tramppos.domain.Cliente;
 import com.tramppos.domain.Endereco;
+import com.tramppos.domain.Profissao;
 import com.tramppos.domain.Servico;
 import com.tramppos.service.ServicoService;
 import java.util.Calendar;
@@ -33,27 +34,34 @@ public class ServicoTeste {
         ServicoService servicoService = new ServicoService();
         
         // insert
-        servico.setDescricao("Rebobar parede");
+        servico.setDescricao("Rebocar parede");
+        servico.setTitulo("testestes");
         
         // data        
         Date data = new Date(System.currentTimeMillis());
         System.out.println(data);
-//        servico.setDataSolicitacao(data);
+        servico.setDataSolicitacao(data);
         
         Cliente cliente = new Cliente();
-        cliente.setId(2);
+        cliente.setId(23);
+        servico.setCliente(cliente);
 //        servico.setIdCliente(cliente);
         
         Endereco endereco = new Endereco();
-        endereco.setId(1);
+        endereco.setId(4);
+        servico.setEndereco(endereco);
+        
+        Profissao profissao = new Profissao();
+        profissao.setId(1);
+        servico.setProfissao(profissao);
 //        servico.setIdEndereco(endereco);
         
-        //servicoService.insert(servico);   
+//        servicoService.insert(servico);   
         
         
         // update
-        servico.setId(1);
-        servico.setDescricao("Rebocar parede");
+//        servico.setId(1);
+//        servico.setDescricao("Rebocar parede");
         
         // data        
 //        servico.setDataSolicitacao(data);
@@ -64,9 +72,16 @@ public class ServicoTeste {
 
         //System.out.println("Teste: " + data);
         
-        //Util.printList((List<Object>) (Object) servicoService.consult());
+//        Util.printList((List<Object>) (Object) servicoService.consult());
         
-        System.out.print(ResourceHandler.RESOURCE_IDENTIFIER);
+        
+        
+        
+//        System.out.print(ResourceHandler.RESOURCE_IDENTIFIER);
+
+//        System.out.println("cliente: "+cliente.toString());
+//
+        System.out.println("Teste_Servico: "+servicoService.consult(1).toString());
     }
     
 }

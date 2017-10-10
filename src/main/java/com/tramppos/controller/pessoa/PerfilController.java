@@ -110,8 +110,12 @@ public class PerfilController implements Serializable {
         return "homegeral.xhtml?faces-redirect=true";
     }
     
-    public String getImgPerfil(){      
-        return this.pessoaService.linkImgPerfil(pessoa);
+    public String getImgPerfil(){    
+        if(this.pessoaService.linkImgPerfil(pessoa) != null){
+            return this.pessoaService.linkImgPerfil(pessoa);
+        } else {
+            return "resources/images/perfil.png";
+        }
     }
 
     public List<Endereco> getListaEnderecoPessoa() {
