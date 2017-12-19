@@ -39,7 +39,7 @@ public class Mail {
         props.put("mail.smtp.auth", "true");
         props.put("mail.smtp.port", "465");
         
-        session = Session.getDefaultInstance(props,
+        session = Session.getInstance(props,
                     new javax.mail.Authenticator() {
                          @Override
                          protected PasswordAuthentication getPasswordAuthentication() 
@@ -55,7 +55,7 @@ public class Mail {
     }
     
     // Manda email para mais de um endereço
-    public boolean sendMail(String[] destinatarios,String assunto,String msg)
+    public boolean sendMail(String[] destinatarios, String assunto, String msg)
     {
         String dest = new String();
         
@@ -165,6 +165,47 @@ public class Mail {
              //throw new RuntimeException(e);
         }        
         
+    }
+    
+    public boolean notificacaoNovoOrcamento(String dest, String servico){
+        
+        try {
+            String assunto = "TRAMPPOS Notifica";
+            
+            String msg;           
+
+            
+            msg = "Olá, você tem um novo orçamento para o serviço:"
+                    + "\n"
+                    + "\"" +servico+"\"";
+        
+            this.sendMail(dest,assunto,msg);
+            return true;
+        
+        } catch (Exception e) {
+            return false;
+        }
+        
+    }
+
+    public boolean notificacaoEscolha(String[] destinatarios, int idOrcamento) {
+        try {
+            String link = "http://localhost:8080/Web/paginas/cliente/detalhes.xhtml?id="+String.valueOf(idOrcamento);
+            String assunto = "TRAMPPOS Notifica ";
+            
+            String msg;           
+ 
+            msg = "Olá, parece que você tem um serviço em andamento"
+                    + "\n"
+                    + "Acesse o link e veja os detalhes: "
+                    + link;
+        
+            this.sendMail(destinatarios,assunto,msg);
+            return true;
+        
+        } catch (Exception e) {
+            return false;
+        }
     }
     
 }

@@ -49,8 +49,8 @@ public class CategoriaConverter implements Converter {
 
     @Override
     public String getAsString(FacesContext context, UIComponent component, Object value) {
-//        if ( value==null ){
-//             return null;
+//        if ( value == null ){
+//             return "";
 //        }
 //        if ( value instanceof Categoria ) {
 //             Categoria categoria = (Categoria) value;
@@ -62,7 +62,7 @@ public class CategoriaConverter implements Converter {
         if(categoria != null){
             return String.valueOf(categoria.getId());
         }else{
-            return null;
+            return "";
         }
     }
 

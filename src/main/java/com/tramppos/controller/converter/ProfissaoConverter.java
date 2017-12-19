@@ -50,7 +50,7 @@ public class ProfissaoConverter implements Converter {
     @Override
     public String getAsString(FacesContext context, UIComponent component, Object value) {
 //        if ( value==null ){
-//             return null;
+//             return "";
 //        }
 //        if ( value instanceof Profissao ) {
 //             Profissao profissao = (Profissao) value;
@@ -62,7 +62,7 @@ public class ProfissaoConverter implements Converter {
         if(profissao != null){
             return String.valueOf(profissao.getId());
         }else{
-            return null;
+            return "";
         }
     }
 

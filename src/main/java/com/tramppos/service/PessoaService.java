@@ -39,11 +39,14 @@ public class PessoaService {
     public void insert(Pessoa pessoa){
         getPessoaRepository().insert(pessoa);
     }    
-    public void update(Pessoa pessoa){
-        getPessoaRepository().update(pessoa);
+    public Pessoa update(Pessoa pessoa){
+        return getPessoaRepository().update(pessoa);
     }
     public void delete(Pessoa pessoa){
         getPessoaRepository().delete(pessoa);
+    }
+    public void updateForProf(Pessoa pessoa){
+        getPessoaRepository().updateForProf(pessoa);
     }
     
     ///

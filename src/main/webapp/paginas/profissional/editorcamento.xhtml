@@ -1,0 +1,68 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:jsf="http://xmlns.jcp.org/jsf"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+                template="./template.xhtml">
+
+    <ui:define name="titulo">
+        Profissional
+    </ui:define>
+
+    <ui:define name="nav">
+        <li><a id="navHome" jsf:action="#{homeProfissionalController.doHomeProfissional()}">Home</a></li>
+        <li><a id="navSeusOrcamentos" jsf:action="#{homeProfissionalController.doSeusOrcamentos()}" >Seus orçamentos</a></li>
+    </ui:define>
+
+    <ui:define name="content">
+        <!-- servico-->
+        <div class="servico">
+          <!-- Foto do Serviço -->
+          <img class="foto" src="../../#{seusOrcamentosController.getImgServico(editOrcamentoProfissionalController.orcamento)}" alt=""/>
+          <div class="descricao">
+            <div class="" style="padding: 28px 38px;">
+              <!-- titulo -->
+              <h3>#{editOrcamentoProfissionalController.orcamento.servico.titulo}</h3>
+              <br/>
+              <!-- bairro - cidade - estado  do servico-->
+              <h4>
+                <img class="icon" src="../../resources/images/icones/point2.png"/>
+                #{editOrcamentoProfissionalController.orcamento.servico.endereco.bairro.nome} - #{editOrcamentoProfissionalController.orcamento.servico.endereco.cep.cidade.nome} - #{editOrcamentoProfissionalController.orcamento.servico.endereco.cep.cidade.estado.nome}
+              </h4>
+              <br/>
+              <!-- descrição do serviço -->
+              <p>
+                #{editOrcamentoProfissionalController.orcamento.servico.descricao}
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Orçamento -->
+        <div class="frmOrcamento">
+          <div class="" style="padding: 45px;">
+            <h4>Envie um orçamento </h4>
+            <br/>
+            <h:form>
+              <h:inputText value="#{editOrcamentoProfissionalController.orcamento.valor}" 
+                           pt:type="number" pt:mim="0" pt:step="any" pt:placeholder="Valor R$"/>
+              <br/>
+              <h:inputText value="#{editOrcamentoProfissionalController.orcamento.tempoPrevisto}" pt:type="number" pt:placeholder="Tempo Previsto(Horas)"/>
+              <br/>              
+              <h:inputTextarea style="width:100%;height:125px;" 
+                               pt:placeholder="Lista de materiais - separados por: ';'(Ex.: 50kg de cimento; 5m de cano;)"
+                               value="#{editOrcamentoProfissionalController.orcamento.materiais}">                               
+              </h:inputTextarea>
+              <br/><br/>
+              <h:commandButton action="#{editOrcamentoProfissionalController.update()}" class="btn-azul" type="submit" 
+                               value="Salvar alteraçao" style="width: 270px;"/>
+              <!--<button class="btn-azul" type="submit" name="button">Enviar orçamento para cliente</button>-->
+            </h:form>
+          </div>
+        </div>
+    </ui:define>
+
+</ui:composition>

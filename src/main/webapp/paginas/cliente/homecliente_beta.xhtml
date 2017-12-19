@@ -106,13 +106,13 @@ and open the template in the editor.
           <form class="cad_servico" jsf:id="addServico" jsf:prependId="false">
             <p>
               Titulo do serviço
-              <h:inputText value="#{servicoClienteController.servico.titulo}"/>
+              <h:inputText value="#{cadastroServicoClienteController.servico.titulo}"/>
               <!--<input type="text" name="titulo" value=""/>-->
             </p>
             <br/>
             <p>
               Descreva o serviço
-              <h:inputTextarea value="#{servicoClienteController.servico.descricao}"></h:inputTextarea>
+              <h:inputTextarea value="#{cadastroServicoClienteController.servico.descricao}"></h:inputTextarea>
               <!--<textarea name="descricao"></textarea>-->
             </p>
 
@@ -123,13 +123,13 @@ and open the template in the editor.
             
 <!--            http://www.guj.com.br/t/selectonemenu-e-valuechangelistener/172185/2-->
             
-            <h:selectOneMenu id="selectCategoria" value="#{servicoClienteController.categoria}" converter="categoriaConverter">
+            <h:selectOneMenu id="selectCategoria" value="#{cadastroServicoClienteController.categoria}" converter="categoriaConverter">
                 
                 <f:ajax render="selectProfissao" event="change" execute="@this" 
-                         listener="#{servicoClienteController.listProfissao()}"/>
+                         listener="#{cadastroServicoClienteController.listProfissao()}"/>
                 
                 <f:selectItem itemLabel="Selecione uma categoria para o serviço"/>
-                <f:selectItems value="#{servicoClienteController.listaCategoria}" var="item"
+                <f:selectItems value="#{cadastroServicoClienteController.listaCategoria}" var="item"
                                itemLabel="#{item.nome}"/>
                 <!--<f:ajax render="selectProfissao" event="change"/>-->
                 <!--<:support event="onchange" ajaxSingle="true" reRender="cbCidade"/>-->
@@ -144,10 +144,10 @@ and open the template in the editor.
             <br/>
             <br/>
             
-            <h:selectOneMenu id="selectProfissao" value="#{servicoClienteController.servico.profissao}" converter="profissaoConverter" label="">
+            <h:selectOneMenu id="selectProfissao" value="#{cadastroServicoClienteController.servico.profissao}" converter="profissaoConverter" label="">
 
                 <f:selectItem itemLabel="Selecione uma profissao para o serviço"/>
-                <f:selectItems value="#{servicoClienteController.listaProfissao}" var="item"
+                <f:selectItems value="#{cadastroServicoClienteController.listaProfissao}" var="item"
                                itemLabel="#{item.nome}"/>
                 <!--<f:converter converterId="tipoUsuarioConverter"/>-->
             </h:selectOneMenu>
@@ -161,10 +161,10 @@ and open the template in the editor.
             
             
             <!-- endereço -->
-            <h:selectOneMenu id="selectEndereco" value="#{servicoClienteController.servico.endereco}" converter="enderecoConverter" label="">
+            <h:selectOneMenu id="selectEndereco" value="#{cadastroServicoClienteController.servico.endereco}" converter="enderecoConverter" label="">
 
                 <f:selectItem itemLabel="Selecione o endereço do serviço"/>
-                <f:selectItems value="#{servicoClienteController.listaEndereco}" var="item"
+                <f:selectItems value="#{cadastroServicoClienteController.listaEndereco}" var="item"
                                itemLabel="#{item.tipo}"/>
                 <!--<f:converter converterId="tipoUsuarioConverter"/>-->
             </h:selectOneMenu>
@@ -176,7 +176,7 @@ and open the template in the editor.
             <br/>
             <br/>            
             
-            <button jsf:action="#{servicoClienteController.insert()}" class="btn-azul" type="submit">Pronto!</button>
+            <button jsf:action="#{cadastroServicoClienteController.insert()}" class="btn-azul" type="submit">Pronto!</button>
             
           </form>
         </div>

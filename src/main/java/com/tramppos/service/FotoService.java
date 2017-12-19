@@ -60,21 +60,20 @@ public class FotoService {
         
         
     }    
-    public boolean update(Part arquivo, Foto foto){
+    public Foto update(Part arquivo, Foto foto){
         
          // se a imagem foi armazenada com sucesso, cadastra no banco
         try {
             if(this.upImagem(arquivo, foto)){            
 //            foto.setLink(caminho + nome);                        
 //            this.update(foto);            
-            this.getFotoRepository().update(foto);
-            return true;
+            return this.getFotoRepository().update(foto);
             }else{
-                return false;
+                return null;
             }
         } catch (Exception e) {
             e.printStackTrace();
-            return false;
+            return null;
         }
         
     }

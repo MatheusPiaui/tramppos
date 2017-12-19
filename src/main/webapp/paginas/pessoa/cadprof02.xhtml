@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<ui:composition xmlns   = "http://www.w3.org/1999/xhtml"
+                xmlns:h = "http://java.sun.com/jsf/html"
+                xmlns:ui= "http://java.sun.com/jsf/facelets"
+                xmlns:f ="http://java.sun.com/jsf/core" 
+                xmlns:jsf="http://xmlns.jcp.org/jsf"
+                xmlns:p="http://primefaces.org/ui"
+                template="./cadproftemplate.xhtml">
+    <ui:define name="form">
+        <form jsf:id="buscaCEP" >
+        <!-- Formulário de cadastro de Profissional -->      
+            <section class="cadastro">
+                <h1>Contato >> Endereço</h1>
+            
+                <input  jsf:id="cep" jsf:value="#{enderecoPessoaController.strCep}"
+                        type="number" name="cep" placeholder="CEP" required="true" class="block"/>    
+                
+                <br/>
+                <br/>
+
+                <button jsf:action="#{enderecoPessoaController.buscaCEP()}" class="grande btn-verde"
+                        type="submit">Buscar</button> 
+                <br/>
+                
+                <a href="http://www.buscacep.correios.com.br/sistemas/buscacep/">Nao sei meu CEP!</a>
+             </section>
+        </form>
+
+            <h:form id="cadastro_profissional" >
+                <section class="cadastro">
+                     <input jsf:id="tipo" jsf:value="#{enderecoPessoaController.endereco.tipo}" 
+                       type="text" name="tipo" placeholder="Tipo (ex.: Casa, Escritorio, Casa da praia)" class="block" required="true"/>
+                    <input jsf:id="numero" jsf:value="#{enderecoPessoaController.endereco.numero}" 
+                           type="number" name="numero" placeholder="Numero" class="block" required="true"/>
+                    <input jsf:id="complemento" jsf:value="#{enderecoPessoaController.endereco.complemento}" 
+                           type="text" name="complemento" placeholder="Complemento" class="block" required="false"/>
+
+
+
+                    <input jsf:id="bairro" jsf:value="#{enderecoPessoaController.bairro.nome}" 
+                           type="text" name="bairro" placeholder="Bairro" class="block" required="true"/>
+
+                    <input jsf:id="tipoLogra" jsf:value="#{enderecoPessoaController.logradouro.tipoLogradouro.nome}" 
+                           type="tipoLogra" name="tipoLogra" placeholder="Tipo Logradouro" required="true"
+                           style="width: 160px;"/>
+
+                    <input jsf:id="logradouro" jsf:value="#{enderecoPessoaController.logradouro.nome}" 
+                           type="logradouro" name="Logradouro" placeholder="Logradouro" required="true"
+                           style="width: 260px;"/>
+
+
+                    <input jsf:id="cidade" jsf:value="#{enderecoPessoaController.cidade.nome} - #{enderecoPessoaController.cidade.estado.sigla}" 
+                           type="text" name="cidade" placeholder="Cidade" class="block" required="true"/>
+
+
+
+                    <br/>
+                </section>     
+               
+                
+                <button jsf:action="#{cadastroProfController.doCadEnd()}" jsf:actionListener="#{enderecoPessoaController.insert()}" class="grande block btn-verde" 
+                        type="submit" disabled="true">Continuar</button>
+            </h:form>
+             
+    </ui:define>            
+</ui:composition>

@@ -17,6 +17,7 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
+import javax.mail.MessagingException;
 
 /**
  *
@@ -62,7 +63,7 @@ public class OrcamentoController implements Serializable{
     
     ///
     // 
-    public String insert(){
+    public String insert() throws MessagingException{
         
         this.orcamento.setSelecionado(false);
         this.getOrcamentoService().insert(orcamento);

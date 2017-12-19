@@ -14,10 +14,13 @@ import java.util.List;
 public class Util {
     
     static public void printList(List<Object> listObject){
-        
-        for (int i=0; i<listObject.size();i++) {
+        try {
+            for (int i=0; i<listObject.size();i++) {
             System.out.println(listObject.get(i).toString());
         }
+        } catch (Exception e) {
+        }
+        
     }
     
 }

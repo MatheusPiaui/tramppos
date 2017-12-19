@@ -119,46 +119,44 @@
               <div class="clear"></div>
             </div>
 
-                <h:form>
-                            <ul class="end-ul">
-                                                <ui:repeat var="item" value="#{enderecoPessoaController.listaEndereco}" varStatus="status" >
+            <h:form>
+                <ul class="end-ul">
+                    <ui:repeat var="item" value="#{enderecoPessoaController.listaEndereco}" varStatus="status" >
 
-                            <!--<h:panelGroup rendered="#{status.even}">-->
+                        <!--<h:panelGroup rendered="#{status.even}">-->
 
-                                    <li style="width: 40%;float: left">
-                                            <div style="width: 15px;float: left">
-                                                <img style="padding-left: 4px; " src="../../resources/images/icones/point.png"/>
-                                                <h:commandLink title="Atualiza os dados tipo pessoa" action="#{enderecoPessoaController.doUpdate()}">
-                                                    <h:graphicImage style="padding: 5px 0;" value="/resources/images/icones/update.png"/>
-                                                    <f:setPropertyActionListener value="#{item}" target="#{enderecoPessoaController.enderecoEdit}"/>
-                                                </h:commandLink>
+                        <li style="width: 40%;float: left">
+                                <div style="width: 15px;float: left">
+                                    <img style="padding-left: 4px; " src="../../resources/images/icones/point.png"/>
+<!--                                    <h:commandLink title="Atualiza os dados tipo pessoa" action="#enderecoPessoaController.doUpdate()}">
+                                        <h:graphicImage style="padding: 5px 0;" value="/resources/images/icones/update.png"/>
+                                        <f:setPropertyActionListener value="#item" target="#enderecoPessoaController.enderecoEdit}"/>
+                                    </h:commandLink>-->
+
+                                    <h:panelGroup rendered="#{enderecoPessoaController.temServico(item) == false}">
+                                        <h:commandLink title="Atualiza os dados tipo pessoa" action="#{enderecoPessoaController.delete()}">
+                                            <h:graphicImage value="/resources/images/icones/delete.png"/>
+                                            <f:setPropertyActionListener value="#{item}" target="#{enderecoPessoaController.enderecoEdit}"/>
+                                        </h:commandLink>
+                                    </h:panelGroup>                                    
+                                </div>
 
 
-                                                <h:commandLink title="Atualiza os dados tipo pessoa" action="#{enderecoPessoaController.delete()}">
-                                                    <h:graphicImage value="/resources/images/icones/delete.png"/>
-                                                    <f:setPropertyActionListener value="#{item}" target="#{enderecoPessoaController.enderecoEdit}"/>
-                                                </h:commandLink>
-                                            </div>
 
-
-
-                                            <p >
-                                                #{item.tipo}
-                                                <br/> #{item.logradouro.tipoLogradouro.nome}   #{item.logradouro.nome}, #{item.numero}
-                                                <br/> Bairro: #{item.bairro.nome}
-                                                <br/> CEP: #{item.cep.numeroCep}
-                                                <br/> #{item.cep.cidade.nome} - #{item.cep.cidade.estado.sigla}
-                                                <br/>
-                                            </p>
-                                        </li>
-                                                                         </ui:repeat>
-
-                                        <div style="clear: both"></div>
-
-                            </ul>
-
-                 </h:form>
-                  <div class="clear"></div>
+                                <p>
+                                    #{item.tipo}
+                                    <br/> #{item.logradouro.tipoLogradouro.nome}   #{item.logradouro.nome}, #{item.numero}
+                                    <br/> Bairro: #{item.bairro.nome}
+                                    <br/> CEP: #{item.cep.numeroCep}
+                                    <br/> #{item.cep.cidade.nome} - #{item.cep.cidade.estado.sigla}
+                                    <br/>
+                                </p>
+                            </li>
+                    </ui:repeat>
+                    <div style="clear: both"></div>
+                </ul>
+            </h:form>
+            <div class="clear"></div>
               <!--</table>-->
 <!--            <ul class="end-ul">
               <li>
@@ -244,11 +242,6 @@
 
                 </div>
             </div>
-
-
-
-
-
         </div>
 
         <!--modal add endereço-->

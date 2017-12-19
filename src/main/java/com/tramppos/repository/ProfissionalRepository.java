@@ -81,15 +81,22 @@ public class ProfissionalRepository implements Serializable{
     }// fim do método list
     
      public Profissional consult(String email)
-    {        
-        EntityManager entityManager = JPAconnection.getEntityManager();
-        Profissional profissional = null;
-        //try {
+    {   
+        try {
+            EntityManager entityManager = JPAconnection.getEntityManager();
+            Profissional profissional = null;
+  
             Query query = entityManager.createQuery("SELECT u FROM Pessoa u WHERE discrimina = 2 "
                     + "and  u.email = :mail");
             query.setParameter("mail", email);
             profissional = (Profissional) query.getSingleResult();            
             
-        return profissional;
+            return profissional;
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+        
     }
 }

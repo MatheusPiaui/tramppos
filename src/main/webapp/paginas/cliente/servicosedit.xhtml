@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns   = "http://www.w3.org/1999/xhtml"
+      xmlns:h = "http://java.sun.com/jsf/html"
+      xmlns:ui= "http://java.sun.com/jsf/facelets"
+      xmlns:f ="http://java.sun.com/jsf/core" 
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
+      xmlns:p="http://primefaces.org/ui">
+  
+    <body>
+        <ui:composition template="./template.xhtml">
+
+<!--            <ui:define name="titulo">
+                Home Cliente
+            </ui:define>-->
+            
+            <ui:define name="nav">
+                <li><a id="navCriarServico" 
+                       jsf:action="#{cadastroServicoClienteController.doCriarServico()}">Criar serviço</a></li>
+                <li><a id="navSeusServico"
+                       jsf:action="#{servicosClienteController.doServicosAtivos()}">Seus serviços</a></li>
+            </ui:define>
+
+            <ui:define name="content">
+                <center>
+                    <div class="editServicos" style="height: 522px;">
+                        <!--imagem-->                                 
+                        <div class="editServico" >  
+                            
+<!--                            <h:form>
+                                <div class="img_serv">
+                                    <img  id="previewEditImg" src="../../" alt="Imagem nao encontrada!"/>
+                                    <br/>
+                                    <h:commandButton id="btnFoto" action="" 
+                                                     type="submit" class="btn-azul btnFoto" value="Enviar nova foto"/>
+                                </div>
+                                
+                            </h:form>-->
+                            
+                            <h:form id="editFoto" enctype="multipart/form-data">
+                                <div class="img_serv">
+
+                                    <h:inputFile id="inputFoto" required="false" onchange="loadFile(event,'previewEditImg')" 
+                                                 value="#{editServicoClienteController.arquivoEdit}" label="Arquivo"
+                                                 style="display: none"/> 
+                                    <button class="btn-verde" type="button">
+                                        <label for="editFoto:inputFoto">Inserir imagem</label>
+                                    </button>
+                                    <br/>
+                                    <img  id="previewEditImg" src="../../#{fotoControllerAppliScoped.linkImg(editServicoClienteController.foto)}" alt="Imagem nao encontrada!"/>
+                                    <br/>
+                                    <h:commandButton id="btnFoto" action="#{editServicoClienteController.updateFoto()}" 
+                                                     type="submit" class="btn-azul btnFoto" value="Enviar nova foto"/>
+                                </div>
+
+                            </h:form>
+                                
+
+                            
+                            <h:form>
+
+                                <div class="cad_servico" >
+                                    <!--formulaio de serviço-->
+                                    <!--<h:form class="cad_servico">-->
+                                    <p>
+                                      Titulo do serviço
+                                      <h:inputText value="#{editServicoClienteController.foto.servico.titulo}"/>
+                                      <!--<input type="text" name="titulo" value=""/>-->
+                                    </p>
+                                    <br/>
+                                    <p>
+                                      Descreva o serviço
+                                      <h:inputTextarea value="#{editServicoClienteController.foto.servico.descricao}"></h:inputTextarea>
+                                      <!--<textarea name="descricao"></textarea>-->
+                                    </p>
+                                    <br/>
+                                    <br />
+
+                                    <h:selectOneMenu id="selectCategoria" value="#{editServicoClienteController.foto.servico.profissao.categoria}" converter="categoriaConverter">
+
+                                        <f:ajax render="selectProfissao" event="change" execute="@this" 
+                                                listener="#{editServicoClienteController.listProfissao()}"/>
+
+                                        <f:selectItem itemLabel="Selecione uma categoria para o serviço"/>
+                                        <f:selectItems value="#{categoriaControllerAppliScoped.listaCategorias}" var="item"
+                                                       itemLabel="#{item.nome}"/>
+                                        <!--<f:ajax render="selectProfissao" event="change"/>-->
+                                        <!--<:support event="onchange" ajaxSingle="true" reRender="cbCidade"/>-->
+                                        <!--<f:converter converterId="tipoUsuarioConverter"/>-->
+                                    </h:selectOneMenu>
+
+                                    <br />
+                                    <br />
+
+                                    <h:selectOneMenu id="selectProfissao" value="#{editServicoClienteController.foto.servico.profissao}" converter="profissaoConverter" label="">
+
+                                        <f:selectItem itemLabel="Selecione uma profissao para o serviço"/>
+                                        <f:selectItems value="#{editServicoClienteController.listaProfissao}" var="item"
+                                                       itemLabel="#{item.nome}"/>
+                                        <!--<f:converter converterId="tipoUsuarioConverter"/>-->
+                                    </h:selectOneMenu>
+
+                                    <br />
+                                    <br />
+
+                                     <!-- endereço -->
+                                    <h:selectOneMenu id="selectEndereco" value="#{editServicoClienteController.foto.servico.endereco}" converter="enderecoConverter" label="">
+
+                                        <f:selectItem itemLabel="Selecione o endereço do serviço"/>
+                                        <f:selectItems value="#{cadastroServicoClienteController.listaEndereco}" var="item"
+                                                       itemLabel="#{item.tipo}"/>
+                                        <!--<f:converter converterId="tipoUsuarioConverter"/>-->
+                                    </h:selectOneMenu>
+
+                                    <br />
+                                    <br />
+
+                                   
+                                    <h:commandButton action="#{editServicoClienteController.update()}" type="submit" class="btn-azul" value="Salvar" />
+                                </div>
+                            </h:form>
+                        </div>                                       
+                    </div> 
+                </center> 
+                
+            </ui:define>
+        </ui:composition>     
+    </body>
+</html>

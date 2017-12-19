@@ -4,12 +4,13 @@
 
 }
 
-input:focus,select:focus
+input[type="text"]:focus,select:focus
 {
   border-bottom: 1px solid #70C92C;
 }
-input, select, textarea
+input[type="text"], select, textarea
 {
+  font-weight: bold;
   outline: 0;
   color: #86898A;
   border: 0;
@@ -23,9 +24,11 @@ input, select, textarea
 input[type="file"]{
   /*display: none;*/
 }
+label.btnFile{
+}
 
-input[type="text"]{
-  padding:8px;
+input[type="text"], input[type="number"]{
+  padding: 8px 0px 8px 0px;
   display:block;
   border:none;
   border-bottom:1px solid #ccc;
@@ -34,7 +37,7 @@ input[type="text"]{
   color: #9b9b9b;
   font-family: HelveticaNeue;
   font-size: 16px;
-  font-weight: 500;
+  /*font-weight: 500;*/
   letter-spacing: 0.57px;
 }
 select{
@@ -46,6 +49,7 @@ select{
 }
 
 textarea{
+  padding: 0;
   width: 100%;
   height: 40px;
 }

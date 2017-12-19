@@ -32,12 +32,14 @@ public class FotoRepository {
         entityManager.close();
     }// fim do método add   
     
-    public void update(Foto foto){
+    public Foto update(Foto foto){
         EntityManager entityManager = JPAconnection.getEntityManager();
         entityManager.getTransaction().begin();
-        entityManager.merge(foto);  //grava um novo registro
+        Foto f = entityManager.merge(foto);  //grava um novo registro
+        entityManager.flush();
         entityManager.getTransaction().commit();  //executa o banco para grava 
         entityManager.close();
+        return f;
     }// fim do método update 
     
     public void delete(Foto foto){

@@ -9,6 +9,7 @@ import com.tramppos.domain.Bairro;
 import com.tramppos.repository.BairroRepository;
 import com.tramppos.service.BairroService;
 import com.matheus.util.Util;
+import com.tramppos.domain.Cidade;
 import java.util.List;
 
 /**
@@ -47,9 +48,9 @@ public class BairroTeste {
         ////
         //  Teste de de Consultas
         ///
-        // Lista todos os dados
+        // Lista todos os dadosa
                
-        //Util.printList((List<Object>) (Object) bairroService.consult());
+        Util.printList((List<Object>) (Object) bairroService.consult(new Cidade(3506508)));
     }
     
     

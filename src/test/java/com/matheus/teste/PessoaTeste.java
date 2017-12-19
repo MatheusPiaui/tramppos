@@ -7,6 +7,7 @@ package com.matheus.teste;
 
 import com.matheus.util.Util;
 import com.tramppos.domain.Pessoa;
+import com.tramppos.repository.PessoaRepository;
 import com.tramppos.service.PessoaService;
 import java.util.List;
 
@@ -28,20 +29,25 @@ public class PessoaTeste {
         
         ///inserir
         //
-        pessoa.setNome("teste Pessoa");
-        pessoa.setEmail("matheus@gmail.com");
-        pessoa.setSenha("123");
-        pessoa.setTelefone(null);
+        pessoa.setId(30);
+//        pessoa.setNome("Teste Pessoa alterado");
+//        pessoa.setEmail("teste@pessoa.com");
+//        pessoa.setSenha("123");
+//        pessoa.setTelefone("00000000");
+        pessoa.setDiscrimina(2);
         
         
         
-        //pessoaService.insert(pessoa);
+//        pessoaService.insert(pessoa);
+//        System.out.println("Teste: " + pessoaService.update(pessoa).toString());
+        PessoaRepository pessoaRepository = new PessoaRepository();
+//        pessoaRepository.updateForProf(pessoa);
         
-        //Util.printList((List<Object>) (Object) pessoaService.consult());
+//        Util.printList((List<Object>) (Object) pessoaService.consult());
         
-        System.out.print(pessoaService.consult("igor@gordo.com")); 
-        
-        System.out.print(pessoaService.autenticar("teste@Cliente.com", "123"));
+//        System.out.print(pessoaService.consult("igor@gordo.com")); 
+//        
+//        System.out.print(pessoaService.autenticar("teste@Cliente.com", "123"));
         
         
     }

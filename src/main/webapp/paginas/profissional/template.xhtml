@@ -1,0 +1,79 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+    <h:head>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <!-- Adiciona Favicon -->
+        <link rel="icon" href="../../resources/images/favicon.png" type="image/png" sizes="30x30" />
+        <!-- Importar arquivos CSS -->
+        <h:outputStylesheet library="css" name="style.css"/>
+        <h:outputStylesheet library="css" name="button.css"/>
+        <h:outputStylesheet library="css" name="input.css"/>
+        <h:outputStylesheet library="css" name="modal.css"/>
+        <h:outputStylesheet library="css" name="radio.css"/>
+        <h:outputStylesheet library="css" name="switch.css"/>
+
+        <!-- Importar os Arquivos JS -->
+        <h:outputScript library="js" name="nav.js"/>
+        <h:outputScript library="js" name="funcoes.js"/>
+        
+        <title> Tramppos - <ui:insert name="titulo">None</ui:insert></title>
+    </h:head>
+
+    <h:body>
+        <header>
+            <a href="home.xhtml">
+                <img class="logo" src="../../resources/images/logo.png" alt="logo" />
+            </a>
+
+            <div class="acao">
+              <img class="perfil" src="../../#{perfilController.imgPerfil}"  alt="foto perfil"/>
+
+              <!--<img src="../../resources/images/icones/notificacao.png" alt="notific"/>-->
+              <a href="../pessoa/homegeral.xhtml">
+                  <img src="../../resources/images/icones/sair.png" alt="sair"/>
+              </a>
+            </div>
+
+            <div class="entrar">
+              <h2>Entrar como
+                  <a href="../cliente/criarservico01.xhtml">
+                     <button class="btn-laranja" name="button">Cliente</button>
+                  </a>
+              </h2>
+            </div>
+
+
+            <hr />
+
+            <nav>
+              <center>
+                <ul>
+                    <h:form>
+                        <ui:insert name="nav">
+                            <li><a id="navHome" >Home</a></li>
+                            <li><a id="navSeusOrcamentos" >Seus orçamentos</a></li>
+                        </ui:insert>
+                    </h:form>                    
+                </ul>
+              </center>
+            </nav>
+
+        </header>
+
+
+        <section>
+            <center>
+            <ui:insert name="content">Content</ui:insert>
+            </center>
+        </section>
+
+    </h:body>
+
+</html>

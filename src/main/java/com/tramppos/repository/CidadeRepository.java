@@ -120,4 +120,15 @@ public class CidadeRepository {
             
         
     }
+
+    public Cidade consult(int id) {
+     
+        EntityManager entityManager = JPAconnection.getEntityManager();
+        Cidade categoria = null;
+        
+        categoria=entityManager.find(Cidade.class, id);
+        
+        return categoria;
+    
+    }
 }

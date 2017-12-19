@@ -1,0 +1,172 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:jsf="http://xmlns.jcp.org/jsf"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="./template.xhtml">
+
+    <ui:define name="titulo">
+        Profissional
+    </ui:define>
+
+    <ui:define name="nav">
+        <li><a id="navHome" class="ativo azul" jsf:action="#{homeProfissionalController.doHomeProfissional()}">Home</a></li>
+        <li><a id="navSeusOrcamentos" jsf:action="#{homeProfissionalController.doSeusOrcamentos()}" >Seus orçamentos</a></li>
+    </ui:define>
+
+    <ui:define name="content">
+        <h:form>
+             <!-- filtros de busca -->
+            <div class="filtros">
+                <!-- filtro por cidade -->
+                <div class="filCidade">
+                  <h3>
+                    <img class="icon" src="../../resources/images/icones/point.png" />
+                    Encontrar serviços em:
+                    <h:selectOneMenu class="est" id="selectEstado" value="#{homeProfissionalController.estado}" 
+                                    converter="estadoConverter" >
+
+                        <f:ajax render="selectCidade servico:repeatServicos" event="change" execute="@this"
+                                listener="#{homeProfissionalController.listCidade()}" />
+
+                        <f:selectItem itemLabel="UF"/>
+                        <f:selectItems value="#{homeProfissionalController.listaEstado}" var="item"
+                                       itemLabel="#{item.sigla}"/>
+                        <!--<f:ajax render="selectProfissao" event="change"/>-->
+                        <!--<:support event="onchange" ajaxSingle="true" reRender="cbCidade"/>-->
+                        <!--<f:converter converterId="tipoUsuarioConverter"/>-->
+                    </h:selectOneMenu>
+                    
+                    <h:selectOneMenu id="selectCidade" value="#{homeProfissionalController.cidade}" 
+                                    converter="cidadeConverter">
+                        
+                        <f:ajax render="selectBairro servico:repeatServicos" event="change" execute="@this"
+                                listener="#{homeProfissionalController.listBairro()}"/>
+                        
+
+                        <f:selectItem itemLabel="Cidade"/>
+                        <f:selectItems value="#{homeProfissionalController.listaCidade}" var="item"
+                                       itemLabel="#{item.nome}"/>
+                        <!--<f:converter converterId="tipoUsuarioConverter"/>-->
+                    </h:selectOneMenu>
+                    
+                    <img class="icon flag" src="../../resources/images/icones/flag.png" />
+                    <h:selectOneMenu id="selectBairro" value="#{homeProfissionalController.bairro}" 
+                                    converter="bairroConverter" label="">
+                        
+                        <f:ajax render="servico:repeatServicos" event="change" execute="@this"
+                                listener="#{homeProfissionalController.listServicoBairro()}"/>
+
+                        <f:selectItem itemLabel="Bairro"/>
+                        <f:selectItems value="#{homeProfissionalController.listaBairro}" var="item"
+                                       itemLabel="#{item.nome}"/>
+                        <!--<f:converter converterId="tipoUsuarioConverter"/>-->
+                    </h:selectOneMenu>
+<!--                    <select class="est" name="estado">
+                      <option value="">UF</option>
+                      <option value="">Em Avaliação</option>
+                      <option value="">Em Contato</option>
+                      <option value="">Finalizado</option>
+                    </select>
+                    <select class="" name="cidade">
+                      <option value="">Cidade</option>
+                      <option value="">Em Avaliação</option>
+                      <option value="">Em Contato</option>
+                      <option value="">Finalizado</option>
+                    </select>
+
+                    <img class="icon flag" src="../../resources/images/icones/flag.png" />
+                    <select class="" name="bairro">
+                      <option value="">Bairro</option>
+                      <option value="">Em Avaliação</option>
+                      <option value="">Em Contato</option>
+                      <option value="">Finalizado</option>
+                    </select>-->
+                  </h3>
+                </div>
+
+                <div class="filProfissao">
+                  <h3>
+                    <img class="icon mala" src="../../resources/images/icones/mala.png"/>
+                    <h:selectOneMenu id="selectCategoria" value="#{homeProfissionalController.categoria}" 
+                                    converter="categoriaConverter">
+
+                        <f:ajax render="selectProfissao servico:repeatServicos" event="change" execute="@this"
+                                listener="#{homeProfissionalController.listProfissao()}"/>
+
+                        <f:selectItem itemLabel="Categoria"/>
+                        <f:selectItems value="#{homeProfissionalController.listaCategoria}" var="item"
+                                       itemLabel="#{item.nome}"/>
+                        <!--<f:ajax render="selectProfissao" event="change"/>-->
+                        <!--<:support event="onchange" ajaxSingle="true" reRender="cbCidade"/>-->
+                        <!--<f:converter converterId="tipoUsuarioConverter"/>-->
+                    </h:selectOneMenu>
+
+
+
+                    <h:selectOneMenu id="selectProfissao" value="#{cadastroServicoClienteController.servico.profissao}" 
+                                    converter="profissaoConverter" label="">
+                        
+                        <f:ajax render="servico:repeatServicos" event="change" execute="@this"
+                                listener="#{homeProfissionalController.listServicoProfissao()}"/>
+
+                        <f:selectItem itemLabel="Profissao"/>
+                        <f:selectItems value="#{homeProfissionalController.listaProfissao}" var="item"
+                                       itemLabel="#{item.nome}"/>
+                        <!--<f:converter converterId="tipoUsuarioConverter"/>-->
+                    </h:selectOneMenu>
+<!--                    <select class="" name="categoria">
+                      <option value="">Categoria</option>
+                      <option value="">Em Avaliação</option>
+                      <option value="">Em Contato</option>
+                      <option value="">Finalizado</option>
+                    </select>
+                    <select class="" name="profissao">
+                      <option value="">Profissao</option>
+                      <option value="">Em Avaliação</option>
+                      <option value="">Em Contato</option>
+                      <option value="">Finalizado</option>
+                    </select>-->
+                  </h3>
+                </div>
+            </div>
+        </h:form>
+        
+       
+
+            <!-- lista de serviços encontrados -->
+            <div class="servicos">
+                <h:form id="servico">
+                    <h:panelGroup id="repeatServicos"> 
+                        <ui:repeat var="item" value="#{homeProfissionalController.fotos}" varStatus="status" >
+                            <div class="compServico">
+                            <!-- imagem do serviço -->
+                            <img class="imgServico" src="../../#{fotoControllerAppliScoped.linkImg(item)}" alt="Imagem do serviço"/>
+
+                            <div class="descricao">
+                              <!-- <button class="editar" type="button" name="button"><a href="#editarServico">Editar</a></button> -->
+                              <h3>#{item.servico.titulo}</h3>
+                              <br/>
+                              <h4>
+                                <img class="icon" src="../../resources/images/icones/point2.png"/>
+                                #{item.servico.endereco.cep.cidade.nome} - #{item.servico.endereco.cep.cidade.estado.sigla}
+                                <h:commandLink action="#{homeProfissionalController.doCriarOrcamento(item)}"
+                                               type="submit" >
+                                    <button class="btn-azul" type="submit" name="button">
+                                        Fazer orçamento
+                                        
+                                    </button>
+                                </h:commandLink>                              
+
+                              </h4>
+                            </div>
+                          </div>
+                        </ui:repeat>
+                    </h:panelGroup>
+                </h:form>
+            </div>
+    </ui:define>
+
+</ui:composition>

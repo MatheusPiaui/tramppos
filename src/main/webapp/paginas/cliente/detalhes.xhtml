@@ -1,0 +1,153 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:jsf="http://xmlns.jcp.org/jsf"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+                template="./template.xhtml">
+
+    <ui:define name="titulo">
+        Profissional
+    </ui:define>
+
+    <ui:define name="nav">
+        <br/>
+        <h:panelGroup rendered="#{(detalheClienteController.orcamento.servico.status == 2) and (detalheClienteController.orcamento.servico.pessoa == detalheClienteController.pessoa)}" >
+            <form action="detalhes.xhtml" method="get" target="_blank">
+                <input type="text" name="id" value="#{detalheClienteController.orcamento.id}" style="display: none"/>
+                <input type="text" name="finaliza" value="1" style="display: none"/>
+                <h3>Esta ação não pode ser revertida                    
+                    <h:commandButton onclick="if (! confirm('Tem certeza que deseja finalizar este serviço?')) return false" 
+                                   actionListener="#{detalheClienteController.finalizarServico()}"
+                                   class="btn-verde" value="Finalizar Serviço" type="submit">
+                   
+                    </h:commandButton>
+                </h3>
+            </form>          
+        </h:panelGroup>
+    </ui:define>
+
+    <ui:define name="content">
+        
+        <!--informaçeos do serviço-->
+        
+        <!-- servico-->
+        <div class="servico">
+          <!-- Foto do Serviço -->
+          <img class="foto" src="../../#{detalheClienteController.imgServico}" alt=""/>
+          <div class="descricao">
+            <div class="" style="padding: 28px 38px;">
+              <!-- titulo -->
+              <h3>#{detalheClienteController.orcamento.servico.titulo}</h3>
+              <br/>
+              <!-- bairro - cidade - estado  do servico-->
+              <h4>
+                <img class="icon" src="../../resources/images/icones/point2.png"/>
+                #{detalheClienteController.orcamento.servico.endereco.bairro.nome} - #{detalheClienteController.orcamento.servico.endereco.cep.cidade.nome} - #{detalheClienteController.orcamento.servico.endereco.cep.cidade.estado.nome}
+              </h4>
+              <br/>
+              <!-- descrição do serviço -->
+              <p>
+                #{detalheClienteController.orcamento.servico.descricao}
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Orçamento -->
+        <div class="" style="width:915px;">
+            <div class="boxOrcamento">
+                <!-- Dados do Orçamento -->
+                <div class="descOrcamento">
+                    <div style="padding:15px;">
+                        <br/>
+                        <h6 class="esq"><img class="icon" src="../../resources/images/icones/preco.png" alt="preço"/>R$ #{detalheClienteController.orcamento.valor} </h6>
+                        <h6 class="dir"><img class="icon" src="../../resources/images/icones/time.png" alt="preço"/>#{detalheClienteController.orcamento.tempoPrevisto} horas em média </h6>
+
+                        <!-- Lista de materiais -->
+                        <div class="materiais">
+                            <br/><br/>
+                            <h5>Lista de materiais</h5>
+                            <br/>
+                            <ui:repeat var="item2" value="#{orcamentoControllerAppliScoped.listMateriais(detalheClienteController.orcamento)}" varStatus="status" >
+                                <input type="text" name="" value="#{item2}" disabled="true"/>
+                            </ui:repeat>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            
+            
+            
+            <!--informaçeos do cliente-->
+            <div class="infoPessoa">
+                <div style="padding:15px;">
+                    <h4>Cliente</h4>
+                    <hr/>
+                    <br/>
+                    <div>
+                        <div class="esq">
+                            <h5>#{detalheClienteController.orcamento.servico.pessoa.nome}</h5>
+                            <img class="perfil" src="../../#{orcamentoClienteController.getImgPerfil(detalheClienteController.orcamento.servico.pessoa)}" alt=""/>
+                        </div>
+                        <div class="dir">
+                            <h5><img class="icon" src="../../resources/images/icones/email.png"/> #{detalheClienteController.orcamento.servico.pessoa.email}</h5>
+                            <h5><img class="icon" src="../../resources/images/icones/phone.png"/> #{detalheClienteController.orcamento.servico.pessoa.telefone}</h5>
+                        </div> 
+                    </div>                                       
+                </div>                                           
+            </div>
+            <!--informaçeos do Profissional-->
+            <div class="infoPessoa">
+                <div style="padding:15px;">
+                    <h4>Profissional</h4>
+                    <hr/>
+                    <br/>
+                    <div>
+                        <div class="esq">
+                            <h5>#{detalheClienteController.orcamento.profissional.nome}</h5>
+                            <img class="perfil" src="../../#{orcamentoClienteController.getImgPerfil(detalheClienteController.orcamento.profissional)}" alt=""/>
+                        </div>
+                        <div class="dir">
+                            <h5><img class="icon" src="../../resources/images/icones/email.png"/> #{detalheClienteController.orcamento.profissional.email}</h5>
+                            <h5><img class="icon" src="../../resources/images/icones/phone.png"/> #{detalheClienteController.orcamento.profissional.telefone}</h5>
+                        </div> 
+                    </div>                                       
+                </div>                                           
+            </div>  
+            
+            <!--avaliar serviço-->
+            <h:panelGroup rendered="#{(detalheClienteController.orcamento.servico.status == 3) and 
+                                      (detalheClienteController.orcamento.servico.pessoa == detalheClienteController.pessoa)}" >
+                <div class="avaliacao">
+                    <div style="padding:30px;">
+                        <div>
+                            <h:form>
+                                <h1>Avalie o serviço finalizado</h1>
+                                <fieldset class="rating">
+                                    <input type="radio" id="star5" name="rating" value="5" /><label class = "full" for="star5" title="Awesome - 5 stars"></label>
+                                    <input type="radio" id="star4half" name="rating" value="4 and a half" /><label class="half" for="star4half" title="Pretty good - 4.5 stars"></label>
+                                    <input type="radio" id="star4" name="rating" value="4" /><label class = "full" for="star4" title="Pretty good - 4 stars"></label>
+                                    <input type="radio" id="star3half" name="rating" value="3 and a half" /><label class="half" for="star3half" title="Meh - 3.5 stars"></label>
+                                    <input type="radio" id="star3" name="rating" value="3" /><label class = "full" for="star3" title="Meh - 3 stars"></label>
+                                    <input type="radio" id="star2half" name="rating" value="2 and a half" /><label class="half" for="star2half" title="Kinda bad - 2.5 stars"></label>
+                                    <input type="radio" id="star2" name="rating" value="2" /><label class = "full" for="star2" title="Kinda bad - 2 stars"></label>
+                                    <input type="radio" id="star1half" name="rating" value="1 and a half" /><label class="half" for="star1half" title="Meh - 1.5 stars"></label>
+                                    <input type="radio" id="star1" name="rating" value="1" /><label class = "full" for="star1" title="Sucks big time - 1 star"></label>
+                                    <input type="radio" id="starhalf" name="rating" value="half" /><label class="half" for="starhalf" title="Sucks big time - 0.5 stars"></label>
+                                </fieldset> 
+                                
+                                <h:inputTextarea style="width:100%;height:100px;" 
+                                                 pt:placeholder="Avalie o serviço e deixe seu comentario">                               
+                                </h:inputTextarea>                                
+                            </h:form>                                                       
+                        </div>
+                    </div>
+                </div>
+            </h:panelGroup>            
+        </div>          
+    </ui:define>
+</ui:composition>

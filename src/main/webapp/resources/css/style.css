@@ -9,12 +9,52 @@ html,body{
   top: 0;
 }
 
+/* ================== ICONES ===============*/
+
+.estrelas
+{
+  background-image: url(../resources/images/icones/estrela.png);
+  background-repeat: no-repeat;
+  height: 10px;
+  display: inline-block;
+}
+
+.estrelas-5
+{
+  width: 60px;
+}
+
+.estrelas-4
+{
+  width: 45px;
+}
+
+.estrelas-3
+{
+  width: 35px;
+}
+
+.estrelas-2
+{
+  width: 23px;
+}
+
+.estrelas-1
+{
+  width: 10px;
+}
+
+.estrelas-0
+{
+  width: 0px;
+}
 
 /*geral*/
 hr{
   clear: both;
   padding: 0;
   margin: 0;
+  border: 1px solid #e0e1e1;
 }
 
 /*Tipografia*/
@@ -40,6 +80,12 @@ h3{
 }
 h4{
   font-size: 19px;
+}
+h5{
+  font-size: 15px;
+}
+h6{
+  font-size: 12px;
 }
 a{
   cursor: pointer;
@@ -133,6 +179,9 @@ nav ul li a{
 nav ul li a.ativo{
   border-bottom-width: 11px;
   border-color: #ff9b00;
+}
+nav ul li a.azul{
+  border-color: #3f7aee;
 
 }
 
@@ -142,7 +191,7 @@ section{
   clear: both;
 
 }
-div.criarServicos{
+div.editServicos{
   margin-top: 63px;
 
   background-color: #fff;
@@ -150,10 +199,10 @@ div.criarServicos{
   height: 466px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.16);
 }
-div.criarServicos form, div.criarServicos div{
+div.editServicos form, div.editServicos div{
   float: left;
 }
-div.criarServicos div.img_serv{
+div.editServicos div.img_serv{
     
   padding: 50px;
 
@@ -165,11 +214,11 @@ div.criarServicos div.img_serv{
   text-align: center;
 
 }
-div.criarServicos div.img_serv button{
+div.editServicos div.img_serv button{
   margin-bottom: 65px;
 }
 
-div.criarServicos div.img_serv img#previewImg{
+img#previewImg{
     width: 313px;
     height: 238px;
     background-color: #e3e3e3;
@@ -182,7 +231,7 @@ div.criarServicos div.img_serv img#previewImg{
     margin-top: 50px;
 }
 
-div.criarServicos div.cad_servico{
+div.editServicos div.cad_servico{
   width: 428px;
   height: 361px;
   padding: 44px;
@@ -254,14 +303,30 @@ section center div.seusServicos div.compServico{
   position:relative;
   margin: 5px;
 }
-section center div.seusServicos div.compServico.esq{
-  /*margin-right: 23px;*/
-}
-section center div.seusServicos div.compServico.dir{
+
+section center div.compServico{
+  float: left;
+  /* Style for "Rectangle" */
+  width: 421px;
+  height: 343px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.16);
+  background-color: #ffffff;
+
+  display:inline-block;
+  position:relative;
+
+  margin: 10px 12px;
 }
 
 
 section center div.seusServicos div.compServico img{
+  /* Style for "Rectangle" */
+  width: 100%;
+  height: 188px;
+  background-color: #b8e986;
+  border: 0;
+}
+section center div.compServico img.imgServico{
   /* Style for "Rectangle" */
   width: 100%;
   height: 188px;
@@ -310,6 +375,300 @@ div.compServico button.editar a{
   letter-spacing: 0.5px;
 }
 
-.editServico{
+div.compServico div.descricao{
+  margin: 21px;
+}
+div.compServico div.descricao button{
+  margin: 0;
+}
+
+div.compServico h3, div.compServico h4{
+  text-align: left;
+}
+
+
+/*telas Profissoonal*/
+/**/
+/**/
+div.filtros{
+  /* Style for "Rectangle" */
+  width: 862px;
+  height: 157px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.16);
+  background-color: #ffffff;
+  margin: 33px 10px;
+}
+div.filtros select, div.filtros input{
+  width: 183px;
+}
+div.filtros select{
+  text-align: center; /* para firefox */
+  text-align-last: center; /* para chrome */
+}
+div.filtros select.est{
+  width: 50px;
+}
+/*icons*/
+div.filtros div.filCidade img.flag{
+  margin-left: 68px;
+}
+img.icon{
+  margin-right: 24px;
+  width: 16px;
+}
+img.mala{
+    width: 22px;
+}
+
+div.filCidade{
+  text-align: left;
+  padding: 36px;
+
+}
+
+div.servicos{
+  width: 890px;
+}
+
+
+/*tela seus Orçamentos*/
+/**/
+div.filtrosOrcamento{
+  /* Style for "Rectangle" */
+  width: 853px;
+  height: 74px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.16);
+  background-color: #ffffff;
+
+  margin: 43px 0;
+}
+
+div.filtrosOrcamento div.flEsq{
+  width: 50%;
+  float: left;
+  margin: 26px 34px;
+}
+
+div.filtrosOrcamento div.flEsq h3{
+  float: left;
+  margin: 8px 0px;
+}
+
+div.filtrosOrcamento div.flDir{
+  /*width: 50%;*/
+  float: left;
+  margin: 26px 34px;
+}
+div.filtrosOrcamento div.flDir label{
+  /*width: 50%;*/
+  float: right;
+  margin-left: 23px;
+}
+div.filtrosOrcamento div.flDir h3{
+  margin: 8px 0px;
+  float: left;
+}
+
+div.orcamentos{
+  width: 900px;
+}
+
+div.orcamento{
+  /* Style for "Rectangle" */
+  width: 421px;
+  height: 359px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.16);
+  background-color: #ffffff;
+  position: relative;
+  float: left;
+
+  margin: 8px 8px;
+}
+div.orcamento button.full{
+  width: 100%;
+  height: 47px;
+  border: none;
+  border-radius: 0;
+
+}
+
+div.orcamento div.desc{
+  width: 100%;
+  height: 124px;
+}
+div.orcamento div.desc h3{
+  padding: 16px 22px;
+}
+div.orcamento div.atributos{
+  margin: 17px 31px;
+}
+div.orcamento div.atributos .esq{
+  float: left;
+}
+div.orcamento div.atributos .dir{
+  float: right;
+}
+
+div.orcamento img.foto{
+  /* Style for "Rectangle" */
+  width: 421px;
+  height: 188px;
+  background-color: #b8e986;
+  border: none;
+}
+
+div.orcamento button.editar{
+  top: 29px;
+  right: 31px;
+  /*-webkit-transform:translate3d(-50%, -50%, 0);
+  -moz-transform:translate3d(-50%, -50%, 0);
+  transform:translate3d(-50%, -50%, 0);*/
+}
+
+.boxServico{
+    margin-top: 99px;
     
+    /* Style for "Rectangle" */
+    width: 538px;
+    height: 419px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.16);
+    background-color: #ffffff;
+}
+
+/*Tela criar Orçamento*/
+div.servico{
+  margin-top: 51px;
+
+  /* Style for "Rectangle" */
+  width: 896px;
+  height: 327px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.16);
+  background-color: #ffffff;
+}
+div.servico img.foto{
+  float: left;
+  /* Style for "Rectangle" */
+  width: 50%;
+  height: 100%;
+  background-color: #b8e986;
+}
+div.servico div.descricao{
+  float: left;
+  width: 50%;
+  height: 100%;
+  text-align: left;
+  /*padding: 28px 38px;*/
+
+}
+div.frmOrcamento{
+  margin-top: 51px;
+  /* Style for "Rectangle" */
+  width: 395px;
+  height: 414px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.16);
+  background-color: #ffffff;
+}
+
+/* Tela Escolher Orçamentos*/
+div.boxOrcamento{
+  margin: 10px;
+  float: left;
+  /* Style for "Rectangle" */
+  width: 381px;
+  /*height: 357px;*/
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.21);
+  background-color: #ffffff;
+}
+
+div.prof{
+
+}
+div.prof img{
+  float: left;
+}
+div.prof h5{
+  margin: 17px 5px 0px 17px;
+  float: left;
+}
+div.prof i{
+  float: right;
+  margin-top: 17px;
+}
+
+div.prof img.perfil{
+  margin-bottom: 12px;
+  /* Style for "Oval 3" */
+  width: 47px;
+  height: 47px;
+  border-radius: 100%;
+  /*background-color: #d8d8d8;*/
+}
+
+div.descOrcamento{
+  text-align: left;
+}
+div.descOrcamento .esq{
+  float: left;
+  margin-left: 14px;
+
+}
+div.descOrcamento .dir{
+  float: right;
+  margin-right: 13px;
+}
+div.descOrcamento img.icon{
+  margin-right: 16px;
+  /* Style for "Fill 1" */
+  width: 20px;
+  height: 18px;
+  background-color: #66c72e;
+}
+div.materiais{
+  clear: both;
+}
+div.materiais input{
+  font-size: 12px;
+}
+
+
+/*Tela detalhes*/
+div.infoPessoa{
+  margin: 10px 0px 1px 0px;
+  float: left;
+  /* Style for "Rectangle" */
+  width: 505px;
+  /*height: 357px;*/
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.21);
+  background-color: #ffffff;
+}
+
+div.infoPessoa div.esq{
+    width: 120px;
+    float: left;    
+}
+div.infoPessoa div.dir{
+    /*width: 200px;*/
+    text-align: left;
+    float: left;
+    
+}
+div.infoPessoa img.perfil{
+    width: 80px;
+    height: 80px; 
+    border-radius: 100%;
+    margin-bottom: 10px;
+}
+div.infoPessoa img.icon{
+    width: 20px;
+    height: 20px;
+}
+
+div.avaliacao{
+    margin: 10px;
+    float: left;
+    /* Style for "Rectangle" */
+    width: 890px;
+    /*height: 357px;*/
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.21);
+    background-color: #ffffff;
 }

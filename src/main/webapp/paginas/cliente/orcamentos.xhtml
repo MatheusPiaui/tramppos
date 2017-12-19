@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns   = "http://www.w3.org/1999/xhtml"
+      xmlns:h = "http://java.sun.com/jsf/html"
+      xmlns:ui= "http://java.sun.com/jsf/facelets"
+      xmlns:f ="http://java.sun.com/jsf/core" 
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+  
+    <body>
+        <ui:composition template="./template.xhtml">
+
+            <ui:define name="titulo">
+                Home Cliente
+            </ui:define>
+            
+            <ui:define name="nav">
+                <br/>
+<!--                <h3>Para todos os orçamentos que voce aceitar
+                    sera enviado um email para o profissional
+                    com seu email e telefone para contato</h3>-->
+                <h:panelGroup rendered="#{orcamentoControllerAppliScoped.temSelecionado(orcamentoClienteController.foto.servico) == true and orcamentoClienteController.foto.servico.status != 3}" >
+                    <h:form>
+                        <h3>Reative seu serviço caso queira escolher outro orçamento
+                            <h:commandButton onclick="if (! confirm('Tem certeza que deseja reativar serviço?')) return false" 
+                                             action="#{orcamentoClienteController.reativarServico()}"                                            
+                                             class="btn-verde"  value="Reativar">
+                            </h:commandButton>
+                            <!--<button class="btn-azul" name="button">Profissional</button>-->
+                        </h3>
+                    </h:form>
+                </h:panelGroup>              
+            </ui:define>
+
+            <ui:define name="content">
+                <h:form id="orcamentos">
+                    <h:panelGroup id="repeatOrca"> 
+                        <ui:repeat var="item" value="#{orcamentoClienteController.listaOrcamento}" varStatus="status" >
+                            <div class="" style="width:805px;">
+                                <div class="boxOrcamento">
+                                    <!-- Dados Profissional -->
+                                    <div class="prof">
+                                      <div style="padding:15px;">
+                                        <!-- Foto perfil -->
+                                        <img class="perfil" src="../../#{orcamentoClienteController.getImgPerfil(item.profissional)}" alt=""/>
+                                        <!-- Nome -->
+                                        <h5 >#{item.profissional.nome}</h5>
+                                        <!-- Média de avaliações -->
+                                        <i class="estrelas estrelas-5"></i>
+                                      </div>
+                                    </div>
+                                    <hr />
+                                    <!-- Dados do Orçamento -->
+                                    <div class="descOrcamento">
+                                        <div style="padding:15px;">
+                                            <br/>
+                                            <h6 class="esq"><img class="icon" src="../../resources/images/icones/preco.png" alt="preço"/>R$ #{item.valor} </h6>
+                                            <h6 class="dir"><img class="icon" src="../../resources/images/icones/time.png" alt="preço"/>#{item.tempoPrevisto} horas em média </h6>
+
+                                            <!-- Lista de materiais -->
+                                            <div class="materiais">
+                                                <br/><br/>
+                                                <h5>Lista de materiais</h5>
+                                                <br/>
+
+                                                <ui:repeat var="item2" value="#{orcamentoControllerAppliScoped.listMateriais(item)}" varStatus="status" >
+                                                    <input type="text" name="" value="#{item2}" disabled="true"/>
+                                                    <!--<input type="text" name="" value="nome do material #2" disabled="true"/>-->
+                                                </ui:repeat>
+
+    <!--                                            <form class="" action="index.html" method="post">
+                                                  <input type="text" name="" value="nome do material #1" disabled="true"/>
+                                                  <input type="text" name="" value="nome do material #2" disabled="true"/>
+                                                </form>-->
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+
+                                    <button jsf:action="#{orcamentoClienteController.doDetalhe(item)}" 
+                                            jsf:rendered="#{item.selecionado == true}" 
+                                            class="full footer btn-verde" type="submit">Escolhido!</button>                                
+
+                                    <button jsf:onclick="if (! confirm('Tem certeza que de que deseja aceitar esse Orçamento?')) return false" 
+                                            jsf:action="#{orcamentoClienteController.escolherOrcamento(item)}" 
+                                            jsf:rendered="#{(item.selecionado == false) and (item.servico.status == 1)}"
+                                            class="full footer btn-azul" type="submit">Aceitar este orçamento</button>
+
+                                    <button jsf:onclick="if (! confirm('Tem certeza que deseja mudar sua escolha de orçamento para esse serviço?')) return false" 
+                                            jsf:action="#{orcamentoClienteController.escolherOrcamento(item)}" 
+                                            jsf:rendered="#{(item.selecionado == false) and (item.servico.status == 2)}"
+                                            class="full footer btn-azul" type="submit">Aceitar este orçamento</button>
+
+                                </div>
+                            </div>
+                        </ui:repeat>
+                    </h:panelGroup>
+                </h:form>               
+            </ui:define>
+        </ui:composition>     
+    </body>
+</html>
