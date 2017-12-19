@@ -28,7 +28,10 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.PostConstruct;
+import javax.enterprise.context.RequestScoped;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
 
@@ -36,9 +39,8 @@ import javax.inject.Named;
  *
  * @author matheus
  */
-
-@Named
-@SessionScoped
+@ManagedBean
+@ViewScoped
 public class EnderecoPessoaController implements Serializable{
     
     private Endereco endereco;
@@ -122,10 +124,12 @@ public class EnderecoPessoaController implements Serializable{
     // 
     public String insert(){
         
-        this.endereco.setBairro(bairro);
-        this.endereco.setLogradouro(logradouro);
-        this.endereco.setCep(cep);        
-        this.endereco.setPessoa(pessoa);
+        this.endereco.setBairro(this.bairro);
+        this.endereco.setLogradouro(this.logradouro);
+        this.endereco.setCep(this.cep);        
+        this.endereco.setPessoa(this.pessoa);
+        
+//        this.endereco.getCep().getCidade().setEstado(this.estado);
         
         this.getEnderecoService().insert(endereco);
         
@@ -144,11 +148,32 @@ public class EnderecoPessoaController implements Serializable{
     }
     
     public String delete(){
-        this.getEnderecoService().delete(enderecoEdit);
-        this.clear();
-        this.list();
+        try {
+            EnderecoService es = new EnderecoService();
         
-        return "homegeral.xhtml?faces-redirect=true";
+            es.delete(this.enderecoEdit);
+            this.clear();
+            this.list();
+
+            return "homegeral.xhtml?faces-redirect=true";
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "";
+        }
+        
+    }
+    
+    
+    public boolean temServico(Endereco endereco){
+        try {
+            EnderecoService enderecoService = new EnderecoService();
+            
+            return enderecoService.temServico(endereco);
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }       
     }
     
     // Lista de endereços por pessoa

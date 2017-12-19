@@ -6,6 +6,7 @@
 package com.tramppos.service;
 
 import com.tramppos.domain.Bairro;
+import com.tramppos.domain.Cidade;
 import com.tramppos.repository.BairroRepository;
 import java.util.List;
 
@@ -51,6 +52,15 @@ public class BairroService {
     
     public Bairro consult(String nome){
         return getBairroRepository().consult(nome);
+    }
+    
+    public List<Bairro> consult(Cidade cidade) {
+        return getBairroRepository().consult(cidade);
+    }
+
+    public Bairro consult(Integer id) {
+        
+        return getBairroRepository().consult(id);
     }
     
 }

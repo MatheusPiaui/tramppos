@@ -16,14 +16,29 @@ and open the template in the editor.
         <ui:composition template="./templateserv.xhtml">
             
             <ui:define name="navServ">
-                <li><a id="navAtivo" class="ativo" 
-                        jsf:action="#{servicoClienteController.doServicosAtivos()}">Ativo</a></li>
-                 <li><a id="navAvali" 
-                        jsf:action="#{servicoClienteController.doServicosAvaliacao()}">Em Avaliação</a></li>
-                 <li><a id="navConta"
-                        jsf:action="#{servicoClienteController.doServicosContato()}">Em Contato</a></li>
-                 <li><a id="navFinal"
-                        jsf:action="#{servicoClienteController.doServicosFinalizados()}">Finalizado</a></li>                
+                
+                <li>
+                    <h:commandLink id="navAtivo" class="ativo"
+                                   actionListener="#{servicosClienteController.doServicosAtivos()}"
+                                   value="Ativo">
+                        <f:ajax  render=":listaServico" ></f:ajax>
+                    </h:commandLink>
+                </li>
+                
+                <li>
+                    <h:commandLink id="navAvali" 
+                                   action="#{servicosClienteController.doServicosAndamento()}"
+                                   value="Em Andamento">
+                        <f:ajax  render=":listaServico" ></f:ajax>
+                    </h:commandLink>
+                </li> 
+                <li>
+                    <h:commandLink id="navFinal" 
+                                   action="#{servicosClienteController.doServicosFinalizados()}"
+                                   value="Finalizado">
+                        <f:ajax  render=":listaServico" ></f:ajax>
+                    </h:commandLink>
+                </li>              
             </ui:define>
         </ui:composition>     
     </body>

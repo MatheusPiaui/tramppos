@@ -8,6 +8,7 @@ package com.matheus.teste;
 import com.matheus.util.Util;
 import com.tramppos.domain.Cliente;
 import com.tramppos.domain.Endereco;
+import com.tramppos.domain.Pessoa;
 import com.tramppos.domain.Profissao;
 import com.tramppos.domain.Servico;
 import com.tramppos.service.ServicoService;
@@ -34,41 +35,45 @@ public class ServicoTeste {
         ServicoService servicoService = new ServicoService();
         
         // insert
-        servico.setDescricao("Rebocar parede");
-        servico.setTitulo("testestes");
+//        servico.setDescricao("Rebocar parede");
+//        servico.setTitulo("testestes");
         
         // data        
         Date data = new Date(System.currentTimeMillis());
         System.out.println(data);
-        servico.setDataSolicitacao(data);
+//        servico.setDataSolicitacao(data);
         
-        Cliente cliente = new Cliente();
-        cliente.setId(23);
-        servico.setCliente(cliente);
+        Pessoa pessoa = new Pessoa();
+        pessoa.setId(23);
+        
+        
+//        servico.setCliente(cliente);
 //        servico.setIdCliente(cliente);
         
         Endereco endereco = new Endereco();
         endereco.setId(4);
-        servico.setEndereco(endereco);
+//        servico.setEndereco(endereco);
         
         Profissao profissao = new Profissao();
         profissao.setId(1);
-        servico.setProfissao(profissao);
+//        servico.setProfissao(profissao);
 //        servico.setIdEndereco(endereco);
         
 //        servicoService.insert(servico);   
         
         
         // update
-//        servico.setId(1);
+//        servico.setId(4);
+        servico = servicoService.consultId(4);
 //        servico.setDescricao("Rebocar parede");
+        servico.setStatus(4);
         
         // data        
 //        servico.setDataSolicitacao(data);
 // 
 //        servico.setIdCliente(cliente);
 //        servico.setIdEndereco(endereco);
-        //servicoService.update(servico);
+        servicoService.update(servico);
 
         //System.out.println("Teste: " + data);
         
@@ -81,7 +86,7 @@ public class ServicoTeste {
 
 //        System.out.println("cliente: "+cliente.toString());
 //
-        System.out.println("Teste_Servico: "+servicoService.consult(1).toString());
+//        System.out.println("Teste_Servico: "+servicoService.consult(pessoa,1).toString());
     }
     
 }

@@ -28,6 +28,15 @@ public class Cidade implements Serializable {
     @JoinColumn(name = "idEstado", nullable = false, referencedColumnName = "id")
     private Estado estado;
 
+    public Cidade(int id) {
+        this.id = id;
+    }
+
+    public Cidade() {
+       
+    }
+
+    
     public int getId() {
         return id;
     }

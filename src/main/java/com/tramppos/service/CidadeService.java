@@ -57,5 +57,9 @@ public class CidadeService {
     public Cidade consult(String nome){
         return getCidadeRepository().consult(nome);
     }
+
+    public Cidade consult(int id) {
+        return getCidadeRepository().consult(id);
+    }
     
 }

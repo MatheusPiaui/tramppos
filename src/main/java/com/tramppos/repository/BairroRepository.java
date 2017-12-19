@@ -6,6 +6,7 @@
 package com.tramppos.repository;
 
 import com.tramppos.domain.Bairro;
+import com.tramppos.domain.Cidade;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -95,6 +96,41 @@ public class BairroRepository {
             }
         }
         throw new NonUniqueResultException(); 
+    }
+
+    public List<Bairro> consult(Cidade cidade) {
+        List<Bairro> lista = new ArrayList<>();
+        EntityManager entityManager = JPAconnection.getEntityManager();
+        
+        try 
+        {       
+            Query query;
+            query = entityManager.createQuery("SELECT DISTINCT bai "
+                    + "FROM Bairro bai, Endereco en, Cep cep "
+                    + "WHERE bai.id = cep.bairro.id AND en.cep.id = cep.id AND cep.cidade.id = :p1");
+            query.setParameter("p1", cidade.getId());
+            lista = query.getResultList();
+        } 
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+        
+        entityManager.close();
+        return lista;
+    }
+
+    public Bairro consult(int id) {
+        
+     
+        EntityManager entityManager = JPAconnection.getEntityManager();
+        Bairro bairro = null;
+        
+        bairro=entityManager.find(Bairro.class, id);
+        
+        return bairro;
+    
+    
     }
     
 }

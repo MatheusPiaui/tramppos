@@ -5,6 +5,7 @@
  */
 package com.tramppos.controller.pessoa;
 
+import com.tramppos.autentica.CriaSessaoBean;
 import com.tramppos.domain.Endereco;
 import com.tramppos.domain.Pessoa;
 import com.tramppos.domain.Profissional;
@@ -17,11 +18,14 @@ import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
 import com.tramppos.util.jsf.SessionUtil;
 import com.tramppos.util.upload.Image;
+import java.io.IOException;
 import java.util.AbstractList;
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.Part;
 
@@ -29,8 +33,8 @@ import javax.servlet.http.Part;
  *
  * @author matheus
  */
-@Named
-@SessionScoped
+@ManagedBean
+@ViewScoped
 public class PerfilController implements Serializable {
     
     private Pessoa pessoa;
@@ -72,7 +76,9 @@ public class PerfilController implements Serializable {
     
      private void adicionarMensagem(FacesMessage.Severity nivel, String mensagem) {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(nivel, mensagem, mensagem));
-    }   
+    }  
+     
+   
      
      
     // Lista de endereços por pessoa
@@ -117,7 +123,7 @@ public class PerfilController implements Serializable {
             return "resources/images/perfil.png";
         }
     }
-
+    
     public List<Endereco> getListaEnderecoPessoa() {
         return listaEnderecoPessoa;
     }

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<ui:composition xmlns   = "http://www.w3.org/1999/xhtml"
+                xmlns:h = "http://java.sun.com/jsf/html"
+                xmlns:ui= "http://java.sun.com/jsf/facelets"
+                xmlns:f ="http://java.sun.com/jsf/core" 
+                xmlns:jsf="http://xmlns.jcp.org/jsf"                
+                template="./cadproftemplate.xhtml">
+    <ui:define name="form">
+        <!-- Formulário de cadastro de Profissional -->
+        <form jsf:id="form" jsf:prependId="false">
+            
+            <section class="cadastro">
+                <h1>Contato</h1>
+                               
+                <input jsf:id="nomeFantasia" jsf:value="#{cadastroProfController.profissional.nomeFantasia}" 
+                       type="text" name="nomefantasia" placeholder="Nome Fantasia" class="block" required="true"/>
+                <input jsf:id="telefone" jsf:value="#{cadastroProfController.profissional.telefone}" 
+                       type="tel" name="telefone" placeholder="Telefone" class="block" required="true"/>
+
+              
+            </section>
+
+            <button jsf:action="#{cadastroProfController.insertProf()}" 
+                    class="grande block btn-verde" type="submit">Continuar</button>
+        </form>
+    </ui:define>            
+</ui:composition>

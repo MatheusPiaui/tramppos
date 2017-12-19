@@ -7,7 +7,8 @@ and open the template in the editor.
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:jsf="http://xmlns.jcp.org/jsf">
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
+      xmlns:p="http://primefaces.org/ui">
   <h:head>
     <meta charset="utf-8"/>
     <title>Trampos - Sistema de Gerenciamento de Jobs</title>
@@ -39,24 +40,29 @@ and open the template in the editor.
         <div class="clear"></div>
       </div>
     </header>
-
+  
+    <p:tooltip />
     <!-- Formulario de cadastro de clientes -->
     <form jsf:id="login" jsf:prependId="false">
-      <section class="cadastro login">
-        <input jsf:id="email" jsf:value="#{autenticadorBean.email}" 
-                type="email" name="email" placeholder="Email" class="block" required="true" />
-        <input jsf:id="senha" jsf:value="#{autenticadorBean.senha}" 
-               type="password" name="senha" placeholder="Senha" class="block" required="true" />
+        <h:panelGroup id="panel">
+            <section class="cadastro login">
+                <input jsf:id="email" jsf:value="#{autenticadorBean.email}" 
+                        type="email" name="email" placeholder="Email" class="block" required="true" />
+                
 
-        <div class="margin-top">
-            <h2>Esqueceu a Senha? <a href="#">Clique aqui</a></h2>
-            <h2>Não é Cadastrado? <a href="cadastro.xhtml">Clique aqui</a></h2>
-        </div>
-      </section>
+                <input jsf:id="senha" jsf:value="#{autenticadorBean.senha}" 
+                       type="password" name="senha" placeholder="Senha" class="block" required="true" />
+                
 
+                <div class="margin-top">
+                    <h2>Esqueceu a Senha? <a href="#">Clique aqui</a></h2>
+                    <h2>Não é Cadastrado? <a href="cadastro.xhtml">Clique aqui</a></h2>
+                </div>
+                <p:messages id="messagens" showDetail="true" autoUpdate="true" closable="true"/>
+            </section>
+        </h:panelGroup>
         <button jsf:action="#{autenticadorBean.autentica()}"
-              class="grande block btn-verde" type="submit">Continuar</button>
-    </form>
-  
+              class="grande block btn-verde" type="submit" jsf:update="panel">Continuar</button>
+    </form>    
  </body>
 </html>

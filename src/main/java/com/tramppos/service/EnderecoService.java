@@ -5,6 +5,7 @@
  */
 package com.tramppos.service;
 
+import com.tramppos.domain.Cidade;
 import com.tramppos.domain.Endereco;
 import com.tramppos.domain.Pessoa;
 import com.tramppos.repository.EnderecoRepository;
@@ -58,6 +59,24 @@ public class EnderecoService {
     }
     public Endereco consult(int id){
         return getEnderecoRepository().consult(id);
+    }
+
+    
+
+    public boolean temServico(Endereco endereco) {
+        try {
+            ServicoService servicoService = new ServicoService();
+        
+            if(servicoService.consult(endereco).isEmpty()){
+                return false;
+            }else{
+                return true;
+            }            
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }        
     }
     
 }

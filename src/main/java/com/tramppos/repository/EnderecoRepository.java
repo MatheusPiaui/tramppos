@@ -5,6 +5,7 @@
  */
 package com.tramppos.repository;
 
+import com.tramppos.domain.Cidade;
 import com.tramppos.domain.Endereco;
 import com.tramppos.domain.Pessoa;
 import java.util.ArrayList;
@@ -72,7 +73,7 @@ public class EnderecoRepository {
         return lista;
     }// fim do método list
     
-     public List<Endereco> consult(Pessoa pessoa)
+    public List<Endereco> consult(Pessoa pessoa)
     {
         List<Endereco> lista = new ArrayList<>();
         EntityManager entityManager = JPAconnection.getEntityManager();

@@ -29,19 +29,23 @@ public class ProfissionalTeste {
         ///
         //  inserir
         //
-        profissional.setNome("teste profissional");
-        profissional.setEmail("teste@Profissional.com");
+//        profissional.setId(9);
+        profissional.setNome("profissional");
+        profissional.setEmail("prof@profissional.com");
         profissional.setSenha("123");
-        profissional.setTelefone(null);
+        profissional.setTelefone("12341234987");
         //
         //profissional.setDiscrimina(1);
-        profissional.setNomeFantasia("Dodo");
-        profissional.setNota(0);
-        profissional.setRaioAtendimento(10);
+//        profissional.setNomeFantasia("Dodo");
+//        profissional.setNota(0);
+//        profissional.setRaioAtendimento(10);
         
-        //profissionalService.insert(profissional);
+//        profissionalService.insert(profissional);
+//        profissionalService.update(profissional);
         
-        Util.printList((List<Object>) (Object) profissionalService.consult());
+//        Util.printList((List<Object>) (Object) profissionalService.consult());
+
+        System.out.println("Teste: " + profissionalService.consult("teste@pessoa.com"));
         
         
         

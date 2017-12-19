@@ -60,9 +60,11 @@ public class EnderecoTeste {
 
         Pessoa pessoa = new Pessoa();
         
-        pessoa.setId(23);
+        pessoa.setId(9);
         
         Util.printList((List<Object>) (Object) enderecoService.consult(pessoa));
+        
+//        System.out.println("Teste: " + enderecoService.consult(pessoa));
 
     }
     

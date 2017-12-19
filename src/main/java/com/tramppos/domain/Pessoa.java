@@ -34,13 +34,17 @@ public class Pessoa implements Serializable{
     @Id
     @GeneratedValue
     private int id;
+    @Column(nullable = false)    
     private String nome;
+    @Column(nullable = false)
     protected String email;
+    @Column(nullable = false)
     private String senha;
+    @Column(nullable = false)
     protected String telefone;
     private String uid;
     private boolean validado = false;
-    private String fotoPerfil;    
+    private String fotoPerfil;   
     @Column(insertable=false, updatable=false)    
     private int discrimina;
     

@@ -23,7 +23,7 @@ import javax.persistence.Temporal;
 public class Servico implements Serializable{
     
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue
     private int id;
     private String titulo;
     private String descricao;
@@ -33,7 +33,7 @@ public class Servico implements Serializable{
     
     @ManyToOne
     @JoinColumn(name = "idPessoa", nullable = false, referencedColumnName = "id")
-    private Cliente cliente;
+    private Pessoa pessoa;
     
     @ManyToOne
     @JoinColumn(name = "idEndereco", nullable = false, referencedColumnName = "id")
@@ -80,12 +80,12 @@ public class Servico implements Serializable{
         this.status = status;
     }
 
-    public Cliente getCliente() {
-        return cliente;
+    public Pessoa getPessoa() {
+        return pessoa;
     }
 
-    public void setCliente(Cliente cliente) {
-        this.cliente = cliente;
+    public void setPessoa(Pessoa pessoa) {
+        this.pessoa = pessoa;
     }
 
     public Endereco getEndereco() {
@@ -110,12 +110,20 @@ public class Servico implements Serializable{
 
     public void setProfissao(Profissao profissao) {
         this.profissao = profissao;
+    }    
+
+    public String getTitulo() {
+        return titulo;
+    }
+
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
     }
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 79 * hash + this.id;
+        int hash = 5;
+        hash = 59 * hash + this.id;
         return hash;
     }
 
@@ -139,14 +147,8 @@ public class Servico implements Serializable{
 
     @Override
     public String toString() {
-        return "Servico{" + "id=" + id + ", descricao=" + descricao + ", dataSolicitacao=" + dataSolicitacao + ", status=" + status + ", cliente=" + cliente + ", endereco=" + endereco + ", Avaliacao=" + Avaliacao + ", profissao=" + profissao + '}';
+        return "Servico{" + "id=" + id + ", titulo=" + titulo + ", descricao=" + descricao + ", dataSolicitacao=" + dataSolicitacao + ", status=" + status + ", pessoa=" + pessoa + ", endereco=" + endereco + ", Avaliacao=" + Avaliacao + ", profissao=" + profissao + '}';
     }
-
-    public String getTitulo() {
-        return titulo;
-    }
-
-    public void setTitulo(String titulo) {
-        this.titulo = titulo;
-    }
+    
+    
 }

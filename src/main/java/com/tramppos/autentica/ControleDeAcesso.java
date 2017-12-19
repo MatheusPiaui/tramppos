@@ -51,7 +51,8 @@ public class ControleDeAcesso implements Filter {
                 System.out.println("Esta como pessoa!!!!!!");
             }else{
                 if((session.getAttribute("logProf") != null && req.getRequestURI().startsWith(req.getContextPath() +"/paginas/profissional"))
-                    ||(session.getAttribute("logProf") != null && req.getRequestURI().startsWith(req.getContextPath() +"/paginas/pessoa"))){
+                    ||(session.getAttribute("logProf") != null && req.getRequestURI().startsWith(req.getContextPath() +"/paginas/pessoa"))
+                    ||(session.getAttribute("logProf") != null && req.getRequestURI().startsWith(req.getContextPath() +"/paginas/cliente"))){
                      chain.doFilter(request, response);
                      System.out.println("Esta como Profissional!!!!!!");                    
                  }

@@ -1,8 +1,10 @@
 <?xml version='1.0' encoding='UTF-8' ?> 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 
     <h:head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -14,6 +16,7 @@
         <h:outputStylesheet library="css" name="button.css"/>
         <h:outputStylesheet library="css" name="input.css"/>
         <h:outputStylesheet library="css" name="modal.css"/>
+        <h:outputStylesheet library="css" name="starRating.css"/>
 
 
         <!-- Importar os Arquivos JS -->
@@ -26,25 +29,32 @@
     <h:body>
         
         <header>
-            <img class="logo" src="../../resources/images/logo.png" alt="logo"/>
+            <a href="criarservico01.xhtml">
+                <img class="logo" src="../../resources/images/logo.png" alt="logo" />
+            </a>
 
             <div class="acao">
               <!--<img src="../../resources/images/perfil.png" />-->
               <img class="perfil" src="../../#{perfilController.imgPerfil}"  alt="foto perfil"/>
 
-              <img src="../../resources/images/icones/notificacao.png" alt="notific"/>
+              <!--<img src="../../resources/images/icones/notificacao.png" alt="notific"/>-->
 
               <a href="../pessoa/homegeral.xhtml">
                   <img src="../../resources/images/icones/sair.png" alt="sair"/>
               </a>
 
             </div>
+            <h:form>
+                <div class="entrar">
+                    <h2>Entrar como
 
-            <div class="entrar">
-              <h2>Entrar como
-                <button class="btn-azul" name="button">Profissional</button>
-              </h2>
-            </div>
+                            <h:commandButton class="btn-azul"  action="#{criaSessaoBean.sessaoProf()}" value="Profissional" />
+
+                            <!--<button class="btn-azul" name="button">Profissional</button>-->
+
+                    </h2>
+                </div>
+            </h:form> 
 
             <hr />
             
@@ -53,8 +63,8 @@
                 <ul>
                     <h:form>
                         <ui:insert name="nav">
-                            <li><a id="navCriarServico">Criar serviço</a></li>
-                            <li><a id="navSeusServico">Seus serviços</a></li>
+<!--                            <li><a id="navCriarServico">Criar serviço</a></li>
+                            <li><a id="navSeusServico">Seus serviços</a></li>-->
                         </ui:insert> 
                     </h:form>                                      
                 </ul>

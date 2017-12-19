@@ -72,7 +72,7 @@ and open the template in the editor.
 
     <section>
       <center>
-        <div id="criarServicos" class="criarServicos">
+        <div id="criarServicos" class="editServicos">
             <!--imagem-->
             <h:form enctype="multipart/form-data">
                 <div class="img_serv">
@@ -80,7 +80,7 @@ and open the template in the editor.
                 
                     <h:outputLabel value="Arquivo"/>
                     <h:inputFile id="imgServ" required="true" onchange="loadFile(event,'previewImg')"
-                             value="#{servicoClienteController.arquivo}" label="Arquivo"/> 
+                             value="#{cadastroServicoClienteController.arquivo}" label="Arquivo"/> 
                     <br/>
                     <img id="previewImg"/>
                 </div>
@@ -88,7 +88,7 @@ and open the template in the editor.
                 <div class="cad_servico" >
                     <p>
                       Titulo do serviço
-                      <h:inputText value="#{servicoClienteController.servico.titulo}"/>
+                      <h:inputText value="#{cadastroServicoClienteController.servico.titulo}"/>
                       <!--<input type="text" name="titulo" value=""/>-->
                     </p>
                     
@@ -96,20 +96,20 @@ and open the template in the editor.
                     
                     <p>
                       Descreva o serviço
-                      <h:inputTextarea value="#{servicoClienteController.servico.descricao}"></h:inputTextarea>
+                      <h:inputTextarea value="#{cadastroServicoClienteController.servico.descricao}"></h:inputTextarea>
                       <!--<textarea name="descricao"></textarea>-->
                     </p>
                     
                     <br />
                     <br />
 
-                    <h:selectOneMenu id="selectCategoria" value="#{servicoClienteController.categoria}" converter="categoriaConverter">
+                    <h:selectOneMenu id="selectCategoria" value="#{cadastroServicoClienteController.categoria}" converter="categoriaConverter">
 
                         <f:ajax render="selectProfissao" event="change" execute="@this" 
-                                 listener="#{servicoClienteController.listProfissao()}"/>
+                                 listener="#{cadastroServicoClienteController.listProfissao()}"/>
 
                         <f:selectItem itemLabel="Selecione uma categoria para o serviço"/>
-                        <f:selectItems value="#{servicoClienteController.listaCategoria}" var="item"
+                        <f:selectItems value="#{cadastroServicoClienteController.listaCategoria}" var="item"
                                        itemLabel="#{item.nome}"/>
                         <!--<f:ajax render="selectProfissao" event="change"/>-->
                         <!--<:support event="onchange" ajaxSingle="true" reRender="cbCidade"/>-->
@@ -119,10 +119,10 @@ and open the template in the editor.
                     <br />
                     <br />
 
-                    <h:selectOneMenu id="selectProfissao" value="#{servicoClienteController.servico.profissao}" converter="profissaoConverter" label="">
+                    <h:selectOneMenu id="selectProfissao" value="#{cadastroServicoClienteController.servico.profissao}" converter="profissaoConverter" label="">
 
                         <f:selectItem itemLabel="Selecione uma profissao para o serviço"/>
-                        <f:selectItems value="#{servicoClienteController.listaProfissao}" var="item"
+                        <f:selectItems value="#{cadastroServicoClienteController.listaProfissao}" var="item"
                                        itemLabel="#{item.nome}"/>
                         <!--<f:converter converterId="tipoUsuarioConverter"/>-->
                     </h:selectOneMenu>
@@ -131,10 +131,10 @@ and open the template in the editor.
                     <br />
 
                      <!-- endereço -->
-                    <h:selectOneMenu id="selectEndereco" value="#{servicoClienteController.servico.endereco}" converter="enderecoConverter" label="">
+                    <h:selectOneMenu id="selectEndereco" value="#{cadastroServicoClienteController.servico.endereco}" converter="enderecoConverter" label="">
 
                         <f:selectItem itemLabel="Selecione o endereço do serviço"/>
-                        <f:selectItems value="#{servicoClienteController.listaEndereco}" var="item"
+                        <f:selectItems value="#{cadastroServicoClienteController.listaEndereco}" var="item"
                                        itemLabel="#{item.tipo}"/>
                         <!--<f:converter converterId="tipoUsuarioConverter"/>-->
                     </h:selectOneMenu>
@@ -142,7 +142,7 @@ and open the template in the editor.
                     <br />
                     <br />
 
-                    <h:commandButton action="#{servicoClienteController.insert()}" type="submit" class="btn-azul" value="Pronto!" />
+                    <h:commandButton action="#{cadastroServicoClienteController.insert()}" type="submit" class="btn-azul" value="Pronto!" />
                 </div>            
             </h:form>          
         </div>
@@ -160,16 +160,16 @@ and open the template in the editor.
             <!--//lista de serviços-->
             <!--espaço-->
             <h:form>
-                <ui:repeat var="item" value="#{servicoClienteController.listaServico}" varStatus="status" >
+                <ui:repeat var="item" value="#{cadastroServicoClienteController.listaServico}" varStatus="status" >
                     <div class="compServico esq">
                       <!--Trazer imagem do fotos-->
                       
-                      <img class="imgServico" src="../../#{servicoClienteController.getImgServico(item)}" alt="Imagem do serviço"/>
+                      <img class="imgServico" src="../../#{cadastroServicoClienteController.getImgServico(item)}" alt="Imagem do serviço"/>
                        
                       <button class="editar" type="button" name="button">
-                          <h:commandLink action="#{servicoClienteController.doUpdate()}" 
+                          <h:commandLink action="#{cadastroServicoClienteController.doUpdate()}" 
                                        type="submit" value="Editar" >
-                                <f:setPropertyActionListener value="#{item}" target="#{servicoClienteController.servicoEdit}"/>
+                                <f:setPropertyActionListener value="#{item}" target="#{cadastroServicoClienteController.servicoEdit}"/>
                           </h:commandLink>
                       </button>
 <!--                      <button class="editar" type="button" name="button"><a href="#editarServico">Editar</a></button>-->
@@ -233,14 +233,14 @@ and open the template in the editor.
                 
               <div class="container">
                   <center>
-                      <div class="criarServicos">
+                      <div class="editServicos">
                             <!--imagem-->
                             <h:form id="editServico" enctype="multipart/form-data">
                                 <div class="editServico" >  
                                     <div class="img_serv">
                                         <h:outputLabel value="Arquivo" />
                                         <h:inputFile id="fotoEdit" required="false" onchange="loadFile(event,'previewEditImg')" 
-                                                     value="#{servicoClienteController.arquivoEdit}" label="Arquivo"/> 
+                                                     value="#{cadastroServicoClienteController.arquivoEdit}" label="Arquivo"/> 
                                         <br/>
                                         <img id="previewEditImg" src="../../"/>
                                     </div>
@@ -249,25 +249,25 @@ and open the template in the editor.
                                         <!--<h:form class="cad_servico">-->
                                         <p>
                                           Titulo do serviço
-                                          <h:inputText value="#{servicoClienteController.servicoEdit.titulo}"/>
+                                          <h:inputText value="#{cadastroServicoClienteController.servicoEdit.titulo}"/>
                                           <!--<input type="text" name="titulo" value=""/>-->
                                         </p>
                                         <br/>
                                         <p>
                                           Descreva o serviço
-                                          <h:inputTextarea value="#{servicoClienteController.servicoEdit.descricao}"></h:inputTextarea>
+                                          <h:inputTextarea value="#{cadastroServicoClienteController.servicoEdit.descricao}"></h:inputTextarea>
                                           <!--<textarea name="descricao"></textarea>-->
                                         </p>
                                         <br/>
                                         <br />
 
-                                        <h:selectOneMenu id="selectCategoria" value="#{servicoClienteController.servicoEdit.profissao.categoria}" converter="categoriaConverter">
+                                        <h:selectOneMenu id="selectCategoria" value="#{cadastroServicoClienteController.servicoEdit.profissao.categoria}" converter="categoriaConverter">
 
                                             <f:ajax render="selectProfissao" event="change" execute="@this" 
-                                                     listener="#{servicoClienteController.listProfissaoEdit()}"/>
+                                                     listener="#{cadastroServicoClienteController.listProfissaoEdit()}"/>
 
                                             <f:selectItem itemLabel="Selecione uma categoria para o serviço"/>
-                                            <f:selectItems value="#{servicoClienteController.listaCategoria}" var="item"
+                                            <f:selectItems value="#{cadastroServicoClienteController.listaCategoria}" var="item"
                                                            itemLabel="#{item.nome}"/>
                                             <!--<f:ajax render="selectProfissao" event="change"/>-->
                                             <!--<:support event="onchange" ajaxSingle="true" reRender="cbCidade"/>-->
@@ -277,10 +277,10 @@ and open the template in the editor.
                                         <br />
                                         <br />
 
-                                        <h:selectOneMenu id="selectProfissao" value="#{servicoClienteController.servicoEdit.profissao}" converter="profissaoConverter" label="">
+                                        <h:selectOneMenu id="selectProfissao" value="#{cadastroServicoClienteController.servicoEdit.profissao}" converter="profissaoConverter" label="">
 
                                             <f:selectItem itemLabel="Selecione uma profissao para o serviço"/>
-                                            <f:selectItems value="#{servicoClienteController.listaProfissao}" var="item"
+                                            <f:selectItems value="#{cadastroServicoClienteController.listaProfissao}" var="item"
                                                            itemLabel="#{item.nome}"/>
                                             <!--<f:converter converterId="tipoUsuarioConverter"/>-->
                                         </h:selectOneMenu>
@@ -289,10 +289,10 @@ and open the template in the editor.
                                         <br />
 
                                          <!-- endereço -->
-                                        <h:selectOneMenu id="selectEndereco" value="#{servicoClienteController.servicoEdit.endereco}" converter="enderecoConverter" label="">
+                                        <h:selectOneMenu id="selectEndereco" value="#{cadastroServicoClienteController.servicoEdit.endereco}" converter="enderecoConverter" label="">
 
                                             <f:selectItem itemLabel="Selecione o endereço do serviço"/>
-                                            <f:selectItems value="#{servicoClienteController.listaEndereco}" var="item"
+                                            <f:selectItems value="#{cadastroServicoClienteController.listaEndereco}" var="item"
                                                            itemLabel="#{item.tipo}"/>
                                             <!--<f:converter converterId="tipoUsuarioConverter"/>-->
                                         </h:selectOneMenu>
@@ -300,7 +300,7 @@ and open the template in the editor.
                                         <br />
                                         <br />
 
-                                        <h:commandButton action="#{servicoClienteController.update()}" type="submit" class="btn-azul" value="Pronto!" />
+                                        <h:commandButton action="#{cadastroServicoClienteController.update()}" type="submit" class="btn-azul" value="Pronto!" />
                                     </div>
                                 </div>
                             </h:form>

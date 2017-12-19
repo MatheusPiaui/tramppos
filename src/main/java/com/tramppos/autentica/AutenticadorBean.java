@@ -6,6 +6,8 @@ import com.tramppos.domain.Profissional;
 import com.tramppos.service.ClienteService;
 import com.tramppos.service.PessoaService;
 import com.tramppos.service.ProfissionalService;
+import static com.tramppos.util.hash.GeraHash.gerarHash;
+import static com.tramppos.util.hash.GeraHash.stringHexa;
 import java.io.Serializable;
 
 import javax.faces.bean.ManagedBean;
@@ -13,9 +15,11 @@ import javax.faces.bean.RequestScoped;
 
 import com.tramppos.util.jsf.SessionUtil;
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 
-@RequestScoped
 @ManagedBean
+@RequestScoped
 public class AutenticadorBean implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -25,6 +29,7 @@ public class AutenticadorBean implements Serializable {
 
     private PessoaService pessoaService;
     
+    
 
     @PostConstruct
     public void startDados(){
@@ -32,46 +37,59 @@ public class AutenticadorBean implements Serializable {
     }
 
     public String autentica() {
-        System.out.println("autentica..");  
+        
+        try {
+            // senha
+            this.senha = stringHexa(gerarHash(this.senha, "MD5"));
 
-        // valida se for administrador
-        if (email.equals("admin@admin") && senha.equals("admin")) 
-        {
-           System.out.println("Confirmou  usuario e senha ...");		
+            System.out.println("autentica..");  
 
-           //ADD USUARIO NA SESSION
+            // valida se for administrador
+            if (email.equals("admin@admin") && senha.equals("admin")) 
+            {
+               System.out.println("Confirmou  usuario e senha ...");		
 
-           Object b = new Object();
+               //ADD USUARIO NA SESSION
 
-           SessionUtil.setParam("logAdm", b);
+               Object b = new Object();
 
-           return "adm/homeAdm.xhtml?faces-redirect=true";
+               SessionUtil.setParam("logAdm", b);
 
-        } 
-        else 
-        {
-            // valida Pessoa
-            if (pessoaService.autenticar(email, senha)) {
-                System.out.println("Confirmou  usuario e senha ...");		
-
-                //ADD USUARIO NA SESSION
-                Pessoa pessoa = new Pessoa();                
-                PessoaService pessoaService = new PessoaService();                
-             
-                pessoa = pessoaService.consult(email);
-                
-                if(pessoa.isValidado()){
-                    SessionUtil.setParam("logPessoa", pessoa);
-                    return "pessoa/homegeral.xhtml?faces-redirect=true";
-                }else{
-                    return "paginas/login.xhtml?faces-redirect=true";
-                }              
+               return "adm/homeAdm.xhtml?faces-redirect=true";
 
             } 
-            else{      
-                return null;
-            }       
-        }
+            else 
+            {
+                // valida Pessoa
+                if (pessoaService.autenticar(email, senha)) {
+                    System.out.println("Confirmou  usuario e senha ...");		
+
+                    //ADD USUARIO NA SESSION
+                    Pessoa pessoa = new Pessoa();                
+                    PessoaService pessoaService = new PessoaService();                
+
+                    pessoa = pessoaService.consult(email);
+
+                    if(pessoa.isValidado()){
+                        SessionUtil.setParam("logPessoa", pessoa);
+                        return "pessoa/homegeral.xhtml?faces-redirect=true";
+                    }else{
+                        this.warn();
+                        return "paginas/login.xhtml?faces-redirect=true";
+                    }              
+
+                } 
+                else{ 
+                    this.warn();
+//                    this.messagens("erro", "Problema ao logar!!");
+                    return null;
+                }       
+            }
+        } catch (Exception e) {
+            this.warn();
+//            this.messagens("erro", "Problema ao logar!!");
+            return null;
+        }        
     }
     
     
@@ -91,8 +109,51 @@ public class AutenticadorBean implements Serializable {
 
         return "/paginas/index.xhtml?faces-redirect=true";
     }
+    
+    public void messagens(String id, String msg){
+        FacesContext ctx = FacesContext.getCurrentInstance();
+        ctx.addMessage(id, new FacesMessage(msg));
+    }
+    
+    // PrimeFaces - messagens --------------------------------------------------
+    
+    public void info() {
+        FacesContext.getCurrentInstance().addMessage(
+                null, 
+                new FacesMessage(
+                        FacesMessage.SEVERITY_INFO,
+                        "Info", 
+                        "PrimeFaces Rocks."));
+    }
+     
+    public void warn() {
+        FacesContext.getCurrentInstance().addMessage(
+                null,
+                new FacesMessage(
+                        FacesMessage.SEVERITY_WARN,
+                        "Problema de Login",
+                        "Email e/ou senha errado."));
+    }
+     
+    public void error() {
+        FacesContext.getCurrentInstance().addMessage(
+                null,
+                new FacesMessage(
+                        FacesMessage.SEVERITY_ERROR,
+                        "Error!",
+                        "Contact admin."));
+    }
+     
+    public void fatal() {
+        FacesContext.getCurrentInstance().addMessage(
+                null,
+                new FacesMessage(
+                        FacesMessage.SEVERITY_FATAL,
+                        "Fatal!",
+                        "System Error"));
+    }
 
-    // GETTERS E SETTERS
+    //-- GETTERS E SETTERS -----------------------------------------------
 
 
     public String getSenha() {

@@ -45,6 +45,9 @@ public class ClienteService {
         
         cliente.setUid(stringHexa(gerarHash(cliente.getEmail(), "MD5")));
         
+        // senha
+        cliente.setSenha(stringHexa(gerarHash(cliente.getSenha(), "MD5")));
+        
         //Verifica se:
         //     email    => unico
         //     telefone => unico

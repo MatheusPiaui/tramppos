@@ -62,7 +62,7 @@ public class EnderecoConverter implements Converter {
         if(endereco != null){
             return String.valueOf(endereco.getId());
         }else{
-            return null;
+            return "";
         }
     }
 

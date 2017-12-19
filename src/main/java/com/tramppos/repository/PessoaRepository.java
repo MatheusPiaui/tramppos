@@ -7,6 +7,9 @@ package com.tramppos.repository;
 
 import com.tramppos.domain.Pessoa;
 import java.io.Serializable;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -39,12 +42,14 @@ public class PessoaRepository implements Serializable{
         entityManager.close();
     }// fim do método add   
     
-    public void update(Pessoa pessoa){
+    public Pessoa update(Pessoa pessoa){
         EntityManager entityManager = JPAconnection.getEntityManager();
         entityManager.getTransaction().begin();
-        entityManager.merge(pessoa);  //grava um novo registro
+        Pessoa p = entityManager.merge(pessoa);  //grava um novo registro
+        entityManager.flush();
         entityManager.getTransaction().commit();  //executa o banco para grava 
         entityManager.close();
+        return p;
     }// fim do método update 
     
     public void delete(Pessoa pessoa){
@@ -55,6 +60,40 @@ public class PessoaRepository implements Serializable{
         entityManager.getTransaction().commit();  //executa o banco para grava 
         entityManager.close();
     }// fim do método remove
+    
+    public void updateForProf(Pessoa pessoa){
+        updateDiscrimina(pessoa);
+    }
+    
+    private void updateDiscrimina(Pessoa pessoa){      
+        
+        try
+        {            
+            // create a java mysql database connection
+            String myDriver = "org.gjt.mm.mysql.Driver";
+            String myUrl = "jdbc:mysql://localhost/tramppos";
+            Class.forName(myDriver);
+            Connection conn = DriverManager.getConnection(myUrl, "root", "");
+
+            // create the java mysql update preparedstatement
+            String query = "update Pessoa set discrimina = ? ,nota = ? ,raioAtendimento = ? where id = ?";
+            PreparedStatement preparedStmt = conn.prepareStatement(query);
+            preparedStmt.setInt (1, pessoa.getDiscrimina());
+            preparedStmt.setInt (2, 0);
+            preparedStmt.setInt (3, 0);
+            preparedStmt.setInt (4, pessoa.getId());
+
+            // execute the java preparedstatement
+            preparedStmt.executeUpdate();
+
+            conn.close();
+        }
+        catch (Exception e)
+        {
+            System.err.println("Got an exception! ");
+            System.err.println(e.getMessage());
+        }
+    }
     
     ///
     // Comandos com Retorno de List

@@ -1,0 +1,53 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:jsf="http://xmlns.jcp.org/jsf"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+                template="./template.xhtml">
+
+    <ui:define name="titulo">
+        Profissional
+    </ui:define>
+
+    <ui:define name="nav">
+        <li><a id="navHome" jsf:action="#{homeProfissionalController.doHomeProfissional()}">Home</a></li>
+        <li><a id="navSeusOrcamentos" jsf:action="#{homeProfissionalController.doSeusOrcamentos()}" >Seus orçamentos</a></li>
+    </ui:define>
+
+    <ui:define name="content">
+        <!-- servico-->
+        <div class="servico">
+          <!-- Foto do Serviço -->
+          <img class="foto" src="../../#{fotoControllerAppliScoped.linkImg(orcamentoProfissonalController.foto)}" alt=""/>
+          <div class="descricao">
+            <div class="" style="padding: 28px 38px;">
+              <!-- titulo -->
+              <h3>#{orcamentoProfissonalController.foto.servico.titulo}</h3>
+              <br/>
+              <!-- bairro - cidade - estado  do servico-->
+              <h4>
+                <img class="icon" src="../../resources/images/icones/point2.png"/>
+                #{orcamentoProfissonalController.foto.servico.endereco.bairro.nome} - #{orcamentoProfissonalController.foto.servico.endereco.cep.cidade.nome} - #{orcamentoProfissonalController.foto.servico.endereco.cep.cidade.estado.nome}
+              </h4>
+              <br/>
+              <!-- descrição do serviço -->
+              <p>
+                #{orcamentoProfissonalController.foto.servico.descricao}
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Orçamento -->
+        <div class="frmOrcamento">
+          <div class="" style="padding: 45px;">
+            <h4>Ja existe um orçamento para esse serviço. Caso queira altera-lo entre no em "Seus Orçamentos"</h4>
+            
+          </div>
+        </div>
+    </ui:define>
+
+</ui:composition>

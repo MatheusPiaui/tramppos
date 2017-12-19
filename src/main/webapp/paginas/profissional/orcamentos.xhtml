@@ -1,0 +1,103 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:jsf="http://xmlns.jcp.org/jsf"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="./template.xhtml">
+
+    <ui:define name="titulo">
+        Profissional
+    </ui:define>
+
+    <ui:define name="nav">
+        <li><a id="navHome" jsf:action="#{homeProfissionalController.doHomeProfissional()}">Home</a></li>
+        <li><a id="navSeusOrcamentos" class="ativo azul" jsf:action="#{homeProfissionalController.doSeusOrcamentos()}" >Seus orçamentos</a></li>
+    </ui:define>
+
+    <ui:define name="content">
+        <!-- filtros orçamentos -->
+        <div class="filtrosOrcamento">
+          <div class="flEsq">
+            <form action="#">
+              <h3>Profissões:</h3>
+              <h4>
+                <input type="radio" id="test1" name="radio-group" checked="true"/>
+                <label for="test1">Pedreiro</label>
+
+                <input type="radio" id="test2" name="radio-group"/>
+                <label for="test2">Pintor</label>
+              </h4>
+
+            </form>
+          </div>
+            <h:form>
+                <div class="flDir">
+                    <h3>Mostrar escolhidos
+                    </h3>
+                    <label class="switch">
+                      <input type="checkbox" checked="true"/>
+                      <span class="slider round"></span>
+                    </label>
+                  </div>
+            </h:form>
+          
+        </div>
+        <!-- lista de orçamentos -->
+        <div class="orcamentos">
+            <h:form>
+                <ui:repeat var="item" value="#{seusOrcamentosController.orcamentos}" varStatus="status" >
+                    <div class="orcamento">
+                        <img class="foto" src="../../#{seusOrcamentosController.getImgServico(item)}" alt=""/>
+                        <h:commandLink action="#{seusOrcamentosController.doUpdate(item)}"
+                                       type="submit" 
+                                       rendered="#{item.selecionado != true}">
+                            <button class="editar" type="button" name="editar">
+                                <p>Editar</p>
+<!--                                <f:setPropertyActionListener value="#item" 
+                                                             target="#seusOrcamentosController.orcamentoEdit"/>-->
+                            </button>
+                        </h:commandLink>                      
+
+                        <div class="desc">
+                            <h3>#{item.servico.titulo}</h3>
+                          <div class="atributos">
+                              <h4 class="esq"><img src="../../resources/images/icones/preco.png" alt="preço"/>   R$ #{item.valor} </h4>
+                              <h4 class="dir"><img src="../../resources/images/icones/time.png" alt="preço"/>   Prazo: #{item.tempoPrevisto} horas </h4>
+                          </div>
+                        </div>
+                        <h:commandLink action="#{seusOrcamentosController.materiais(item)}">
+                            <button class="full btn-azul" type="button" name="materiais">
+                                Ver lista de materiais
+                                
+                            </button>                        
+                        </h:commandLink>
+                    </div>
+                </ui:repeat>                
+            </h:form>
+        </div>
+        
+        <!--Modal-->
+        <div id="materiais" class="modal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                  <header class="container">
+                    <a href="#" class="closebtn">×</a>
+                    <h2>Lista de Materiais</h2>
+                  </header>
+
+                  <div class="container">
+                      <form>
+                          <ui:repeat id="repeatMateriais" var="item" value="#{seusOrcamentosController.materiais}">
+                                <br/>
+                                <input type="text" value="#{item}" disabled="true"/>
+                            </ui:repeat>
+                      </form>                      
+                  </div>
+                </div>
+            </div>
+        </div>
+    </ui:define>
+
+</ui:composition>
